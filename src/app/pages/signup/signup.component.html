@@ -1,0 +1,80 @@
+<div class="bootstrap-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <mat-card>
+          <div class="container text-center">
+            <img src="../../../assets/logo.png" alt="" />
+          </div>
+
+          <h1 class="text-center">Register Here !!</h1>
+
+          <!-- {{ user | json }} -->
+
+          <form (ngSubmit)="formSubmit()">
+            {{ user | json }}
+            <!-- UserName field -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>UserName</mat-label>
+              <input
+                name="username"
+                [(ngModel)]="user.username"
+                matInput
+                placeholder="Enter Here"
+              />
+            </mat-form-field>
+
+            <!-- Password field -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Password</mat-label>
+              <input
+                name="password"
+                type="password"
+                [(ngModel)]="user.password"
+                matInput
+                placeholder="Enter Here"
+              />
+            </mat-form-field>
+
+            <!-- Phone field -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Phone Number</mat-label>
+              <input
+                name="phonenumber"
+                [(ngModel)]="user.phonenumber"
+                type="tel"
+                matInput
+                placeholder="Enter Here"
+              />
+            </mat-form-field>
+
+            <!-- Email field -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email Id</mat-label>
+              <input
+                name="email"
+                type="email"
+                [(ngModel)]="user.email"
+                matInput
+                placeholder="Enter Here"
+              />
+            </mat-form-field>
+
+            <div class="container text-center">
+              <button type="submit" mat-raised-button color="primary">
+                Register
+              </button>
+              <button
+                style="margin-left: 20px"
+                mat-raised-button
+                color="accent"
+              >
+                Clear
+              </button>
+            </div>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

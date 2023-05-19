@@ -1,0 +1,242 @@
+<mat-card>
+  <h1>Add Property</h1>
+
+  <mat-card-content>
+    <div class="bootstrap-wrapper">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <form (ngSubmit)="addProperty()">
+            <div class="property-main">
+              <mat-form-field class="w100" appearance="outline">
+                <mat-label>Property Name</mat-label>
+                <input matInput placeholder="Enter Property Name" />
+              </mat-form-field>
+
+              <mat-form-field class="w100" appearance="outline">
+                <mat-label>Address Name</mat-label>
+                <input matInput placeholder="Enter Address Name" />
+              </mat-form-field>
+              <mat-form-field class="w100" appearance="outline">
+                <mat-label>Landmark Name</mat-label>
+                <input matInput placeholder="Enter Landmark Name" />
+              </mat-form-field>
+              <mat-form-field class="w100" appearance="outline">
+                <mat-label>City Name</mat-label>
+                <input matInput placeholder="Enter City Name" />
+              </mat-form-field>
+              <mat-form-field class="w100" appearance="outline">
+                <mat-label>State Name</mat-label>
+                <input matInput placeholder="Enter State Name" />
+              </mat-form-field>
+              <mat-form-field class="w100" appearance="outline">
+                <mat-label>Pincode Name</mat-label>
+                <input matInput placeholder="Enter Pincode" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Property Price</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  placeholder="Enter Property Price"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Offer Type </mat-label>
+                <!-- 
+              Sale
+              Resale
+              Rent -->
+
+                <!-- <input matInput placeholder="Enter Property Name" /> -->
+                <mat-select>
+                  <mat-option></mat-option>
+                  <mat-option value="sale">Sale</mat-option>
+                  <mat-option value="resale">Resale </mat-option>
+                  <mat-option value="rent">Rent</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Property Type </mat-label>
+                <!-- 
+              Flat
+              Villa
+              Indepent House
+              Duplex -->
+                <mat-select>
+                  <mat-option></mat-option>
+                  <mat-option value="flat">Flat</mat-option>
+                  <mat-option value="villa">Villa </mat-option>
+                  <mat-option value="independent">Independent House</mat-option>
+                  <mat-option value="duplex">Duplex House</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Property Status</mat-label>
+
+                <mat-select>
+                  <mat-option></mat-option>
+                  <mat-option value="readytomove">Ready To Move</mat-option>
+                  <mat-option value="underconstruction"
+                    >Under Construction
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Furnished Status</mat-label>
+                <!-- 
+              Fully 
+              Semi
+              Unfurnished -->
+                <mat-select>
+                  <mat-option></mat-option>
+                  <mat-option value="fullyfurnished"
+                    >Fully Furnished</mat-option
+                  >
+                  <mat-option value="semifurnished">Semifurnished</mat-option>
+                  <mat-option value="unfurnished">Unfurnished</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Construction Status</mat-label>
+
+                <!-- Ready-to-move
+                Completed by date -->
+                <mat-select>
+                  <mat-option></mat-option>
+                  <mat-option value="readytomove">Ready To Move</mat-option>
+                  <mat-option value="underconstruction"
+                    >Under Construction
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Facing </mat-label>
+
+                <mat-select>
+                  <mat-option></mat-option>
+                  <mat-option value="east">East</mat-option>
+                  <mat-option value="west">West</mat-option>
+                  <mat-option value="south">South</mat-option>
+                  <mat-option value="north">North</mat-option>
+                  <mat-option value="northwest">North West</mat-option>
+                  <mat-option value="northeast">North East</mat-option>
+                  <mat-option value="southeast">South East</mat-option>
+                  <mat-option value="southwest">South West</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Age Of Construction</mat-label>
+
+                <!-- Ready-to-move
+              Completed by date -->
+                <!-- <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option value="1year">1 Year</mat-option>
+                <mat-option value="2years">2 Years</mat-option>
+                <mat-option value="3years">3 Years</mat-option>
+                <mat-option value="4years">4 Years</mat-option>
+                <mat-option value="5years">5 Years</mat-option>
+              </mat-autocomplete> -->
+
+                <input matInput placeholder="Enter Property Age" />
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>How many BHK</mat-label>
+                <input matInput placeholder="Enter Property Name" />
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>How many bedrooms </mat-label>
+
+                <!-- Ready-to-move
+              Completed by date -->
+                <input matInput placeholder="Enter Property Name" />
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>How many bathrooms</mat-label>
+
+                <!-- Ready-to-move
+                Completed by date -->
+                <input matInput placeholder="Enter Property Name" />
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>How many balconies</mat-label>
+
+                <!-- Ready-to-move
+                Completed by date -->
+                <input matInput placeholder="Enter Property Name" />
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Total Floor</mat-label>
+
+                <!-- Ready-to-move
+              Completed by date -->
+                <input matInput placeholder="Enter Total Floor" />
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Floor room</mat-label>
+
+                <!-- Ready-to-move
+                Completed by date -->
+                <input matInput placeholder="Enter Room Floor" />
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Carpet Area</mat-label>
+
+                <!-- Ready-to-move
+                Completed by date -->
+                <input matInput placeholder="Enter Area in squarefeets" />
+              </mat-form-field>
+              <mat-form-field class="w100" appearance="outline">
+                <mat-label>Description</mat-label>
+
+                <textarea
+                  required
+                  name="pDescription"
+                  matInput
+                  placeholder="Enter Category Description"
+                  rows="15"
+                ></textarea>
+              </mat-form-field>
+            </div>
+            <section class="amentites"  [formGroup]="amentites">
+              
+              <mat-checkbox class="example-margin" formControlName="lift">Lift</mat-checkbox>
+              <mat-checkbox class="example-margin" formControlName="securitygaurd">Security Guard</mat-checkbox>
+              <mat-checkbox class="example-margin" formControlName="playgorund">Play Ground</mat-checkbox>
+              <mat-checkbox class="example-margin" formControlName="garden">Garden</mat-checkbox>
+              <mat-checkbox class="example-margin" formControlName="watersupply">Water Supply</mat-checkbox>
+              <mat-checkbox class="example-margin" formControlName="powerbackup">Power Backup</mat-checkbox>
+              <mat-checkbox class="example-margin" formControlName="parkingarea">Parking Area</mat-checkbox>
+              <mat-checkbox class="example-margin" formControlName="gym">Gym</mat-checkbox>
+              <mat-checkbox class="example-margin" formControlName="shoppingmall">Shopping Mall</mat-checkbox>
+              <mat-checkbox class="example-margin" formControlName="hospital">Hospital</mat-checkbox>
+              <mat-checkbox class="example-margin" formControlName="school">School</mat-checkbox>
+              <mat-checkbox class="example-margin" formControlName="markerarea">Market Area</mat-checkbox>
+            </section>
+            <section class="example-section">
+              <h4>Select amentites:</h4>
+              <p>
+                <mat-checkbox formControlName="pepperoni">Lift</mat-checkbox>
+              </p>
+              <p>
+                <mat-checkbox formControlName="extracheese"
+                  >Security Guard</mat-checkbox
+                >
+              </p>
+              <p>
+                <mat-checkbox formControlName="mushroom"
+                  >Play Ground</mat-checkbox
+                >
+              </p>
+            </section>
+
+            <div class="container text-center mt15">
+              <button mat-raised-button color="accent">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
