@@ -1,0 +1,17 @@
+.property-card {
+  max-width: 300px;
+  position: relative;
+
+}
+.property-card .icon {
+  position: absolute;
+  top: 10px; /* Adjust the top position as needed */
+  right: 10px;
+  height: 50px;
+  color: white;
+}
+
+.example-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}

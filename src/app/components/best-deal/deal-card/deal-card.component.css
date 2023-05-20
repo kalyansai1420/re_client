@@ -1,0 +1,10 @@
+.deal-card{
+    display: flex;
+    flex-direction: column;
+ 
+}
+.deal-card img{
+    height: 300px;
+    width: 200px;
+    object-fit: cover;
+}

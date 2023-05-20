@@ -1,0 +1,19 @@
+.type-card {
+  max-width: 200px;
+  position: relative;
+   padding: 20px;
+
+   background-color: pink;
+}
+.type-card-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+mat-card-content img{
+    height: 30px;
+    width: 30px;
+}

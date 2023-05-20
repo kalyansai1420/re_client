@@ -30,6 +30,18 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {  ReactiveFormsModule } from '@angular/forms';
+import { NavComponent } from './components/nav/nav.component';
+import { FeatureComponent } from './components/feature/feature.component';
+import { PropertyTypeComponent } from './components/property-type/property-type.component';
+import { DiscoverComponent } from './components/discover/discover.component';
+import { BestDealComponent } from './components/best-deal/best-deal.component';
+import { PropertyCardComponent } from './components/feature/property-card/property-card.component';
+import { TypeCardComponent } from './components/property-type/type-card/type-card.component';
+import { DisCardComponent } from './components/discover/dis-card/dis-card.component';
+import { DealCardComponent } from './components/best-deal/deal-card/deal-card.component';
+import { HeroComponent } from './components/hero/hero.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -47,6 +59,17 @@ import {  ReactiveFormsModule } from '@angular/forms';
     SidebarComponent,
     WelcomeComponent,
     ProfileComponent,
+    NavComponent,
+    FeatureComponent,
+    PropertyTypeComponent,
+    DiscoverComponent,
+    BestDealComponent,
+    PropertyCardComponent,
+    TypeCardComponent,
+    DisCardComponent,
+    DealCardComponent,
+    HeroComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,8 +88,8 @@ import {  ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     MatAutocompleteModule,
     MatCheckboxModule,
-    FormBuilder,
     ReactiveFormsModule,
+    MatChipsModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

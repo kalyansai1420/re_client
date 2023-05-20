@@ -1,0 +1,12 @@
+.discover{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.discover-cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}

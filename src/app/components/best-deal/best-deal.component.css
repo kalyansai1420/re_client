@@ -1,0 +1,12 @@
+.best-deal{
+       display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.best-deal-cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}

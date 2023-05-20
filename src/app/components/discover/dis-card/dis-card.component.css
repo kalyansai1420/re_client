@@ -1,0 +1,9 @@
+.disc-card{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+}
+.disc-card img{
+    height: 100px;
+    object-fit: contain;
+}
