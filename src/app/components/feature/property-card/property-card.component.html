@@ -1,7 +1,8 @@
-<mat-card class="property-card">
+<!-- {{property|json}} -->
+<mat-card class="property-card" *ngFor="let p of property">
   <img
     mat-card-image
-    src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+    src={{p.pPhoto}}
     alt="Photo of a Shiba Inu"
   />
 
@@ -17,15 +18,15 @@
 
   <mat-card-content>
         
-        <h3>Property Name</h3>
+        <h3>{{p.pName}}</h3>
 
-        <p>2 BHK </p>
+        <p>{{p.pBHK}}</p>
         
-        <p>1.1Cr</p>
+        <p>{{p.pPrice | currency: "INR"}}</p>
 
-        <p>Rayanapadu </p>
+        <p>{{p.aArea}}</p>
 
-        <p>Ready to Move</p>
+        <p>{{p.pPossesionStatus}}</p>
 
         <mat-divider></mat-divider>
   </mat-card-content>

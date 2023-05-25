@@ -23,7 +23,7 @@ export class LoginService {
   }
 
   //login user: set token in localStorage
-  public loginUser(token:any) {
+  public loginUser(token: any) {
     localStorage.setItem('token', token);
 
     return true;
@@ -52,7 +52,7 @@ export class LoginService {
   }
 
   //set userDetail
-  public setUser(user:any) {
+  public setUser(user: any) {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
@@ -72,5 +72,24 @@ export class LoginService {
   public getUserRole() {
     let user = this.getUser();
     return user.authorities[0].authority;
+  }
+  //get user username
+  public getUsername() {
+    let user = this.getUser();
+    if (user != null) {
+      return user.username;
+    } else {
+      return null;
+    }
+  }
+
+  //get user Id
+  public getUserId() {
+    let user = this.getUser();
+    if (user != null) {
+      return user.uId;
+    } else {
+      return null;
+    }
   }
 }
