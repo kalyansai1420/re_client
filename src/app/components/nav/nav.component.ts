@@ -15,4 +15,10 @@ export class NavComponent {
       this.isScrolled = false;
     }
   }
+  isSidenavVisible: boolean = false;
+
+  toggleSidenav() {
+    this.isSidenavVisible = !this.isSidenavVisible;
+    console.log('clicked');
+  }
 }

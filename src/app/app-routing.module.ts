@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -12,6 +12,7 @@ import { SuperadminGuard } from './services/superadmin.guard';
 import { ProfileComponent } from './pages/admin/profile/profile.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { AddPropertyComponent } from './pages/admin/add-property/add-property.component';
+import { PropertyPageComponent } from './pages/property-page/property-page.component';
 
 const routes: Routes = [
   {
@@ -59,6 +60,11 @@ const routes: Routes = [
     component: HomeComponent,
     pathMatch: 'full',
   },
+  {
+    path: 'property/:pId',
+    component: PropertyPageComponent,
+    
+  }
 ];
 
 @NgModule({

@@ -42,6 +42,9 @@ import { DealCardComponent } from './components/best-deal/deal-card/deal-card.co
 import { HeroComponent } from './components/hero/hero.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { FooterComponent } from './components/footer/footer.component';
+import { PropertyPageComponent } from './pages/property-page/property-page.component';
+import { SidenavComponent } from './pages/user/sidenav/sidenav.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 
@@ -70,6 +73,8 @@ import { FooterComponent } from './components/footer/footer.component';
     DealCardComponent,
     HeroComponent,
     FooterComponent,
+    PropertyPageComponent,
+    SidenavComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,6 +95,7 @@ import { FooterComponent } from './components/footer/footer.component';
     MatCheckboxModule,
     ReactiveFormsModule,
     MatChipsModule,
+    MatSidenavModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

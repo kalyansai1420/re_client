@@ -10,7 +10,7 @@ export class PropertyCardComponent {
 
   property = [
     {
-      pid: '',
+      pId: '',
       aArea: '',
       aCity: '',
       aLandmark: '',

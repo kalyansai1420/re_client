@@ -1,0 +1,93 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+
+  background: transparent;
+  z-index: 999;
+  transition: 0.3s ease-in-out;
+}
+.scrolled {
+  z-index: 999;
+  /* background-color: rgba(86, 86, 86, 0.503); */
+  background: rgba(255, 255, 255, 0.544);
+  background-color: white;
+  /* background-color: antiquewhite; */
+  transition: 0.3s ease-in-out;
+  box-shadow: 2px 6px 18px 0px rgba(0, 0, 0, 0.45);
+  -webkit-box-shadow: 2px 6px 18px 0px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: 2px 6px 18px 0px rgba(0, 0, 0, 0.45);
+}
+.nav-right {
+  background-color: white;
+  border-radius: 70px;
+}
+.property {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.property .image-hero {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.property .image-hero img {
+  height: 60vh;
+  object-fit: contain;
+}
+
+.price-card {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 30%;
+  left: 70%;
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  width: 300px;
+}
+.card-top,
+.card-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.property-details {
+  padding: 20px;
+  background-color: grey;
+}
+
+.property-details p img {
+  height: 30px;
+  width: 30px;
+}
+.property-details .property-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: fit-content;
+}
+.property-details .property-icons p {
+  margin-right: 20px;
+}
+
+.property-features {
+  border: 1px solid grey;
+  margin: 20px;
+  width: fit-content;
+}
+.property-amenities {
+  padding: 20px;
+}
+.prop-amenity {
+  display: flex;
+  flex-direction: row;
+}

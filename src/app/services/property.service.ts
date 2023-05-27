@@ -20,6 +20,21 @@ export class PropertyService {
   //add new property
   public addProperty(property: any) {
         return this._http.post(`${baseUrl}/property/`, property);
-
   }
+
+  //get a property
+  public getProperty(pId:any) {
+    return this._http.get(`${baseUrl}/property/${pId}`);
+  }
+
+
+
+
+
+
+
+
+
+
+
 }
