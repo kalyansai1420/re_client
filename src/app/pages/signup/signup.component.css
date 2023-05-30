@@ -1,6 +1,18 @@
+/* form{
+  margin: 0 auto;
+} */
+
 .full-width {
-  width: 100%;
+  width: 90%;
+  margin-left: 5%;
 }
 .text-align {
     text-align: center;
+}
+.container {
+  padding: 20px;
+}
+.container img{
+  height: 200px;
+  width: 200px;
 }

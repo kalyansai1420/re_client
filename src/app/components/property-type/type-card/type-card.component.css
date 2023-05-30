@@ -1,19 +1,25 @@
+.type-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
 .type-card {
   max-width: 200px;
   position: relative;
-   padding: 20px;
+  padding: 20px;
 
-   background-color: pink;
+  background-color: pink;
 }
-.type-card-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-   
+.type-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-mat-card-content img{
-    height: 30px;
-    width: 30px;
+mat-card-content img {
+  height: 30px;
+  width: 30px;
 }

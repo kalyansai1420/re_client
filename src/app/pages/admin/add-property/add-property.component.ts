@@ -123,8 +123,9 @@ export class AddPropertyComponent {
         console.log(data);
       },
       (error) => {
-        Swal.fire('Error!! ', 'Error while adding property', 'error');
+        Swal.fire('Error!! ', error.error.message , 'error');
         console.log(error);
+        console.log(error.message)
       }
     );
   }

@@ -1,10 +1,12 @@
+<app-navbar></app-navbar>
+
 <div class="bootstrap-wrapper">
   <div class="container">
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <mat-card>
           <div class="container text-center">
-            <img src="../../../assets/logo.png" alt="" />
+            <img src="../../../assets/icons/profile.png" alt="" />
           </div>
 
           <h1 class="text-center">Register Here !!</h1>
@@ -12,7 +14,7 @@
           <!-- {{ user | json }} -->
 
           <form (ngSubmit)="formSubmit()">
-            {{ user | json }}
+            <!-- {{ user | json }} -->
             <!-- UserName field -->
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>UserName</mat-label>
@@ -68,6 +70,8 @@
                 style="margin-left: 20px"
                 mat-raised-button
                 color="accent"
+                (click)="clearInput()"
+                type="button" 
               >
                 Clear
               </button>

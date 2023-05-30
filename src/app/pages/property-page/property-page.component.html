@@ -43,6 +43,7 @@
   <div class="image-hero">
     <img src="{{ property.pPhoto }}" alt="" />
   </div>
+<div class="second-div">
 
   <div class="price-card">
     <div class="card-top">
@@ -55,18 +56,18 @@
       </div>
     </div>
     <mat-divider></mat-divider>
-
+    
     <div class="card-bottom">
       <div class="card-left">
         <p>updated 1 day ago</p>
       </div>
       <div class="card-right">
         <button
-          mat-icon-button
-          class="favorite-icon"
-          aria-label="Example icon-button with heart icon"
+        mat-icon-button
+        class="favorite-icon"
+        aria-label="Example icon-button with heart icon"
         >
-          <mat-icon color="white">favorite</mat-icon>
+        <mat-icon color="white">favorite</mat-icon>
         </button>
       </div>
     </div>
@@ -78,7 +79,7 @@
     <div class="property-icons">
       <p>
         <img src="../../../assets/icons/house.png" alt="" />
-
+        
         {{ property.pPropertyType }}
         Type
       </p>
@@ -102,6 +103,7 @@
       <p>{{ property.pDescription }}</p>
     </div>
   </div>
+</div>
   <div class="property-features">
     <div class="prop-features-title">
       <h2>Features</h2>

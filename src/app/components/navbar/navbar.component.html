@@ -1,19 +1,28 @@
 <!-- <h1>this is navbar</h1> -->
 <mat-toolbar color="accent">
-  <a
+  <button
     routerLink="/"
-    mat-icon-button
+    mat-button
     class="example-icon"
     aria-label="Example icon-button with menu icon"
   >
     <!-- <mat-icon>menu_book</mat-icon> -->
-  </a>
-  <span>Estate Tribe</span>
+    <span>Estate Tribe</span>
+</button>
   <span class="example-spacer"></span>
   <button
     *ngIf="!isLoggedIn"
+    [routerLink]="'/'"
+    mat-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+  >
+    Home
+  </button>
+  <button
+    *ngIf="!isLoggedIn"
     [routerLink]="'/login'"
-    mat-icon-button
+    mat-button
     class="example-icon favorite-icon"
     aria-label="Example icon-button with heart icon"
   >
@@ -23,24 +32,13 @@
   <button
     *ngIf="!isLoggedIn"
     [routerLink]="'/signup'"
-    mat-icon-button
-    class="example-icon favorite-icon mr20 ml20"
+    mat-button
+    class="example-icon favorite-icon "
     aria-label="Example icon-button with heart icon"
   >
     Register
   </button>
-
-  <button
-    (click)="logout()"
-    *ngIf="isLoggedIn"
-    mat-icon-button
-    class="example-icon favorite-icon mr20 ml20"
-    aria-label="Example icon-button with heart icon"
-  >
-    Logout
-  </button>
-
-  <button
+   <button
     *ngIf="isLoggedIn && user"
     class="example-icon favorite-icon ml20"
     mat-button
@@ -50,4 +48,16 @@
     {{ login.getUser().username }}
     
   </button>
+
+  <button
+    (click)="logout()"
+    *ngIf="isLoggedIn"
+    mat-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+  >
+    Logout
+  </button>
+
+ 
 </mat-toolbar>

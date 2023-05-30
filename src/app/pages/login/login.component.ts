@@ -20,7 +20,13 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
+  
+  clearInput() {
+  
+     this.loginData.username = '';
+     this.loginData.password = '';
+  }
 
   formSubmit() {
     console.log('login');

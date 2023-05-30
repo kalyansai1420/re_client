@@ -1,11 +1,13 @@
-<mat-card class="disc-card">
-  <img
-    mat-card-image
-    src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-    alt="Photo of a Shiba Inu"
-  />
-  <mat-card-content>
-    <h3>Hyderabad</h3>
-    <p>50+ Properties</p>
-  </mat-card-content>
-</mat-card>
+<div class="disc-card-container">
+  <mat-card class="disc-card" *ngFor="let city of countByCity">
+    <img
+      mat-card-image
+      [src]="getImageUrl(city.City)"
+      alt="Photo of {{ city.City }}"
+    />
+    <mat-card-content>
+      <h3>{{ city.City }}</h3>
+      <p>{{ city.Count }} Properties</p>
+    </mat-card-content>
+  </mat-card>
+</div>

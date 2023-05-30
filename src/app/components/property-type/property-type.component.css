@@ -1,12 +1,13 @@
-.property-type{
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
+.property-type {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 }
 
-.property-type-cards{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
+.property-type-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  gap: 20px;
 }

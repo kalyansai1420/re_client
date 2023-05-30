@@ -1,17 +1,15 @@
+<div class="type-card-container">
 
-<mat-card class="type-card">
-
+<mat-card class="type-card" *ngFor="let item of countByTypeArray">
   <mat-card-content class="type-card-content">
-    
     <img src="../../../assets/buildings.png" alt="">
-
     
     <p>
-        private house
+        {{ item[1] }} <!-- Display the property type -->
     </p>
     <p>
-        30 Properties
+        {{ item[0] }} Properties <!-- Display the property count -->
     </p>
   </mat-card-content>
-
 </mat-card>
+</div>

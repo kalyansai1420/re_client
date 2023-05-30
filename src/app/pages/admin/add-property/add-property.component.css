@@ -1,3 +1,7 @@
+.add-property{
+  padding: 20px;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input[matinput]::-webkit-outer-spin-button,
 input[matinput]::-webkit-inner-spin-button {

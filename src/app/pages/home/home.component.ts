@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,8 @@ export class HomeComponent {
   mode = new FormControl('over');
 
   isSidenavVisible: boolean = false;
+
+  constructor(public login: LoginService) {}
 
   toggleSidenav() {
     this.isSidenavVisible = !this.isSidenavVisible;
@@ -23,5 +26,11 @@ export class HomeComponent {
     } else {
       this.isScrolled = false;
     }
+  }
+
+  public logout() {
+    this.login.logout();
+    window.location.reload();
+    // this.login.loginStatusSubject.next(false);
   }
 }

@@ -1,17 +1,10 @@
-<mat-card *ngIf="user">
+<mat-card *ngIf="user" class="profile">
   <h1>Your Profile Details</h1>
-  {{ user | json }}
   <mat-card-content>
     <div class="bootstrap-wrapper">
       <div class="container">
         <div class="container text-center">
-          <img
-            src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
-            alt=""
-            class="profile-image"
-          />
-
-        
+          <img src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg" alt="" class="profile-image" />
         </div>
 
         <div class="row">
@@ -22,8 +15,6 @@
                 <td>Username</td>
                 <td>{{ user.username }}</td>
               </tr>
-             
-              
               <tr>
                 <td>Role</td>
                 <td>{{ user.authorities[0].authority }}</td>
@@ -38,8 +29,10 @@
       </div>
     </div>
   </mat-card-content>
-  <mat-card-actions class="text-center">
-    <button mat-raised-button color="primary">UPDATE</button>
-    <button mat-raised-button color="accent">SHARE</button>
-  </mat-card-actions>
+  <div class="container text-center">
+    <mat-card-actions class="button-container">
+      <button mat-raised-button color="primary">UPDATE</button>
+      <button mat-raised-button class="accent" color="accent">SHARE</button>
+    </mat-card-actions>
+  </div>
 </mat-card>

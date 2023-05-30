@@ -2,11 +2,13 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
+
 }
 
 .feature-cards{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
+   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  gap: 20px;
 }
