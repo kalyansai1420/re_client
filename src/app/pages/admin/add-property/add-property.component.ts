@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
 import { PropertyService } from 'src/app/services/property.service';
 import Swal from 'sweetalert2';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from 'src/app/services/login.service';
-
+import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-add-property',
   templateUrl: './add-property.component.html',
@@ -28,7 +28,6 @@ export class AddPropertyComponent {
       aArea: new FormControl(''),
       aLandmark: new FormControl(''),
       aCity: new FormControl(''),
-
       aState: new FormControl(''),
       aPincode: new FormControl(''),
       pPrice: new FormControl(''),
@@ -58,6 +57,7 @@ export class AddPropertyComponent {
       hospitals: new FormControl(false),
       schools: new FormControl(false),
       marketArea: new FormControl(false),
+      images: formBuilder.array([]), // Array for gallery images
     });
   }
 
@@ -76,8 +76,10 @@ export class AddPropertyComponent {
     console.log(this.id);
   }
 
+
   addProperty() {
     const propertyData = {
+      
       pName: this.form.get('pName')?.value,
       pPhoto: this.form.get('pPhoto')?.value,
       aArea: this.form.get('aArea')?.value,
@@ -112,21 +114,42 @@ export class AddPropertyComponent {
       hospitals: this.form.get('hospitals')?.value,
       schools: this.form.get('schools')?.value,
       marketArea: this.form.get('marketArea')?.value,
+      images: this.form.get('images')?.value,
       user: {
         uId: this.user.uId,
       },
     };
 
-    this.property.addProperty(propertyData).subscribe(
-      (data: any) => {
-        Swal.fire('Success', 'Property is added', 'success');
-        console.log(data);
-      },
-      (error) => {
-        Swal.fire('Error!! ', error.error.message , 'error');
-        console.log(error);
-        console.log(error.message)
-      }
-    );
+    if (this.form.valid) {
+      console.log(this.form.value);
+      this.property.addProperty(propertyData).subscribe(
+        (data: any) => {
+          Swal.fire('Success', 'Property is added', 'success');
+          console.log(data);
+          this.form.reset();
+        }, (error) => {
+          Swal.fire('Error!! ', error.error.message, 'error');
+          console.log(error);
+          console.log(error.message)
+        })
+    
+    } else {
+      Swal.fire('Error', 'Please fill all the required fields', 'error');
+    }
+  }
+
+  // Getter for the gallery form array
+  get images(): FormArray {
+    return this.form.get('images') as FormArray;
+  }
+
+  // Add a new gallery image input field
+  addGalleryImage() {
+    this.images.push(new FormControl(''));
+  }
+
+  // Remove a gallery image input field
+  removeGalleryImage(index: number) {
+    this.images.removeAt(index);
   }
 }
