@@ -11,6 +11,32 @@
   z-index: 999;
   transition: background-color 0.3s ease-in-out;
 }
+.carousel {
+  background: #EEE;
+}
+
+.carousel-cell {
+  width: 77%;
+height: 60vh;
+ 
+
+  border-radius: 5px;
+}
+.carousel-cell img{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3/2;
+}
+.flickity-page-dots .dot {
+ 
+  width: 25px !important;
+  height: 5px !important;
+  margin: 0 8px;
+
+}
+
+/* cell number */
 
 .scrolled {
   background-color: white;
@@ -26,27 +52,30 @@
 
 /* Property */
 .property {
-  margin-top: 80px;
+  margin-top: 65px;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .property .image-hero {
   display: flex;
   justify-content: center;
   position: relative;
+  width: 100%;
 }
 
 .property .image-hero img {
   height: 60vh;
   object-fit: cover;
-  border-radius: 10px;
+  aspect-ratio: 1/1;
+  width: 100%;
+  
 }
 
 .second-div {
   display: flex;
   flex-direction: row-reverse;
+ width:100%;
 }
 
 .price-card {
@@ -55,9 +84,12 @@
   background-color: white;
   border-radius: 20px;
   padding: 20px;
-  width: 300px;
+  width: 375px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  position: absolute;
+  top:450px;
+  right: 50px;
 }
 
 .card-top,
@@ -68,34 +100,83 @@
 }
 
 .property-details {
-  padding: 20px;
-  background-color: #f1f1f1;
+ 
+  background-color: #f2f5f7;
   border-radius: 10px;
-  margin-top: 20px;
+
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .property-details p img {
   height: 30px;
   width: 30px;
 }
-
+.property-address{
+  padding: 50px 80px 20px 80px;
+}
+.property-description{
+  padding: 30px 80px 20px 80px;
+}
 .property-details .property-icons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: fit-content;
+  padding: 0px 80px;
 }
 
 .property-details .property-icons p {
   margin-right: 20px;
 }
 
-.property-features {
-  border: 1px solid grey;
-  margin: 20px;
-  width: fit-content;
-  margin-top: 20px;
+.property_features_main_container{
+  padding: 40px 0px;
+  width: 100%;
+}
+.property_features{
+  width: 75%;
+  margin-left: 80px;
+  border: 2px solid #d5d5d5;
+  border-radius: 4px;
+  
+}
+.property_features_inner_container{
+  display: flex;
+padding: 22px;
+}
+.line_features{
+  width: 22%;
+  height: 3px;
+  background-color: #d5d5d5;
+}
+.left_property_features{
+  width: 50%;
+}
+.middle_property_features{
+  width: 33.33%;
+}
+.right_property_features{
+  width: 50%;
+}
+.a-i{
+width: 33.33%;
+}
+.property_features_title{
+  padding: 22px;
+}
+.property_features_title h2{
+  margin: 0px !important;
+  font-size: 28px;
+}
+.space_props{
+  display: flex;
+  width: 100%;
+  padding: 8px 0px;
+}
+.space_props h5{
+  width: 50%;
+  font-size: 14px;
 }
 
 .property-amenities {
@@ -133,7 +214,7 @@
 
 /* Other Styles */
 .mat-divider {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 /* Mobile Responsive */
@@ -184,14 +265,7 @@
   }
 }
 
-.property-features {
-  margin: 20px;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
+
 
 .prop-features-title {
   text-align: center;
@@ -244,22 +318,7 @@
   }
 }
 
-.property-details {
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: 0 auto;
-}
 
-.property-features {
-  border: 1px solid grey;
-  margin: 20px;
-  width: calc(100% - 40px);
-  max-width: 800px;
-  margin: 0 auto;
-}
 
 @media (max-width: 767px) {
   .property-details,

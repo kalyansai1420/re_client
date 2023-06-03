@@ -29,6 +29,40 @@
   object-fit: cover;
 }
 
+.card-content >h3{
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding-top: 5px;
+}
+.card-content-area {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: grey;
+  
+}
+
+.card-content-price{
+  font-size: 1.2rem;
+    font-weight: 500;
+    color: green;
+}
+.card-content-keypoints{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: gray;
+ 
+
+}
+
+.card-content-buttons{
+ 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top:10px ;
+  color: gray;
+}
 @media only screen and (max-width: 400px) {
   .property-card img {
   height: 150px;

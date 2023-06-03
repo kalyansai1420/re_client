@@ -1,16 +1,16 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener,ViewChild,ElementRef,AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PropertyService } from 'src/app/services/property.service';
-
+import Flickity from "flickity"; 
 @Component({
   selector: 'app-property-page',
   templateUrl: './property-page.component.html',
   styleUrls: ['./property-page.component.css'],
 })
-export class PropertyPageComponent {
+export class PropertyPageComponent implements AfterViewInit {
   private routeSub!: Subscription;
-
+  @ViewChild('carousel') carouselRef!: ElementRef;
   isScrolled: boolean = false;
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -44,6 +44,20 @@ export class PropertyPageComponent {
         console.log(error);
       }
     );
+  }
+  ngAfterViewInit(): void {
+    if (!localStorage.getItem('foo')) { 
+      localStorage.setItem('foo', 'no reload') 
+      location.reload() 
+    } else {
+      localStorage.removeItem('foo') 
+    }
+    const carouselElement = this.carouselRef.nativeElement;
+    const flkty = new Flickity(carouselElement, {
+      autoPlay: true,
+      wrapAround: true,
+      prevNextButtons: false
+    });
   }
 
   ngOnDestroy() {
