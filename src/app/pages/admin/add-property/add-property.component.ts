@@ -4,7 +4,6 @@ import { PropertyService } from 'src/app/services/property.service';
 import Swal from 'sweetalert2';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from 'src/app/services/login.service';
-import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-add-property',
   templateUrl: './add-property.component.html',
