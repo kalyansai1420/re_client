@@ -1,18 +1,16 @@
 <!-- {{ property | json }} -->
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav>
-   
-      <mat-action-list>
-        <div mat-subheader>Menu</div>
-        <button routerLink="/" mat-list-item>
-          <mat-icon mat-list-icon>home</mat-icon> Home
-        </button>
-       
-        <button mat-list-item>
-          <mat-icon mat-list-icon>logout</mat-icon> Logout
-        </button>
-      </mat-action-list>
-    
+    <mat-action-list>
+      <div mat-subheader>Menu</div>
+      <button routerLink="/" mat-list-item>
+        <mat-icon mat-list-icon>home</mat-icon> Home
+      </button>
+
+      <button mat-list-item>
+        <mat-icon mat-list-icon>logout</mat-icon> Logout
+      </button>
+    </mat-action-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
@@ -38,189 +36,204 @@
         </button>
       </div>
     </div>
- 
-<div class="property">
-  <div class="image-hero">
-    <img src="{{ property.pPhoto }}" alt="" />
-  </div>
-<div class="second-div">
+  
+    <div class="property">
+      <div class="carousel" #carousel data-flickity='{ "autoPlay": true,"wrapAround": true,"prevNextButtons": false  }'>
+        <div class="carousel-cell">
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="" />
+        </div>
+        <div class="carousel-cell">
+          <img src="{{ property.pPhoto }}" alt="" />
+        </div>
+        <div class="carousel-cell">
+          <img src="https://images.unsplash.com/photo-1529408632839-a54952c491e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="" />
+        </div>
+        <div class="carousel-cell">
+          <img src="https://images.unsplash.com/photo-1531383339897-f369f6422e40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="" />
+        </div>
+        <div class="carousel-cell">
+          <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="" />
+        </div>
+       
+      </div>
+      <div class="second-div">
+        <div class="price-card">
+          <div class="card-top">
+            <div class="card-left">
+              <p>Total Price</p>
+              <h4>{{ property.pPrice | currency : "INR" }}</h4>
+            </div>
+            <div class="card-right">
+              <button mat-button>Send Request</button>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
 
-  <div class="price-card">
-    <div class="card-top">
-      <div class="card-left">
-        <p>Total Price</p>
-        <h4>{{ property.pPrice | currency : "INR" }}</h4>
-      </div>
-      <div class="card-right">
-        <button mat-button>Send Request</button>
-      </div>
-    </div>
-    <mat-divider></mat-divider>
-    
-    <div class="card-bottom">
-      <div class="card-left">
-        <p>updated 1 day ago</p>
-      </div>
-      <div class="card-right">
-        <button
-        mat-icon-button
-        class="favorite-icon"
-        aria-label="Example icon-button with heart icon"
-        >
-        <mat-icon color="white">favorite</mat-icon>
-        </button>
-      </div>
-    </div>
-  </div>
-  <div class="property-details">
-    <div class="property-address">
-      <p>{{ property.aArea }},{{ property.aLandmark }},{{ property.aCity }}</p>
-    </div>
-    <div class="property-icons">
-      <p>
-        <img src="../../../assets/icons/house.png" alt="" />
-        
-        {{ property.pPropertyType }}
-        Type
-      </p>
-      <p>
-        <img src="../../../assets/icons/plan.png" alt="" />
-        {{ property.pArea }}
-        Sq.ft
-      </p>
-      <p>
-        <img src="../../../assets/icons/double-bed.png" alt="" />
-        {{ property.pBedroom }}
-        Bedrooms
-      </p>
-      <p>
-        <img src="../../../assets/icons/bath.png" alt="" />
-        {{ property.pBathroom }}
-        Bathroom
-      </p>
-    </div>
-    <div class="property-description">
-      <p>{{ property.pDescription }}</p>
-    </div>
-  </div>
-</div>
-  <div class="property-features">
-    <div class="prop-features-title">
-      <h2>Features</h2>
-    </div>
-    <div class="prop-features-feature">
-      <table>
-        
-        <tr>
-          <td>Offer Type</td>
-          <td>{{ property.pOfferType }}</td>
-        </tr>
-        <tr>
-          <td>Rooms</td>
-          <td>{{ property.pBHK }}</td>
-        </tr>
-        <tr>
-          <td>Property Type</td>
-          <td>{{ property.pPropertyType }}</td>
-        </tr>
-        <tr>
-          <td>Furnished Status</td>
-          <td>{{ property.pFurnishedStatus }}</td>
-        </tr>
-        <tr>
-          <td>Construction Status</td>
-          <td>
-            {{ property.pPossesionStatus }}
-          </td>
-        </tr>
-        <tr>
-          <td>Facing</td>
-          <td>
-            {{ property.pFacing }}
-          </td>
-        </tr>
-        <tr>
-          <td>Age of Construction</td>
-          <td>
-            {{ property.pAgeOfConstruction }}
-          </td>
-        </tr>
-        <tr>
-          <td>Room Floor</td>
-          <td>
-            {{ property.pRoomFloor }}
-          </td>
-        </tr>
-        <tr>
-          <td>Total Floor</td>
-          <td>
-            {{ property.pTotalFloor }}
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
-  <div class="property-amenities">
-    <div class="prop-amenities-title">
-      <h2>Amenities</h2>
-    </div>
-    <div class="prop-amenity">
+          <div class="card-bottom">
+            <div class="card-left">
+              <p>updated 1 day ago</p>
+            </div>
+            <div class="card-right">
+              <button
+                mat-icon-button
+                class="favorite-icon"
+                aria-label="Example icon-button with heart icon"
+              >
+                <mat-icon color="white">favorite</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="property-details">
+          <div class="property-address">
+            <p>
+              {{ property.aArea }},{{ property.aLandmark }},{{ property.aCity }}
+            </p>
+          </div>
+          <div class="property-icons">
+            <p>
+              <img src="../../../assets/icons/house.png" alt="" />
 
-      <table>
-        <tr>
-          <td><mat-icon>{{property.lift ?'✓':'✗'}}</mat-icon></td>
-          <td>Lift</td>
-        </tr>
-        <tr>
-         <td><mat-icon>{{property.security ?'✓':'✗'}}</mat-icon></td>
-          <td>Security</td>
-        </tr>
-        <tr>
-         <td><mat-icon>{{property.playground ?'✓':'✗'}}</mat-icon></td>
-          <td>Playground</td>
-        </tr>
-        <tr>
-         <td><mat-icon>{{property.gardens ?'✓':'✗'}}</mat-icon></td>
-          <td>Gardens</td>
-        </tr>
-        <tr>
-         <td><mat-icon>{{property.waterSupply ?'✓':'✗'}}</mat-icon></td>
-          <td>Water Supply</td>
-        </tr>
-        <tr>
-         <td><mat-icon>{{property.powerBackup ?'✓':'✗'}}</mat-icon></td>
-          <td>Power Backup</td>
-        </tr>
-        
-        
-      </table>
-      <table>
-        <tr>
-         <td><mat-icon>{{property.parkingArea ?'✓':'✗'}}</mat-icon></td>
-          <td>Parking Area</td>
-        </tr>
-        <tr>
-         <td><mat-icon>{{property.shoppingMall ?'✓':'✗'}}</mat-icon></td>
-          <td>Shopping Mall</td>
-        </tr>
-        <tr>
-         <td><mat-icon>{{property.hospitals ?'✓':'✗'}}</mat-icon></td>
-          <td>Hospitals</td>
-        </tr>
-        <tr>
-         <td><mat-icon>{{property.schools ?'✓':'✗'}}</mat-icon></td>
-         <td>Schools</td>
-        </tr>
-        <tr>
-         <td><mat-icon>{{property.marketArea ?'✓':'✗'}}</mat-icon></td>
-          <td>Market Area</td>
-        </tr>
-      </table>
+              {{ property.pPropertyType }}
+              Type
+            </p>
+            <p>
+              <img src="../../../assets/icons/plan.png" alt="" />
+              {{ property.pArea }}
+              Sq.ft
+            </p>
+            <p>
+              <img src="../../../assets/icons/double-bed.png" alt="" />
+              {{ property.pBedroom }}
+              Bedrooms
+            </p>
+            <p>
+              <img src="../../../assets/icons/bath.png" alt="" />
+              {{ property.pBathroom }}
+              Bathroom
+            </p>
+          </div>
+          <div class="property-description">
+            <p>{{ property.pDescription }}</p>
+          </div>
+        </div>
+      </div>
+   <div class="property_features_main_container">
+    <div class="property_features">
+      <div class="property_features_title">
+        <h2>Features</h2>
+      </div>
+      <div class="line_features"></div>
+      <div class="property_features_inner_container">
+        <div class="left_property_features">
+          <div class="space_props">
+            <h5>Property Type:</h5>
+            <h5>{{ property.pPropertyType }}</h5>
+          </div>
+          <div class="space_props">
+            <h5>Facing:</h5>
+            <h5>{{ property.pFacing }}</h5>
+          </div>
+          <div class="space_props">
+            <h5>Age of Construction:</h5>
+            <h5>  {{ property.pAgeOfConstruction }}</h5>
+          </div>
+          <div class="space_props">
+            <h5>Room Floor:</h5>
+            <h5>{{ property.pRoomFloor }}</h5>
+          </div>
+          <div class="space_props">
+            <h5>Total Floor:</h5>
+            <h5> {{ property.pTotalFloor }}</h5>
+          </div>
+        </div>
+        <div class="right_property_features">
+          <div class="space_props">
+            <h5>Construction Status:</h5>
+            <h5> {{ property.pPossesionStatus }}</h5>
+          </div>
+          <div class="space_props">
+            <h5>Furnished Status:</h5>
+            <h5>{{ property.pFurnishedStatus }}</h5>
+          </div>
+          <div class="space_props">
+            <h5>Rooms:</h5>
+            <h5>{{ property.pBHK }}</h5>
+          </div>
+          <div class="space_props">
+            <h5>Offer Type:</h5>
+            <h5>{{ property.pOfferType }}</h5>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+   </div>
+   <div class="property_features_main_container">
+    <div class="property_features">
+      <div class="property_features_title">
+        <h2>Amenities</h2>
+      </div>
+      <div class="line_features"></div>
+      <div class="property_features_inner_container">
+        <div class="left_property_features a-i">
+          <div class="space_props">
+            <h5>Lift</h5>
+            <mat-icon>{{ property.lift ? "✓" : "✗" }}</mat-icon>
+          </div>
+          <div class="space_props">
+            <h5>Security</h5>
+            <mat-icon>{{ property.security ? "✓" : "✗" }}</mat-icon>
+          </div>
+          <div class="space_props">
+            <h5>Playground</h5>
+            <mat-icon>{{ property.playground ? "✓" : "✗" }}</mat-icon>
+
+          </div>
+          <div class="space_props">
+            <h5>Gardens</h5>
+            <mat-icon>{{ property.gardens ? "✓" : "✗" }}</mat-icon>
+          </div>
+      
+        </div>
+        <div class="middle_property_features">
+          <div class="space_props">
+            <h5>Water Supply</h5>
+            <mat-icon>{{ property.waterSupply ? "✓" : "✗" }}</mat-icon>
+          </div>
+          <div class="space_props">
+            <h5>Power Backup</h5>
+            <mat-icon>{{ property.powerBackup ? "✓" : "✗" }}</mat-icon>
+          </div>
+          <div class="space_props">
+            <h5>Parking Area</h5>
+            <mat-icon>{{ property.parkingArea ? "✓" : "✗" }}</mat-icon>
+          </div>
+          <div class="space_props">
+            <h5>Shopping Mall</h5>
+            <mat-icon>{{ property.shoppingMall ? "✓" : "✗" }}</mat-icon>
+          </div>
+        </div>
+        <div class="right_property_features a-i">
+     
+          <div class="space_props">
+            <h5>Hospitals</h5>
+            <mat-icon>{{ property.hospitals ? "✓" : "✗" }}</mat-icon>
+          </div>
+          <div class="space_props">
+            <h5>Schools</h5>
+            <mat-icon>{{ property.schools ? "✓" : "✗" }}</mat-icon>
+          </div>
+          <div class="space_props">
+            <h5>Market Area</h5>
+            <mat-icon>{{ property.marketArea ? "✓" : "✗" }}</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+   
+    </div>
 
     <app-footer></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
-

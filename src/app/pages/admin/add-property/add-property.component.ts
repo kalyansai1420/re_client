@@ -119,36 +119,16 @@ export class AddPropertyComponent {
       },
     };
 
-    if (this.form.valid) {
-      console.log(this.form.value);
-      this.property.addProperty(propertyData).subscribe(
-        (data: any) => {
-          Swal.fire('Success', 'Property is added', 'success');
-          console.log(data);
-          this.form.reset();
-        }, (error) => {
-          Swal.fire('Error!! ', error.error.message, 'error');
-          console.log(error);
-          console.log(error.message)
-        })
-    
-    } else {
-      Swal.fire('Error', 'Please fill all the required fields', 'error');
-    }
-  }
-
-  // Getter for the gallery form array
-  get images(): FormArray {
-    return this.form.get('images') as FormArray;
-  }
-
-  // Add a new gallery image input field
-  addGalleryImage() {
-    this.images.push(new FormControl(''));
-  }
-
-  // Remove a gallery image input field
-  removeGalleryImage(index: number) {
-    this.images.removeAt(index);
+    this.property.addProperty(propertyData).subscribe(
+      (data: any) => {
+        Swal.fire('Success', 'Property is added', 'success');
+        console.log(data);
+      },
+      (error) => {
+        Swal.fire('Error!! ', error.error.message , 'error');
+        console.log(error);
+        console.log(error.message)
+      }
+    );
   }
 }

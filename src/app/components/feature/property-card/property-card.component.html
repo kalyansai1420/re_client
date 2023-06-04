@@ -8,17 +8,26 @@
       </button>
     </span>
 
-    <mat-card-content>
+    <mat-card-content class="card-content ">
       <h3>{{p.pName}}</h3>
-      <p>{{p.pBHK}} BHK</p>
-      <p>{{p.pPrice | currency: "INR"}}</p>
-      <p>{{p.aArea}}</p>
-      <p>{{p.pPossesionStatus}}</p>
+      <p class="card-content-area">{{p.aArea}}</p>
+      <p class="card-content-price">{{p.pPrice | currency: "INR"}}</p>
+      <!-- <p>{{p.pPossesionStatus}}</p> -->
+    
+      
+      <div class="card-content-keypoints">
+        <p>{{p.pArea}} sqft</p>
+      <p>{{p.aCity}} </p>
+      </div>
       <mat-divider></mat-divider>
-    </mat-card-content>
-    <mat-card-actions>
+    <div class="card-content-buttons">
       <button mat-button [routerLink]="'/property/'+p.pId">View Property</button>
       <button mat-button>Send Enquiry</button>
-    </mat-card-actions>
+    </div>
+    </mat-card-content>
+   
+    
+      
+ 
   </mat-card>
 </div>
