@@ -1,0 +1,52 @@
+<button class="icon-card" (click)="onCustomersClick()">
+  <div class="icon-container">
+    <mat-icon>people</mat-icon>
+  </div>
+  <div class="count">{{ userCount }}</div>
+  <div class="label">Customers</div>
+</button>
+
+<button
+  class="icon-card"
+  *ngIf="user.authorities[0].authority === 'Admin'"
+  [routerLink]="'/admin/properties/'"
+>
+  <div class="icon-container">
+    <mat-icon>home</mat-icon>
+  </div>
+  <div class="count">{{ propertyCount }}</div>
+  <div class="label">Properties</div>
+</button>
+<button
+  class="icon-card"
+  *ngIf="user.authorities[0].authority === 'SuperAdmin'"
+  [routerLink]="'/superadmin/properties/'"
+>
+  <div class="icon-container">
+    <mat-icon>home</mat-icon>
+  </div>
+  <div class="count">{{ propertyCount }}</div>
+  <div class="label">Properties</div>
+</button>
+
+<button class="icon-card" (click)="onAdminsClick()">
+  <div class="icon-container">
+    <mat-icon>admin_panel_settings</mat-icon>
+  </div>
+  <div class="count">{{ adminCount }}</div>
+  <div class="label">Admins</div>
+</button>
+<button class="icon-card" (click)="onSuperAdminsClick()">
+  <div class="icon-container">
+    <mat-icon>admin_panel_settings</mat-icon>
+  </div>
+  <div class="count">{{ superadminCount }}</div>
+  <div class="label">Super Admins</div>
+</button>
+<button class="icon-card" (click)="onInterestedClick()">
+  <div class="icon-container">
+    <mat-icon>admin_panel_settings</mat-icon>
+  </div>
+  <div class="count">{{ interestedCount }}</div>
+  <div class="label">Interested Properties</div>
+</button>

@@ -1,19 +1,18 @@
 <mat-card class="add-property">
-  <h1>Add Property</h1>
+  <h1>Update Property</h1>
 
   <mat-card-content>
     <div class="bootstrap-wrapper">
       <div class="row">
         <div class="col-md-8 offset-md-2">
-          <form (ngSubmit)="addProperty()" [formGroup]="form">
+          <form *ngIf="property" (ngSubmit)="updateProperty()">
             <div class="property-main">
               <!-- Property Name -->
               <mat-form-field class="w100" appearance="outline">
                 <mat-label>Property Name</mat-label>
                 <input
                   matInput
-                  [value]="form.get('pName')?.value"
-                  formControlName="pName"
+                  [(ngModel)]="property.pName"
                   name="pName"
                   placeholder="Enter Property Name"
                 />
@@ -24,10 +23,9 @@
                 <mat-label>Property Image URL</mat-label>
                 <input
                   matInput
-                  formControlName="pPhoto"
+                  [(ngModel)]="property.pPhoto"
                   name="pPhoto"
                   placeholder="Enter Property Photo"
-                  [value]="form.get('pPhoto')?.value"
                 />
               </mat-form-field>
 
@@ -36,9 +34,8 @@
                 <mat-label>Address Name</mat-label>
                 <input
                   matInput
-                  formControlName="aArea"
+                  [(ngModel)]="property.aArea"
                   name="aArea"
-                  [value]="form.get('aArea')?.value"
                   placeholder="Enter Address Name"
                 />
               </mat-form-field>
@@ -48,9 +45,8 @@
                 <mat-label>Landmark Name</mat-label>
                 <input
                   matInput
-                  formControlName="aLandmark"
+                  [(ngModel)]="property.aLandmark"
                   name="aLandmark"
-                   [value]="form.get('aLandmark')?.value"
                   placeholder="Enter Landmark Name"
                 />
               </mat-form-field>
@@ -60,9 +56,8 @@
                 <mat-label>City Name</mat-label>
                 <input
                   matInput
-                  formControlName="aCity"
+                  [(ngModel)]="property.aCity"
                   name="aCity"
-                  [value]="form.get('aCity')?.value"
                   placeholder="Enter City Name"
                 />
               </mat-form-field>
@@ -72,9 +67,8 @@
                 <mat-label>State Name</mat-label>
                 <input
                   matInput
-                  formControlName="aState"
+                  [(ngModel)]="property.aState"
                   name="aState"
-                   [value]="form.get('aState')?.value"
                   placeholder="Enter State Name"
                 />
               </mat-form-field>
@@ -84,9 +78,8 @@
                 <mat-label>Pincode Name</mat-label>
                 <input
                   matInput
-                  formControlName="aPincode"
+                  [(ngModel)]="property.aPincode"
                   name="aPincode"
-                   [value]="form.get('aPincode')?.value"
                   placeholder="Enter Pincode"
                 />
               </mat-form-field>
@@ -96,10 +89,9 @@
                 <mat-label>Property Price</mat-label>
                 <input
                   matInput
+                  [(ngModel)]="property.pPrice"
                   type="number"
-                  formControlName="pPrice"
                   name="pPrice"
-                   [value]="form.get('pPrice')?.value"
                   placeholder="Enter Property Price"
                 />
               </mat-form-field>
@@ -107,9 +99,7 @@
               <!-- Offer Type -->
               <mat-form-field appearance="outline">
                 <mat-label>Offer Type</mat-label>
-                <mat-select formControlName="pOfferType"
-                 [value]="form.get('pOfferType')?.value"
-                name="pOfferType">
+                <mat-select [(ngModel)]="property.pOfferType" name="pOfferType">
                   <mat-option></mat-option>
                   <mat-option value="sale">Sale</mat-option>
                   <mat-option value="resale">Resale</mat-option>
@@ -121,9 +111,8 @@
               <mat-form-field appearance="outline">
                 <mat-label>Property Type</mat-label>
                 <mat-select
-                  formControlName="pPropertyType"
                   name="pPropertyType"
-                   [value]="form.get('pPropertyType')?.value"
+                  [(ngModel)]="property.pPropertyType"
                 >
                   <mat-option></mat-option>
                   <mat-option value="flat">Flat</mat-option>
@@ -137,8 +126,7 @@
 
                 <mat-select
                   name="pPossesionStatus"
-                  formControlName="pPossesionStatus"
-                   [value]="form.get('pPossesionStatus')?.value"
+                  [(ngModel)]="property.pPossesionStatus"
                 >
                   <mat-option></mat-option>
                   <mat-option value="readytomove">Ready To Move</mat-option>
@@ -150,14 +138,10 @@
 
               <mat-form-field appearance="outline">
                 <mat-label>Furnished Status</mat-label>
-                <!-- 
-              Fully 
-              Semi
-              Unfurnished -->
+
                 <mat-select
                   name="pFurnishedStatus"
-                  formControlName="pFurnishedStatus"
-                   [value]="form.get('pFurnishedStatus')?.value"
+                  [(ngModel)]="property.pFurnishedStatus"
                 >
                   <mat-option></mat-option>
                   <mat-option value="fullyfurnished"
@@ -171,8 +155,7 @@
               <mat-form-field appearance="outline">
                 <mat-label>Facing </mat-label>
 
-                <mat-select formControlName="pFacing" name="pFacing"
-                 [value]="form.get('pFacing')?.value">
+                <mat-select [(ngModel)]="property.pFacing" name="pFacing">
                   <mat-option></mat-option>
                   <mat-option value="east">East</mat-option>
                   <mat-option value="west">West</mat-option>
@@ -188,22 +171,11 @@
               <mat-form-field appearance="outline">
                 <mat-label>Age Of Construction</mat-label>
 
-                <!-- Ready-to-move
-              Completed by date -->
-                <!-- <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                <mat-option value="1year">1 Year</mat-option>
-                <mat-option value="2years">2 Years</mat-option>
-                <mat-option value="3years">3 Years</mat-option>
-                <mat-option value="4years">4 Years</mat-option>
-                <mat-option value="5years">5 Years</mat-option>
-              </mat-autocomplete> -->
-
                 <input
                   matInput
+                  [(ngModel)]="property.pAgeOfConstruction"
                   name="pAgeOfConstruction"
                   placeholder="Enter Property Age"
-                  formControlName="pAgeOfConstruction"
-                   [value]="form.get('pAgeOfConstruction')?.value"
                 />
               </mat-form-field>
 
@@ -211,88 +183,69 @@
                 <mat-label>How many BHK</mat-label>
                 <input
                   matInput
+                  [(ngModel)]="property.pBHK"
                   name="pBHK"
                   placeholder="Enter Property BHK"
-                  formControlName="pBHK"
-                   [value]="form.get('pBHK')?.value"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>How many bedrooms </mat-label>
 
-                <!-- Ready-to-move
-              Completed by date -->
                 <input
                   matInput
+                  [(ngModel)]="property.pBedroom"
                   name="pBedroom"
                   placeholder="Enter Property Bedrooms"
-                  formControlName="pBedroom"
-                   [value]="form.get('pBedroom')?.value"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>How many bathrooms</mat-label>
 
-                <!-- Ready-to-move
-                Completed by date -->
                 <input
                   matInput
+                  [(ngModel)]="property.pBathroom"
                   name="pBathroom"
                   placeholder="Enter Property Bathrooms"
-                  formControlName="pBathroom"
-                   [value]="form.get('pBathroom')?.value"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>How many balconies</mat-label>
 
-                <!-- Ready-to-move
-                Completed by date -->
                 <input
                   matInput
+                  [(ngModel)]="property.pBalcony"
                   name="pBalcony"
                   placeholder="Enter Property Balconies"
-                  formControlName="pBalcony"
-                   [value]="form.get('pBalcony')?.value"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Total Floor</mat-label>
 
-                <!-- Ready-to-move
-              Completed by date -->
                 <input
                   matInput
+                  [(ngModel)]="property.pTotalFloor"
                   name="pTotalFloor"
                   placeholder="Enter Total Floor"
-                  formControlName="pTotalFloor"
-                   [value]="form.get('pTotalFloor')?.value"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Floor room</mat-label>
 
-                <!-- Ready-to-move
-                Completed by date -->
                 <input
                   matInput
+                  [(ngModel)]="property.pRoomFloor"
                   name="pRoomFloor"
                   placeholder="Enter Room Floor"
-                  formControlName="pRoomFloor"
-                   [value]="form.get('pRoomFloor')?.value"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Carpet Area</mat-label>
 
-                <!-- Ready-to-move
-                Completed by date -->
                 <input
                   matInput
+                  [(ngModel)]="property.pArea"
                   name="pArea"
                   placeholder="Enter Area in squarefeets"
-                  formControlName="pArea"
-                   [value]="form.get('pArea')?.value"
                 />
               </mat-form-field>
 
@@ -301,10 +254,9 @@
                 <mat-label>Description</mat-label>
                 <textarea
                   matInput
-                  formControlName="pDescription"
+                  [(ngModel)]="property.pDescription"
                   name="pDescription"
                   placeholder="Enter Property Description"
-                   [value]="form.get('pDescription')?.value"
                 ></textarea>
               </mat-form-field>
 
@@ -313,78 +265,78 @@
               <mat-checkbox
                 class="example-margin"
                 name="lift"
-                formControlName="lift"
+                [(ngModel)]="property.lift"
                 >Lift</mat-checkbox
               >
               <mat-checkbox
                 class="example-margin"
                 name="security"
-                formControlName="security"
+                [(ngModel)]="property.security"
                 >Security Guard</mat-checkbox
               >
               <mat-checkbox
                 class="example-margin"
                 name="playground"
-                formControlName="playground"
+                [(ngModel)]="property.playground"
                 >Play Ground</mat-checkbox
               >
               <mat-checkbox
                 class="example-margin"
                 name="gardens"
-                formControlName="gardens"
+                [(ngModel)]="property.gardens"
                 >Garden</mat-checkbox
               >
               <mat-checkbox
                 class="example-margin"
                 name="waterSupply"
-                formControlName="waterSupply"
+                [(ngModel)]="property.waterSupply"
                 >Water Supply</mat-checkbox
               >
               <mat-checkbox
                 class="example-margin"
                 name="powerBackup"
-                formControlName="powerBackup"
+                [(ngModel)]="property.powerBackup"
                 >Power Backup</mat-checkbox
               >
               <mat-checkbox
                 class="example-margin"
                 name="parkingArea"
-                formControlName="parkingArea"
+                [(ngModel)]="property.parkingArea"
                 >Parking Area</mat-checkbox
               >
               <mat-checkbox
                 class="example-margin"
                 name="gym"
-                formControlName="gym"
+                [(ngModel)]="property.gym"
                 >Gym</mat-checkbox
               >
               <mat-checkbox
                 class="example-margin"
                 name="shoppingMall"
-                formControlName="shoppingMall"
+                [(ngModel)]="property.shoppingMall"
                 >Shopping Mall</mat-checkbox
               >
               <mat-checkbox
                 class="example-margin"
                 name="hospitals"
-                formControlName="hospitals"
+                [(ngModel)]="property.hospitals"
                 >Hospital</mat-checkbox
               >
               <mat-checkbox
                 class="example-margin"
                 name="schools"
-                formControlName="schools"
+                [(ngModel)]="property.schools"
                 >School</mat-checkbox
               >
               <mat-checkbox
                 class="example-margin"
                 name="marketArea"
-                formControlName="marketArea"
+                [(ngModel)]="property.marketArea"
                 >Market Area</mat-checkbox
               >
 
               <!-- Gallery Images -->
-              <div formArrayName="images">
+              <!-- <div formArrayName="images">
                 <div
                   *ngFor="let image of images.controls; let i = index"
                   class="form-group"
@@ -415,12 +367,16 @@
                 >
                   Add Image
                 </button>
-              </div>
+              </div> -->
             </div>
 
             <!-- Submit button -->
             <div class="container text-center mt15">
-              <button mat-raised-button color="accent">Add</button>
+              <button mat-raised-button color="accent">Edit</button>
+             <button mat-raised-button color="accent" *ngIf="user.authorities[0].authority === 'SuperAdmin'"
+  [routerLink]="'/superadmin/'">Back</button>
+<button mat-raised-button color="accent" *ngIf="user.authorities[0].authority === 'Admin'"
+  [routerLink]="'/admin/'">Back</button>
             </div>
           </form>
         </div>

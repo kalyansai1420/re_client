@@ -10,6 +10,10 @@ export class SavedService {
     private _http: HttpClient
   ) { }
 
+  //get all saved properties
+  public getSavedProperties() {
+    return this._http.get(`${baseUrl}/saved/`);
+  }
 
   //add property to saved
   public addPropertytoSaved(propertySave:any) {
@@ -24,6 +28,11 @@ export class SavedService {
   //get saved property from user
   public getSavedProperty(id: any) {
     return this._http.get(`${baseUrl}/saved/user/${id}`)
+  }
+
+  //get likes for property
+  public likesProperty() {
+    return this._http.get(`${baseUrl}/saved/likeByProperty`)
   }
 
 

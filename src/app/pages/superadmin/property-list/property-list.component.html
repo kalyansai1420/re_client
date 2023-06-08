@@ -1,0 +1,108 @@
+<button
+  mat-raised-button
+  color="accent"
+  *ngIf="user.authorities[0].authority === 'SuperAdmin'"
+  [routerLink]="'/superadmin/'"
+>
+  Back
+</button>
+<button
+  mat-raised-button
+  color="accent"
+  *ngIf="user.authorities[0].authority === 'Admin'"
+  [routerLink]="'/admin/'"
+>
+  Back
+</button>
+
+<div id="view" class="e-btn-group">
+  <input
+    type="radio"
+    id="left"
+    name="align"
+    value="1"
+    (click)="changeDisplay(1)"
+  />
+  <label class="e-btn" for="left">Grid View</label>
+  <input
+    type="radio"
+    id="right"
+    name="align"
+    value="2"
+    (click)="changeDisplay(2)"
+  />
+  <label class="e-btn" for="right">List View</label>
+</div>
+
+<app-property-card *ngIf="display === 1"> </app-property-card>
+
+<table class="property-table" *ngIf="display === 2">
+  <thead>
+    <tr>
+      <th>Property Name</th>
+      <th *ngIf="user.authorities[0].authority === 'SuperAdmin'">Active</th>
+      <th>Sold Out</th>
+      <th *ngIf="user.authorities[0].authority === 'SuperAdmin'">Username</th>
+      <th *ngIf="user.authorities[0].authority === 'SuperAdmin'">
+        Phone Number
+      </th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let property of properties">
+      <td>{{ property.pName }}</td>
+      <td *ngIf="user.authorities[0].authority === 'SuperAdmin'">
+        <mat-slide-toggle
+          *ngIf="user.authorities[0].authority === 'SuperAdmin'"
+          [checked]="property.active"
+          (change)="togglePropertyActive(property)"
+        >
+        </mat-slide-toggle>
+      </td>
+      <td>
+        <mat-slide-toggle
+          [checked]="property.soldOut"
+          (change)="toggleSoldOut(property)"
+        >
+        </mat-slide-toggle>
+      </td>
+      <td *ngIf="user.authorities[0].authority === 'SuperAdmin'">
+        {{ property.user.username }}
+      </td>
+      <td *ngIf="user.authorities[0].authority === 'SuperAdmin'">
+        {{ property.user.phonenumber }}
+      </td>
+      <td>
+        <button
+          mat-raised-button
+          color="primary"
+          *ngIf="user.authorities[0].authority === 'SuperAdmin'"
+          [routerLink]="'/superadmin/properties/' + property.pId"
+          (click)="updateProperty(property)"
+        >
+          Edit
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          *ngIf="user.authorities[0].authority === 'Admin'"
+          [routerLink]="'/admin/properties/' + property.pId"
+          (click)="updateProperty(property)"
+        >
+          Edit
+        </button>
+      </td>
+      <td>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="deleteProperty(property.pId)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

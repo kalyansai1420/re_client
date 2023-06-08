@@ -1,0 +1,25 @@
+.interested-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.interested-table th,
+.interested-table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.interested-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.interested-table button {
+  padding: 4px 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.interested-table button:hover {
+  background-color: lightgray;
+}

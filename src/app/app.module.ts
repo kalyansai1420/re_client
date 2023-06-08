@@ -10,8 +10,8 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { FormBuilder, FormsModule } from '@angular/forms';
-import {HttpClientModule } from '@angular/common/http';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomeComponent } from './pages/home/home.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -29,7 +29,6 @@ import { ProfileComponent } from './pages/admin/profile/profile.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {  ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from './components/nav/nav.component';
 import { FeatureComponent } from './components/feature/feature.component';
 import { PropertyTypeComponent } from './components/property-type/property-type.component';
@@ -45,8 +44,16 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PropertyPageComponent } from './pages/property-page/property-page.component';
 import { SidenavComponent } from './pages/user/sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { SaSidebarComponent } from './pages/superadmin/sa-sidebar/sa-sidebar.component';
+import { SaProfileComponent } from './pages/superadmin/sa-profile/sa-profile.component';
+import { SaWelcomeComponent } from './pages/superadmin/sa-welcome/sa-welcome.component';
+import { UserListComponent } from './pages/superadmin/user-list/user-list.component';
+import { PropertyListComponent } from './pages/superadmin/property-list/property-list.component';
 
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { SaUpdatePropertyComponent } from './pages/superadmin/sa-update-property/sa-update-property.component';
+import { SaUpdateUserComponent } from './pages/superadmin/sa-update-user/sa-update-user.component';
+import { InterestedListComponent } from './pages/superadmin/interested-list/interested-list.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +82,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     FooterComponent,
     PropertyPageComponent,
     SidenavComponent,
+    SaSidebarComponent,
+    SaProfileComponent,
+    SaWelcomeComponent,
+    UserListComponent,
+    PropertyListComponent,
+    SaUpdatePropertyComponent,
+    SaUpdateUserComponent,
+    InterestedListComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,6 +111,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     ReactiveFormsModule,
     MatChipsModule,
     MatSidenavModule,
+    MatSlideToggleModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

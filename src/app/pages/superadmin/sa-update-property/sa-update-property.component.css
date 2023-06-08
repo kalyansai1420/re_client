@@ -1,0 +1,63 @@
+.add-property {
+  padding: 20px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[matinput]::-webkit-outer-spin-button,
+input[matinput]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[matinput][type=number] {
+  -moz-appearance: textfield;
+}
+
+.w100 {
+  width: 100%;
+}
+
+/* Gallery Section */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.btn-danger {
+  background-color: #f44336;
+  color: white;
+  border-color: #f44336;
+}
+
+.btn-primary {
+  background-color: #3f51b5;
+  color: white;
+  border-color: #3f51b5;
+}
+
+.mt15 {
+  margin-top: 15px;
+}
+
+/* Additional Styling */
+.add-property h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.add-property .property-main {
+  margin-top: 20px;
+}
+
+.add-property .example-margin {
+  margin-right: 10px;
+}
+
+.add-property .container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.add-property button {
+  margin-top: 10px;
+}

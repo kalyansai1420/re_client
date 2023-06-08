@@ -1,0 +1,68 @@
+<mat-card class="add-property">
+  <h1>Update User</h1>
+
+  <mat-card-content>
+    <div class="bootstrap-wrapper">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <form *ngIf="user" (ngSubmit)="updateUser()">
+            <!-- {{ user | json }} -->
+            <!-- UserName field -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>UserName</mat-label>
+              <input
+                name="username"
+                [(ngModel)]="user.username"
+                matInput
+                placeholder="Enter Here"
+              />
+            </mat-form-field>
+
+            <!-- Password field -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>New Password</mat-label>
+              <input
+                name="New Password"
+                type="password"
+                [(ngModel)]="newPassword"
+                matInput
+                placeholder="Enter Here"
+                *ngIf="user.password"
+              />
+            </mat-form-field>
+
+            <!-- Phone field -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Phone Number</mat-label>
+              <input
+                name="phonenumber"
+                [(ngModel)]="user.phonenumber"
+                type="tel"
+                matInput
+                placeholder="Enter Here"
+              />
+            </mat-form-field>
+
+            <!-- Email field -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email Id</mat-label>
+              <input
+                name="email"
+                type="email"
+                [(ngModel)]="user.email"
+                matInput
+                placeholder="Enter Here"
+              />
+            </mat-form-field>
+            <div class="container text-center mt15">
+              <button mat-raised-button color="accent">Edit</button>
+              <button mat-raised-button color="primary" *ngIf="user.authorities[0].authority === 'Admin'" (click)="goBackAdmin()">Back</button>
+              <button mat-raised-button color="primary" *ngIf="user.authorities[0].authority === 'SuperAdmin'" (click)="goBackSuperAdmin()">Back</button>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

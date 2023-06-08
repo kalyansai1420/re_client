@@ -18,6 +18,16 @@ export class PropertyService {
     return this._http.post(`${baseUrl}/property/`, property);
   }
 
+  //update property
+  public updateProperty(property: any) { 
+    return this._http.put(`${baseUrl}/property/`, property)
+  }
+
+  //delete property
+  public deleteProperty(pId:any) {
+    return this._http.delete(`${baseUrl}/property/`, pId)
+  }
+
   //get a property
   public getProperty(pId: any) {
     return this._http.get(`${baseUrl}/property/${pId}`);
@@ -31,5 +41,10 @@ export class PropertyService {
   // Get count of properties by city
   public countPropertiesByCity() {
     return this._http.get(`${baseUrl}/property/count-by-city`);
+  }
+
+  //Get property by user
+  public getPropertyUser(id: any) {
+    return this._http.get(`${baseUrl}/property/user/${id}`)
   }
 }

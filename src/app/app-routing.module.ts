@@ -13,6 +13,13 @@ import { ProfileComponent } from './pages/admin/profile/profile.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { AddPropertyComponent } from './pages/admin/add-property/add-property.component';
 import { PropertyPageComponent } from './pages/property-page/property-page.component';
+import { SaWelcomeComponent } from './pages/superadmin/sa-welcome/sa-welcome.component';
+import { SaProfileComponent } from './pages/superadmin/sa-profile/sa-profile.component';
+import { UserListComponent } from './pages/superadmin/user-list/user-list.component';
+import { PropertyListComponent } from './pages/superadmin/property-list/property-list.component';
+import { SaUpdatePropertyComponent } from './pages/superadmin/sa-update-property/sa-update-property.component';
+import { InterestedListComponent } from './pages/superadmin/interested-list/interested-list.component';
+import { SaUpdateUserComponent } from './pages/superadmin/sa-update-user/sa-update-user.component';
 
 const routes: Routes = [
   {
@@ -40,9 +47,24 @@ const routes: Routes = [
       },
       {
         path: 'add-property',
-        component:AddPropertyComponent
-      }
-     
+        component: AddPropertyComponent,
+      },
+      {
+        path: 'properties',
+        component: PropertyListComponent,
+      },
+      {
+        path: 'properties/:pId',
+        component: SaUpdatePropertyComponent,
+      },
+      {
+        path: ':uId',
+        component: SaUpdateUserComponent,
+      },
+      {
+        path: 'interestedProperties',
+        component: InterestedListComponent,
+      },
     ],
   },
   {
@@ -54,6 +76,52 @@ const routes: Routes = [
     path: 'superadmin',
     component: SuperadminDashboardComponent,
     canActivate: [SuperadminGuard],
+    children: [
+      {
+        path: '',
+        component: SaWelcomeComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
+      {
+        path: 'users',
+        component: UserListComponent,
+      },
+      {
+        path: 'users/:uId',
+        component: SaUpdateUserComponent,
+      },
+      {
+        path: 'admins',
+        component: UserListComponent,
+      },
+      {
+        path: 'admins/:uId',
+        component: SaUpdateUserComponent,
+      },
+      {
+        path: 'superadmins',
+        component: UserListComponent,
+      },
+      {
+        path: 'superadmins/:uId',
+        component: SaUpdateUserComponent,
+      },
+      {
+        path: 'interestedProperties',
+        component: InterestedListComponent,
+      },
+      {
+        path: 'properties',
+        component: PropertyListComponent,
+      },
+      {
+        path: 'properties/:pId',
+        component: SaUpdatePropertyComponent,
+      },
+    ],
   },
   {
     path: '',
@@ -63,8 +131,7 @@ const routes: Routes = [
   {
     path: 'property/:pId',
     component: PropertyPageComponent,
-    
-  }
+  },
 ];
 
 @NgModule({

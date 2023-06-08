@@ -1,21 +1,13 @@
 <mat-card>
   <mat-action-list>
     <div mat-subheader>Menu</div>
-    <button routerLink="/admin" mat-list-item>
+    <button routerLink="/superadmin" mat-list-item>
       <mat-icon mat-list-icon class="menu-icon">home</mat-icon>
       <span class="menu-text">Home</span>
     </button>
-    <button mat-list-item routerLink="/admin/profile">
+    <button mat-list-item routerLink="/superadmin/profile">
       <mat-icon mat-list-icon class="menu-icon">account_circle</mat-icon>
       <span class="menu-text">Profile</span>
-    </button>
-    <button mat-list-item routerLink="/admin/properties">
-      <mat-icon mat-list-icon class="menu-icon">house</mat-icon>
-      <span class="menu-text">All Properties</span>
-    </button>
-    <button mat-list-item routerLink="/admin/add-property">
-      <mat-icon mat-list-icon class="menu-icon">add_circle</mat-icon>
-      <span class="menu-text">Post Property</span>
     </button>
     <button mat-list-item (click)="logout()">
       <mat-icon mat-list-icon class="menu-icon">logout</mat-icon>

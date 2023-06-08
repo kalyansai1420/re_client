@@ -52,6 +52,9 @@ export class PropertyCardComponent {
       security: '',
       shoppingMall: '',
       waterSupply: '',
+      soldOut: '',
+      active: '',
+      likes: '',
       user: {
         uid: '',
       },
@@ -75,19 +78,12 @@ export class PropertyCardComponent {
 
   ngOnInit(): void {
     this.getUserId();
-    console.log(this.getUserId());
-    this._property.properties().subscribe(
-      (data: any) => {
-        this.property = data;
-        console.log(data);
-        console.log(this.property);
-        console.log(this.property);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    // console.log(this.getUserId());
+    this.getProperties();
+    this.getLikesProperty();
+    console.log('working');
   }
+
   getUserId() {
     this.isLoggedIn = this.login.isLoggedIn();
     if (!this.isLoggedIn) {
@@ -101,9 +97,45 @@ export class PropertyCardComponent {
       return this.user ? this.user.uId : null; // Add null check for user object
     }
   }
+  getProperties() {
+    this._property.properties().subscribe(
+      (data: any) => {
+        this.property = data;
+        console.log(this.property);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
+  getLikesProperty() {
+    console.log('getLikesProperty() called');
+    this._save.likesProperty().subscribe(
+      (data: any) => {
+        console.log(data);
+        data.forEach((item: any) => {
+          const propertyId = item.p_id;
+          const likesCount = item.likes;
 
+          const property = this.property.find((p: any) => p.pId === propertyId);
 
+          console.log('Property ID:', propertyId);
+          console.log('Likes Count:', likesCount);
+          console.log('Found Property:', property);
+
+          if (property) {
+            property.likes = likesCount;
+          }
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  
   addToSaved(p: any) {
     console.log(p);
 

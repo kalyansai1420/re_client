@@ -1,0 +1,69 @@
+.e-btn-group {
+  display: flex;
+}
+
+.e-btn-group input[type="radio"] {
+  display: none;
+}
+
+.e-btn-group label {
+  cursor: pointer;
+  padding: 8px 16px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+}
+
+.e-btn-group label:hover {
+  background-color: #bdbdbd;
+}
+
+.e-btn-group input[type="radio"]:checked + label {
+  background-color: #2196f3;
+  color: white;
+}
+
+.property-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.property-table th,
+.property-table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.property-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.property-table .active {
+  background-color: green;
+  color: white;
+}
+
+.property-table .inactive {
+  background-color: red;
+  color: white;
+}
+
+.property-table .sold-out {
+  background-color: #ffcc00;
+  color: black;
+}
+
+.property-table .not-sold-out {
+  background-color: #f2f2f2;
+  color: black;
+}
+
+.property-table button {
+  padding: 4px 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.property-table button:hover {
+  background-color: lightgray;
+}

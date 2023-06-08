@@ -1,1 +1,17 @@
-<p>superadmin-dashboard works!</p>
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    <div class="nav">
+      <app-navbar></app-navbar>
+    </div>
+
+    <div class="row admin">
+      <div class="col-md-2 sidebar">
+        <app-sa-sidebar></app-sa-sidebar>
+      </div>
+
+      <div class="col-md-10">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
