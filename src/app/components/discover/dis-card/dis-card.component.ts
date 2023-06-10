@@ -21,6 +21,7 @@ export class DisCardComponent implements OnInit {
   constructor(private propertyService: PropertyService) {}
 
   getImageUrl(city: string): string {
+   
     return (
       this.cityImageMapping[city] || '../../../../assets/icons/city.png'
     );
@@ -31,6 +32,7 @@ export class DisCardComponent implements OnInit {
       (data: any) => {
         this.countByCity = data;
         console.log(this.countByCity);
+       
       },
       (error) => {
         console.log(error);

@@ -373,10 +373,22 @@
             <!-- Submit button -->
             <div class="container text-center mt15">
               <button mat-raised-button color="accent">Edit</button>
-             <button mat-raised-button color="accent" *ngIf="user.authorities[0].authority === 'SuperAdmin'"
-  [routerLink]="'/superadmin/'">Back</button>
-<button mat-raised-button color="accent" *ngIf="user.authorities[0].authority === 'Admin'"
-  [routerLink]="'/admin/'">Back</button>
+              <button
+                mat-raised-button
+                color="accent"
+                *ngIf="user.authorities[0].authority === 'SuperAdmin'"
+                [routerLink]="'/superadmin/properties'"
+              >
+                Back
+              </button>
+              <button
+                mat-raised-button
+                color="accent"
+                *ngIf="user.authorities[0].authority === 'Admin'"
+                [routerLink]="'/admin/properties'"
+              >
+                Back
+              </button>
             </div>
           </form>
         </div>

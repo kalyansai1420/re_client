@@ -29,7 +29,11 @@ export class UserService {
   //update user
   public updateUser(user: any) {
     return this.http.put(`${baseUrl}/user/`, user);
-    
+  }
+
+  //delete user
+  public deleteUser(uId: any) {
+    return this.http.delete(`${baseUrl}/user/${uId}`);
   }
 
 

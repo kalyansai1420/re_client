@@ -15,14 +15,22 @@ export class SaWelcomeComponent {
   users: any[] = [];
   properties: any[] = [];
   interestedProperties: any[] = [];
+  agentProperties: any;
+  agentInterestedProperties: any[] = [];
+
   propertyCount: number = 0;
+  agentPropertyCount: number = 0;
   userCount: number = 0;
   adminCount: number = 0;
   superadminCount: number = 0;
   interestedCount: number = 0;
+  agentInterestedCount: number = 0;
+
   isLoggedIn = false;
   @Input() user: any;
   @Input() id: any;
+  @Input() username: any;
+
   constructor(
     private _user: UserService,
     private _property: PropertyService,
@@ -36,6 +44,7 @@ export class SaWelcomeComponent {
     this.getUsers();
     this.getProperties();
     this.getInterested();
+    this.getAgentInterested();
   }
 
   getUserId() {
@@ -46,6 +55,7 @@ export class SaWelcomeComponent {
       this.user = this.login.getUser();
     });
     this.id = this.user.uId;
+    this.username = this.user.username;
     console.log(this.id);
   }
 
@@ -67,7 +77,12 @@ export class SaWelcomeComponent {
     this._property.properties().subscribe(
       (data: any) => {
         this.properties = data;
+        this.agentProperties = data.filter(
+          (property: any) => property.user.username == this.username
+        );
+        // console.log(this.agentProperties);
         this.countProperties();
+        this.countAgentProperties();
       },
       (error) => {
         console.log(error);
@@ -84,6 +99,19 @@ export class SaWelcomeComponent {
       },
       (error: any) => {
         console.log(error);
+      }
+    );
+  }
+  getAgentInterested() {
+    this._saved.getSavedProperties().subscribe(
+      (data: any) => {
+        this.agentInterestedProperties = data.filter(
+          (property:any)=>property.property.user.username == this.username
+        
+        );
+        console.log(this.agentInterestedProperties);
+        this.countAgentInterestedProperties();
+        
       }
     );
   }
@@ -115,7 +143,6 @@ export class SaWelcomeComponent {
     this.adminCount = adminCount;
   }
   countUsers() {
-    // const userCount = this.users.length;
     let userCount = 0;
     this.users.forEach((user) => {
       user.authorities.forEach((authority: any) => {
@@ -134,10 +161,22 @@ export class SaWelcomeComponent {
     this.propertyCount = propertyCount;
   }
 
+  countAgentProperties() {
+    const agentPropertyCount = this.agentProperties.length;
+    console.log('Number of Agent Properties:', agentPropertyCount);
+    this.agentPropertyCount = agentPropertyCount;
+  }
+
   countInterestedProperties() {
     const interestedCount = this.interestedProperties.length;
     console.log('Number of Interested Properties:', interestedCount);
     this.interestedCount = interestedCount;
+  }
+
+  countAgentInterestedProperties() {
+    const agentinterestedCount = this.agentInterestedProperties.length;
+    console.log('Number of Agent Interested Properties:', agentinterestedCount);
+    this.agentInterestedCount=agentinterestedCount;
   }
 
   onPropertiesClick() {
@@ -155,5 +194,8 @@ export class SaWelcomeComponent {
   }
   onInterestedClick() {
     this.router.navigate(['/superadmin/interestedProperties']);
+  }
+  onAgentInterestedClick() {
+    this.router.navigate(['/admin/interestedProperties']);
   }
 }

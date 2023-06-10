@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-list',
@@ -17,6 +18,7 @@ export class UserListComponent {
     private router: Router, private _user: UserService) { }
 
   ngOnInit() {
+    
     this.route.url.subscribe((segments) => {
       const path = segments[0]?.path;
       this.getUsersByPath(path);
@@ -26,8 +28,29 @@ export class UserListComponent {
   editUser(user: any) {
     console.log('clicked edit user');
   }
-  deleteUser(user: any) {
-    console.log('clicked delete user');
+  deleteUser(uId: any) {
+    console.log('clicked delete user :', uId);
+    Swal.fire({
+      icon: 'info',
+      title: 'Are you sure?',
+      confirmButtonText: 'Delete',
+      showCancelButton: true,
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        console.log('Deleting user:', uId);
+        this._user.deleteUser(uId).subscribe(
+          (data: any) => {
+            console.log('User deleted:', data);
+            Swal.fire('success', 'User deleted successfully', 'success');
+            window.location.reload();
+          },
+          (error) => {
+            Swal.fire('error', 'Error deleting user', 'error');
+            console.log('Error deleting user:', error);
+          }
+        );
+      }
+    });
   }
 
   getUsersByPath(path: string) {

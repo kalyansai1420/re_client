@@ -49,11 +49,11 @@
         </button>
       </div>
     </div>
-    <app-hero></app-hero>
-    <app-feature></app-feature>
-    <app-property-type></app-property-type>
-    <app-discover></app-discover>
-    <app-best-deal></app-best-deal>
+    <div class="property-card">
+
+      <app-feature [propertyType]="propertyType"></app-feature>
+    </div>
+   
     <app-footer></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

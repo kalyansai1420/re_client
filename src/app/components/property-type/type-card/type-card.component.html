@@ -1,6 +1,6 @@
 <div class="type-card-container">
 
-<mat-card class="type-card" *ngFor="let item of countByTypeArray">
+<mat-card class="type-card" *ngFor="let item of countByTypeArray" [routerLink]="'/propertyType/'+item[1]">
   <mat-card-content class="type-card-content">
     <img src="../../../assets/buildings.png" alt="">
     

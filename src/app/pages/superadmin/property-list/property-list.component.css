@@ -1,3 +1,16 @@
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.left-button {
+  margin-right: auto;
+}
+
+.right-button {
+  margin-left: auto;
+}
 .e-btn-group {
   display: flex;
 }

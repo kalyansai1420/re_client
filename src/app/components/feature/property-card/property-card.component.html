@@ -1,6 +1,13 @@
 <!-- {{property|json}} -->
-<div class="property-card-container">
-  <ng-container *ngFor="let p of property">
+
+<div
+  class="property-card-container"
+  *ngIf="
+    user?.authorities[0].authority !== 'Admin' &&
+    user?.authorities[0].authority !== 'SuperAdmin'
+  "
+>
+  <ng-container *ngFor="let p of properties">
     <mat-card class="property-card" *ngIf="p.active == '1'">
       <img
         mat-card-image
@@ -40,27 +47,9 @@
           <button mat-button [routerLink]="'/property/' + p.pId">
             View Property
           </button>
-          <button mat-button>Send Enquiry</button>
-          <!-- <button mat-icon-button color="accent">
-            <mat-icon>thumb_up</mat-icon><p>5</p>
-          </button> -->
-          <button mat-button disabled class="like-section" color="accent">
-              <span class="likes-count">{{ p.likes || '0' }}</span>
 
-            <mat-icon color="accent">thumb_up</mat-icon>
-          </button>
-        </div>
-        
-        <div class="card-content-buttons" >
-          <button mat-button [routerLink]="'/property/' + p.pId">
-            View Property
-          </button>
-          <button mat-button>Send Enquiry</button>
-          <!-- <button mat-icon-button color="accent">
-            <mat-icon>thumb_up</mat-icon><p>5</p>
-          </button> -->
           <button mat-button disabled class="like-section" color="accent">
-              <span class="likes-count">{{ p.likes || '0' }}</span>
+            <span class="likes-count">{{ p.likes || "0" }}</span>
 
             <mat-icon color="accent">thumb_up</mat-icon>
           </button>

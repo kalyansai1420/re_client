@@ -42,7 +42,6 @@ import { HeroComponent } from './components/hero/hero.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { FooterComponent } from './components/footer/footer.component';
 import { PropertyPageComponent } from './pages/property-page/property-page.component';
-import { SidenavComponent } from './pages/user/sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SaSidebarComponent } from './pages/superadmin/sa-sidebar/sa-sidebar.component';
 import { SaProfileComponent } from './pages/superadmin/sa-profile/sa-profile.component';
@@ -54,6 +53,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SaUpdatePropertyComponent } from './pages/superadmin/sa-update-property/sa-update-property.component';
 import { SaUpdateUserComponent } from './pages/superadmin/sa-update-user/sa-update-user.component';
 import { InterestedListComponent } from './pages/superadmin/interested-list/interested-list.component';
+import { USidebarComponent } from './pages/user/u-sidebar/u-sidebar.component';
+import { PropertiesPageComponent } from './pages/properties-page/properties-page.component';
+import { AdminPropertyCardComponent } from './components/admin-property-card/admin-property-card.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,6 @@ import { InterestedListComponent } from './pages/superadmin/interested-list/inte
     HeroComponent,
     FooterComponent,
     PropertyPageComponent,
-    SidenavComponent,
     SaSidebarComponent,
     SaProfileComponent,
     SaWelcomeComponent,
@@ -90,6 +91,9 @@ import { InterestedListComponent } from './pages/superadmin/interested-list/inte
     SaUpdatePropertyComponent,
     SaUpdateUserComponent,
     InterestedListComponent,
+    USidebarComponent,
+    PropertiesPageComponent,
+    AdminPropertyCardComponent,
   ],
   imports: [
     BrowserModule,

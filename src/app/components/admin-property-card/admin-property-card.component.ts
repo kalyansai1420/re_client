@@ -6,75 +6,17 @@ import { SavedService } from 'src/app/services/saved.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-property-card',
-  templateUrl: './property-card.component.html',
-  styleUrls: ['./property-card.component.css'],
+  selector: 'app-admin-property-card',
+  templateUrl: './admin-property-card.component.html',
+  styleUrls: ['./admin-property-card.component.css'],
 })
-export class PropertyCardComponent {
+export class AdminPropertyCardComponent {
   isLoggedIn = false;
   @Input() id: any;
   @Input() user: any;
   @Input() username: any;
-  @Input() propertyType!: string;
-  p: any;
   agentProperties: any;
-  // properties = [
-  //   {
-  //     pId: '',
-  //     aArea: '',
-  //     aCity: '',
-  //     aLandmark: '',
-  //     aPincode: '',
-  //     aState: '',
-  //     gardens: '',
-  //     gym: '',
-  //     hospitals: '',
-  //     lift: '',
-  //     market_area: '',
-  //     pAgeOfConstruction: '',
-  //     pArea: '',
-  //     pBHK: '',
-  //     pBalcony: '',
-  //     pBathroom: '',
-  //     pBedroom: '',
-  //     pDescription: '',
-  //     pFacing: '',
-  //     pFurnishedStatus: '',
-  //     pName: '',
-  //     pOfferType: '',
-  //     pPhoto: '',
-  //     pPossesionStatus: '',
-  //     pPrice: '',
-  //     pPropertyType: '',
-  //     pRoomFloor: '',
-  //     pTotalFloor: '',
-  //     parkingArea: '',
-  //     playground: '',
-  //     powerBackup: '',
-  //     schools: '',
-  //     security: '',
-  //     shoppingMall: '',
-  //     waterSupply: '',
-  //     soldOut: '',
-  //     active: '',
-  //     likes: '',
-  //     user: {
-  //       uid: '',
-  //       username: '',
-  //       phonenumber: '',
-  //     },
-  //   },
-  // ];
   properties: any[] = [];
-  propertySaved = {
-
-    property: {
-      pId: '',
-    },
-    user: {
-      uId: '',
-    },
-  };
 
   constructor(
     private _property: PropertyService,
@@ -84,28 +26,21 @@ export class PropertyCardComponent {
   ) {}
 
   ngOnInit(): void {
+    console.log('Admin Property Card Working...')
     this.getUserId();
-    
-    this.getLikesProperty();
-    if (this.propertyType != null) {
-      this.getPropertyType();
-    } else {
-      this.getProperties();
-    }
+    this.getProperties();
   }
-
   getUserId() {
-    this.isLoggedIn = this.login.isLoggedIn();
-    this.login.loginStatusSubject.asObservable().subscribe((data: any) => {
-      this.isLoggedIn = this.login.isLoggedIn();
-      this.user = this.login.getUser();
-      this.id = this.user ? this.user.uId : null; // Assign null if user is null
-      this.username = this.user ? this.user.username : null; // Assign null if user is null
-    });
-    //this.id = this.user.uId;
-    console.log(this.id);
-    // this.username = this.user.username;
-    console.log(this.username);
+   this.isLoggedIn = this.login.isLoggedIn();
+   this.user = this.login.getUser();
+   this.login.loginStatusSubject.asObservable().subscribe((data: any) => {
+     this.isLoggedIn = this.login.isLoggedIn();
+     this.user = this.login.getUser();
+   });
+   this.id = this.user.uId;
+   this.username = this.user.username;
+   console.log(this.username);
+   console.log(this.id);
   }
   getProperties() {
     this._property.properties().subscribe(
@@ -121,44 +56,6 @@ export class PropertyCardComponent {
         console.log(error);
       }
     );
-  }
-  getPropertyType() {
-    this._property.properties().subscribe(
-      (data: any) => {
-        this.properties = data.filter(
-          (property: any) => property.pPropertyType == this.propertyType
-        );
-        console.log(this.properties)
-      }
-    )
-  }
-
-  getLikesProperty() {
-    console.log('getLikesProperty() called');
-    // this._save.likesProperty().subscribe(
-    //   (data: any) => {
-    //     console.log(data);
-    //     data.forEach((item: any) => {
-    //       const propertyId = item.p_id;
-    //       const likesCount = item.likes;
-
-    //       const properties = this.properties.filter(
-    //         (p: any) => p.pId === propertyId
-    //       );
-
-    //       console.log('Property ID:', propertyId);
-    //       console.log('Likes Count:', likesCount);
-    //       console.log('Found Property:', properties);
-
-    //       if (properties) {
-    //         properties.likes = likesCount;
-    //       }
-    //     });
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   }
-    // );
   }
   deleteProperty(pId: any) {
     console.log(pId);
@@ -305,26 +202,5 @@ export class PropertyCardComponent {
     });
     // Add your logic here
   }
-  addToSaved(p: any) {
-    console.log(p);
-
-    if (!this.isLoggedIn) {
-      // Handle the scenario when the user is not logged in
-      Swal.fire('Error', 'Please log in to add the property', 'error');
-      return;
-    }
-
-    this.propertySaved.property.pId = p;
-    this.propertySaved.user.uId = this.id;
-    console.log(this.propertySaved);
-    this._save.addPropertytoSaved(this.propertySaved).subscribe(
-      (data: any) => {
-        Swal.fire('Success', 'Property got added', 'success');
-      },
-      (error) => {
-        console.error(error);
-        Swal.fire('Error', 'Server Error', 'error');
-      }
-    );
-  }
 }
+

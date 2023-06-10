@@ -5,14 +5,14 @@
     <div class="bootstrap-wrapper">
       <div class="row">
         <div class="col-md-8 offset-md-2">
-          <form *ngIf="user" (ngSubmit)="updateUser()">
+          <form *ngIf="customer" (ngSubmit)="updateUser()">
             <!-- {{ user | json }} -->
             <!-- UserName field -->
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>UserName</mat-label>
               <input
                 name="username"
-                [(ngModel)]="user.username"
+                [(ngModel)]="customer.username"
                 matInput
                 placeholder="Enter Here"
               />
@@ -27,7 +27,7 @@
                 [(ngModel)]="newPassword"
                 matInput
                 placeholder="Enter Here"
-                *ngIf="user.password"
+                *ngIf="customer.password"
               />
             </mat-form-field>
 
@@ -36,7 +36,7 @@
               <mat-label>Phone Number</mat-label>
               <input
                 name="phonenumber"
-                [(ngModel)]="user.phonenumber"
+                [(ngModel)]="customer.phonenumber"
                 type="tel"
                 matInput
                 placeholder="Enter Here"
@@ -49,16 +49,47 @@
               <input
                 name="email"
                 type="email"
-                [(ngModel)]="user.email"
+                [(ngModel)]="customer.email"
                 matInput
                 placeholder="Enter Here"
               />
             </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Authority</mat-label>
+                <mat-select
+                
+                  name="authority"
+                   [value]="selectedRole"
+                   [(ngModel)]="selectedRole"
+              
+                >
+                  <mat-option [value]="option.value" *ngFor="let option of roles">{{option.viewValue}}</mat-option>
+                  
+                </mat-select>
+              </mat-form-field>
+
+
+
+
             <div class="container text-center mt15">
               <button mat-raised-button color="accent">Edit</button>
-              <button mat-raised-button color="primary" *ngIf="user.authorities[0].authority === 'Admin'" (click)="goBackAdmin()">Back</button>
-              <button mat-raised-button color="primary" *ngIf="user.authorities[0].authority === 'SuperAdmin'" (click)="goBackSuperAdmin()">Back</button>
-
+              <button
+                mat-raised-button
+                color="primary"
+                *ngIf="user.authorities[0].authority === 'Admin'"
+                (click)="goBackAdmin()"
+              >
+                Back
+              </button>
+              <button
+                mat-raised-button
+                color="primary"
+                *ngIf="user.authorities[0].authority === 'SuperAdmin'"
+                (click)="goBackSuperAdmin()"
+              >
+                Back
+              </button>
             </div>
           </form>
         </div>

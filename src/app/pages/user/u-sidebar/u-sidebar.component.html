@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-action-list>
+    <div mat-subheader>Menu</div>
+    <button routerLink="/" mat-list-item>
+      <mat-icon mat-list-icon class="menu-icon">home</mat-icon>
+      <span class="menu-text">Home</span>
+    </button>
+    <button mat-list-item routerLink="/user-dashboard/">
+      <mat-icon mat-list-icon class="menu-icon">account_circle</mat-icon>
+      <span class="menu-text">Profile</span>
+    </button>
+    <button routerLink="/user-dashboard/interested" mat-list-item>
+        <mat-icon mat-list-icon class="menu-icon">add_shopping_cart</mat-icon>
+        <span class="menu-text">Interested Properties</span>
+      </button>
+    <button mat-list-item (click)="logout()">
+      <mat-icon mat-list-icon class="menu-icon">logout</mat-icon>
+      <span class="menu-text">Logout</span>
+    </button>
+  </mat-action-list>
+</mat-card>

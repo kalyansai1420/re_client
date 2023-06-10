@@ -1,0 +1,30 @@
+.container-fluid{
+    width: 100%;
+    padding: 0;
+}
+.nav{
+    background-color: blue;
+    width: 100%;
+}
+
+.sidebar {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+.admin{
+  display: flex;
+}
+@media only screen and (max-width: 400px) {
+.col-md-10{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.admin{
+  flex-direction: column;
+}
+}

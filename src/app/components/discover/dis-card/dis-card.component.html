@@ -1,5 +1,5 @@
 <div class="disc-card-container">
-  <mat-card class="disc-card" *ngFor="let city of countByCity">
+  <mat-card class="disc-card" *ngFor="let city of countByCity" [routerLink]="'/propertyCity/'+city.City">
     <img
       mat-card-image
       [src]="getImageUrl(city.City)"

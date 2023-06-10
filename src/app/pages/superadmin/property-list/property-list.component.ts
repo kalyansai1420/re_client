@@ -10,9 +10,10 @@ import Swal from 'sweetalert2';
 })
 export class PropertyListComponent {
   properties: any;
-  userRole!: string;
+  
   property: any;
-  public display: number = 1;
+  agentProperties: any;
+  display: number = 2;
 
   isLoggedIn = false;
   @Input() user: any;
@@ -26,11 +27,9 @@ export class PropertyListComponent {
   ) {}
 
   ngOnInit() {
-    // Subscribe to the data event emitted by the shared service
     this.getProperties();
     this.getUserId();
 
-    this.userRole = this.user.authorities[0].authority;
   }
 
   getUserId() {
@@ -49,7 +48,8 @@ export class PropertyListComponent {
   getProperties() {
     this._property.properties().subscribe(
       (data: any) => {
-        this.properties = data.filter(
+        this.properties = data;
+        this.agentProperties = data.filter(
           (property: any) => property.user.username == this.username
         );
         console.log(this.properties);
@@ -61,7 +61,9 @@ export class PropertyListComponent {
   }
 
   changeDisplay(mode: number): void {
+
     this.display = mode;
+    this.getProperties();
   }
 
   togglePropertyActive(property: any) {
@@ -111,8 +113,8 @@ export class PropertyListComponent {
     };
     Swal.fire({
       icon: 'info',
-      title: 'Are you sure ?',
-      confirmButtonText: 'Edit',
+      title: 'Have you verified ?',
+      confirmButtonText: 'Yes',
       showCancelButton: true,
     }).then((result: any) => {
       if (result.isConfirmed) {
@@ -172,7 +174,7 @@ export class PropertyListComponent {
     Swal.fire({
       icon: 'info',
       title: 'Are you sure ?',
-      confirmButtonText: 'Edit',
+      confirmButtonText: 'Yes',
       showCancelButton: true,
     }).then((result: any) => {
       if (result.isConfirmed) {

@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
           } else if (this.login.getUserRole() == 'Normal') {
             //normal user dashbaord
             // window.location.href = '/user-dashboard';
-            this.router.navigate(['user-dashboard']);
+            this.router.navigate(['']);
             this.login.loginStatusSubject.next(true);
         
           } else if (this.login.getUserRole() == 'SuperAdmin') {

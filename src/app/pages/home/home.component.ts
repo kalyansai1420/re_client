@@ -8,6 +8,8 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
+  isLoggedIn = false;
+  user = null;
   mode = new FormControl('over');
 
   isSidenavVisible: boolean = false;
@@ -26,6 +28,14 @@ export class HomeComponent {
     } else {
       this.isScrolled = false;
     }
+  }
+  ngOnInit(): void {
+    this.isLoggedIn = this.login.isLoggedIn();
+    this.user = this.login.getUser();
+    this.login.loginStatusSubject.asObservable().subscribe((data) => {
+      this.isLoggedIn = this.login.isLoggedIn();
+      this.user = this.login.getUser();
+    });
   }
 
   public logout() {

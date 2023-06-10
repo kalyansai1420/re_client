@@ -25,7 +25,7 @@ export class PropertyService {
 
   //delete property
   public deleteProperty(pId:any) {
-    return this._http.delete(`${baseUrl}/property/`, pId)
+    return this._http.delete(`${baseUrl}/property/${pId}`)
   }
 
   //get a property

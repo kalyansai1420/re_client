@@ -20,6 +20,8 @@ import { PropertyListComponent } from './pages/superadmin/property-list/property
 import { SaUpdatePropertyComponent } from './pages/superadmin/sa-update-property/sa-update-property.component';
 import { InterestedListComponent } from './pages/superadmin/interested-list/interested-list.component';
 import { SaUpdateUserComponent } from './pages/superadmin/sa-update-user/sa-update-user.component';
+import { FeatureComponent } from './components/feature/feature.component';
+import { PropertiesPageComponent } from './pages/properties-page/properties-page.component';
 
 const routes: Routes = [
   {
@@ -39,7 +41,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: WelcomeComponent,
+        component: SaWelcomeComponent,
       },
       {
         path: 'profile',
@@ -58,12 +60,16 @@ const routes: Routes = [
         component: SaUpdatePropertyComponent,
       },
       {
-        path: ':uId',
-        component: SaUpdateUserComponent,
+        path: 'properties/property/:pId',
+        component: PropertyPageComponent,
       },
       {
         path: 'interestedProperties',
         component: InterestedListComponent,
+      },
+      {
+        path: ':uId',
+        component: SaUpdateUserComponent,
       },
     ],
   },
@@ -71,6 +77,16 @@ const routes: Routes = [
     path: 'user-dashboard',
     component: UserDashboardComponent,
     canActivate: [NormalGuard],
+    children: [
+      {
+        path: '',
+        component: ProfileComponent,
+      },
+      {
+        path: 'interested',
+        component: InterestedListComponent,
+      },
+    ],
   },
   {
     path: 'superadmin',
@@ -121,6 +137,10 @@ const routes: Routes = [
         path: 'properties/:pId',
         component: SaUpdatePropertyComponent,
       },
+      {
+        path: 'properties/property/:pId',
+        component: PropertyPageComponent,
+      },
     ],
   },
   {
@@ -131,6 +151,18 @@ const routes: Routes = [
   {
     path: 'property/:pId',
     component: PropertyPageComponent,
+  },
+  {
+    path: 'properties',
+    component:PropertiesPageComponent,
+  },
+  {
+    path: 'propertyType/:propertyType',
+    component: PropertiesPageComponent,
+  },
+  {
+    path: 'propertyCity/:city',
+    component: PropertiesPageComponent,
   },
 ];
 

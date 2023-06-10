@@ -17,7 +17,7 @@ export class SavedService {
 
   //add property to saved
   public addPropertytoSaved(propertySave:any) {
-    return this._http.post(`${baseUrl}/saved`, propertySave);
+    return this._http.post(`${baseUrl}/saved/`, propertySave);
   }
 
   //remove property from saved

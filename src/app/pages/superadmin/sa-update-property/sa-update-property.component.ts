@@ -107,7 +107,7 @@ export class SaUpdatePropertyComponent {
     this._property.updateProperty(requestData).subscribe(
       (data: any) => {
         Swal.fire('Success', 'Property updated', 'success').then(() => {
-          this._router.navigate(['superadmin/properties']);
+          //this._router.navigate(['superadmin/properties']);
         });
       },
       (error: any) => {

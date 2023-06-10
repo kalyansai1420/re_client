@@ -31,7 +31,8 @@
         </button>
       </td>
       <td>
-        <button (click)="deleteUser(user)">Delete</button>
+        <button mat-raised-button
+          color="warn" (click)="deleteUser(user.uId)">Delete</button>
       </td>
     </tr>
   </tbody>
