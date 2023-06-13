@@ -8,12 +8,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FeatureComponent {
   @Input() propertyType!: string;
+  @Input() propertyCity!: string;
 
-  constructor(
-    private route: ActivatedRoute
-  ) { }
-  
-  ngOnInit() {
-   
-  }
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {}
 }

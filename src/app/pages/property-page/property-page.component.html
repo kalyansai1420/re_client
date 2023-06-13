@@ -2,7 +2,7 @@
 <button
   mat-raised-button
   color="accent"
-  *ngIf="user.authorities[0].authority === 'SuperAdmin'"
+  *ngIf="user?.authorities[0].authority === 'SuperAdmin'"
   [routerLink]="'/superadmin/properties'"
 >
   Back
@@ -10,22 +10,36 @@
 <button
   mat-raised-button
   color="accent"
-  *ngIf="user.authorities[0].authority === 'Admin'"
+  *ngIf="user?.authorities[0].authority === 'Admin'"
   [routerLink]="'/admin/'"
 >
   Back
 </button>
 
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav>
+   <mat-sidenav #sidenav>
     <mat-action-list>
       <div mat-subheader>Menu</div>
-      <button routerLink="/" mat-list-item>
-        <mat-icon mat-list-icon>home</mat-icon> Home
-      </button>
 
-      <button mat-list-item>
-        <mat-icon mat-list-icon>logout</mat-icon> Logout
+      <button routerLink="/" mat-list-item>
+        <mat-icon mat-list-icon class="menu-icon">home</mat-icon>
+        <span class="menu-text">Home</span>
+      </button>
+      <button routerLink="/user-dashboard" mat-list-item *ngIf="isLoggedIn">
+        <mat-icon mat-list-icon class="menu-icon">account_circle</mat-icon>
+        <span class="menu-text">Profile</span>
+      </button>
+      <button routerLink="/user-dashboard/interested" mat-list-item *ngIf="isLoggedIn">
+        <mat-icon mat-list-icon class="menu-icon">add_shopping_cart</mat-icon>
+        <span class="menu-text">Saved</span>
+      </button>
+      <button mat-list-item (click)="logout()" *ngIf="isLoggedIn">
+        <mat-icon mat-list-icon class="menu-icon">logout</mat-icon>
+        <span class="menu-text">Logout</span>
+      </button>
+      <button mat-list-item [routerLink]="'/login'" *ngIf="!isLoggedIn">
+        <mat-icon mat-list-icon class="menu-icon">login</mat-icon>
+        <span class="menu-text">Login</span>
       </button>
     </mat-action-list>
   </mat-sidenav>
@@ -35,8 +49,8 @@
       class="nav"
       [class.scrolled]="isScrolled"
       *ngIf="
-        user.authorities[0].authority !== 'Admin' &&
-        user.authorities[0].authority !== 'SuperAdmin'
+        user?.authorities[0].authority !== 'Admin' &&
+        user?.authorities[0].authority !== 'SuperAdmin'
       "
     >
       <div class="nav-left">
@@ -100,7 +114,7 @@
           <div class="card-top">
             <div class="card-left">
               <p>Total Price</p>
-              <h4>{{ property.pPrice | currency : "INR" }}</h4>
+              <h4>{{ property?.pPrice | currency : "INR" }}</h4>
             </div>
             <div class="card-right">
               <button mat-button>Send Request</button>
@@ -126,34 +140,34 @@
         <div class="property-details">
           <div class="property-address">
             <p>
-              {{ property.aArea }},{{ property.aLandmark }},{{ property.aCity }}
+              {{ property?.aArea }},{{ property?.aLandmark }},{{ property?.aCity }}
             </p>
           </div>
           <div class="property-icons">
             <p>
               <img src="../../../assets/icons/house.png" alt="" />
 
-              {{ property.pPropertyType }}
+              {{ property?.pPropertyType }}
               Type
             </p>
             <p>
               <img src="../../../assets/icons/plan.png" alt="" />
-              {{ property.pArea }}
+              {{ property?.pArea }}
               Sq.ft
             </p>
             <p>
               <img src="../../../assets/icons/double-bed.png" alt="" />
-              {{ property.pBedroom }}
+              {{ property?.pBedroom }}
               Bedrooms
             </p>
             <p>
               <img src="../../../assets/icons/bath.png" alt="" />
-              {{ property.pBathroom }}
+              {{ property?.pBathroom }}
               Bathroom
             </p>
           </div>
           <div class="property-description">
-            <p>{{ property.pDescription }}</p>
+            <p>{{ property?.pDescription }}</p>
           </div>
         </div>
       </div>
@@ -167,41 +181,41 @@
             <div class="left_property_features">
               <div class="space_props">
                 <h5>Property Type:</h5>
-                <h5>{{ property.pPropertyType }}</h5>
+                <h5>{{ property?.pPropertyType }}</h5>
               </div>
               <div class="space_props">
                 <h5>Facing:</h5>
-                <h5>{{ property.pFacing }}</h5>
+                <h5>{{ property?.pFacing }}</h5>
               </div>
               <div class="space_props">
                 <h5>Age of Construction:</h5>
-                <h5>{{ property.pAgeOfConstruction }}</h5>
+                <h5>{{ property?.pAgeOfConstruction }}</h5>
               </div>
               <div class="space_props">
                 <h5>Room Floor:</h5>
-                <h5>{{ property.pRoomFloor }}</h5>
+                <h5>{{ property?.pRoomFloor }}</h5>
               </div>
               <div class="space_props">
                 <h5>Total Floor:</h5>
-                <h5>{{ property.pTotalFloor }}</h5>
+                <h5>{{ property?.pTotalFloor }}</h5>
               </div>
             </div>
             <div class="right_property_features">
               <div class="space_props">
                 <h5>Construction Status:</h5>
-                <h5>{{ property.pPossesionStatus }}</h5>
+                <h5>{{ property?.pPossesionStatus }}</h5>
               </div>
               <div class="space_props">
                 <h5>Furnished Status:</h5>
-                <h5>{{ property.pFurnishedStatus }}</h5>
+                <h5>{{ property?.pFurnishedStatus }}</h5>
               </div>
               <div class="space_props">
                 <h5>Rooms:</h5>
-                <h5>{{ property.pBHK }}</h5>
+                <h5>{{ property?.pBHK }}</h5>
               </div>
               <div class="space_props">
                 <h5>Offer Type:</h5>
-                <h5>{{ property.pOfferType }}</h5>
+                <h5>{{ property?.pOfferType }}</h5>
               </div>
             </div>
           </div>
@@ -217,51 +231,51 @@
             <div class="left_property_features a-i">
               <div class="space_props">
                 <h5>Lift</h5>
-                <mat-icon>{{ property.lift ? "✓" : "✗" }}</mat-icon>
+                <mat-icon>{{ property?.lift ? "✓" : "✗" }}</mat-icon>
               </div>
               <div class="space_props">
                 <h5>Security</h5>
-                <mat-icon>{{ property.security ? "✓" : "✗" }}</mat-icon>
+                <mat-icon>{{ property?.security ? "✓" : "✗" }}</mat-icon>
               </div>
               <div class="space_props">
                 <h5>Playground</h5>
-                <mat-icon>{{ property.playground ? "✓" : "✗" }}</mat-icon>
+                <mat-icon>{{ property?.playground ? "✓" : "✗" }}</mat-icon>
               </div>
               <div class="space_props">
                 <h5>Gardens</h5>
-                <mat-icon>{{ property.gardens ? "✓" : "✗" }}</mat-icon>
+                <mat-icon>{{ property?.gardens ? "✓" : "✗" }}</mat-icon>
               </div>
             </div>
             <div class="middle_property_features">
               <div class="space_props">
                 <h5>Water Supply</h5>
-                <mat-icon>{{ property.waterSupply ? "✓" : "✗" }}</mat-icon>
+                <mat-icon>{{ property?.waterSupply ? "✓" : "✗" }}</mat-icon>
               </div>
               <div class="space_props">
                 <h5>Power Backup</h5>
-                <mat-icon>{{ property.powerBackup ? "✓" : "✗" }}</mat-icon>
+                <mat-icon>{{ property?.powerBackup ? "✓" : "✗" }}</mat-icon>
               </div>
               <div class="space_props">
                 <h5>Parking Area</h5>
-                <mat-icon>{{ property.parkingArea ? "✓" : "✗" }}</mat-icon>
+                <mat-icon>{{ property?.parkingArea ? "✓" : "✗" }}</mat-icon>
               </div>
               <div class="space_props">
                 <h5>Shopping Mall</h5>
-                <mat-icon>{{ property.shoppingMall ? "✓" : "✗" }}</mat-icon>
+                <mat-icon>{{ property?.shoppingMall ? "✓" : "✗" }}</mat-icon>
               </div>
             </div>
             <div class="right_property_features a-i">
               <div class="space_props">
                 <h5>Hospitals</h5>
-                <mat-icon>{{ property.hospitals ? "✓" : "✗" }}</mat-icon>
+                <mat-icon>{{ property?.hospitals ? "✓" : "✗" }}</mat-icon>
               </div>
               <div class="space_props">
                 <h5>Schools</h5>
-                <mat-icon>{{ property.schools ? "✓" : "✗" }}</mat-icon>
+                <mat-icon>{{ property?.schools ? "✓" : "✗" }}</mat-icon>
               </div>
               <div class="space_props">
                 <h5>Market Area</h5>
-                <mat-icon>{{ property.marketArea ? "✓" : "✗" }}</mat-icon>
+                <mat-icon>{{ property?.marketArea ? "✓" : "✗" }}</mat-icon>
               </div>
             </div>
           </div>
@@ -271,8 +285,8 @@
 
     <app-footer
       *ngIf="
-        user.authorities[0].authority !== 'Admin' &&
-        user.authorities[0].authority !== 'SuperAdmin'
+        user?.authorities[0].authority !== 'Admin' &&
+        user?.authorities[0].authority !== 'SuperAdmin'
       "
     ></app-footer>
   </mat-sidenav-content>

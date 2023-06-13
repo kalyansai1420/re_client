@@ -1,6 +1,7 @@
 import {
   Component,
-  Input,HostListener,
+  Input,
+  HostListener,
   ViewChild,
   ElementRef,
   AfterViewInit,
@@ -8,7 +9,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PropertyService } from 'src/app/services/property.service';
-import Flickity from "flickity"; 
+import Flickity from 'flickity';
 import { LoginService } from 'src/app/services/login.service';
 import Swal from 'sweetalert2';
 
@@ -92,7 +93,11 @@ export class PropertyPageComponent implements AfterViewInit {
       prevNextButtons: false,
     });
   }
-
+  public logout() {
+    this.login.logout();
+    window.location.reload();
+    // this.login.loginStatusSubject.next(false);
+  }
   ngOnDestroy() {
     this.routeSub.unsubscribe();
   }

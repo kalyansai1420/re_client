@@ -1,4 +1,3 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -56,6 +55,8 @@ import { InterestedListComponent } from './pages/superadmin/interested-list/inte
 import { USidebarComponent } from './pages/user/u-sidebar/u-sidebar.component';
 import { PropertiesPageComponent } from './pages/properties-page/properties-page.component';
 import { AdminPropertyCardComponent } from './components/admin-property-card/admin-property-card.component';
+import { NgModule } from '@angular/core';
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 
 @NgModule({
   declarations: [
@@ -116,6 +117,10 @@ import { AdminPropertyCardComponent } from './components/admin-property-card/adm
     MatChipsModule,
     MatSidenavModule,
     MatSlideToggleModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground: true,
+    }),
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

@@ -15,6 +15,8 @@ export class AdminPropertyCardComponent {
   @Input() id: any;
   @Input() user: any;
   @Input() username: any;
+  @Input() userRole: any;
+  @Input() userIdentity: any;
   agentProperties: any;
   properties: any[] = [];
 
@@ -26,31 +28,39 @@ export class AdminPropertyCardComponent {
   ) {}
 
   ngOnInit(): void {
-    console.log('Admin Property Card Working...')
-    this.getUserId();
-    this.getProperties();
+    this.isLoggedIn = this.login.isLoggedIn();
+    if (this.isLoggedIn) {
+      this.userIdentity = this.login.getUserId();
+      this.user = this.login.getUser();
+      this.userRole = this.login.getUserRole();
+    }
+    if (this.userRole == 'Admin') {
+      this.getAgentProperties();
+    } else {
+      this.getProperties();
+    }
   }
-  getUserId() {
-   this.isLoggedIn = this.login.isLoggedIn();
-   this.user = this.login.getUser();
-   this.login.loginStatusSubject.asObservable().subscribe((data: any) => {
-     this.isLoggedIn = this.login.isLoggedIn();
-     this.user = this.login.getUser();
-   });
-   this.id = this.user.uId;
-   this.username = this.user.username;
-   console.log(this.username);
-   console.log(this.id);
-  }
+
   getProperties() {
     this._property.properties().subscribe(
       (data: any) => {
         this.properties = data;
-        this.agentProperties = data.filter(
-          (property: any) => property.user.username == this.username
-        );
         console.log('All Properties : ', this.properties);
-        console.log('Agent Properties : ', this.agentProperties);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  getAgentProperties() {
+    this._property.properties().subscribe(
+      (data: any) => {
+        this.properties = data;
+        this.agentProperties = data.filter(
+          (property: any) => property.user.username == this.user.username
+        );
+        console.log('all properties', this.properties);
+        console.log('agent properties', this.agentProperties);
       },
       (error) => {
         console.log(error);
@@ -200,7 +210,5 @@ export class AdminPropertyCardComponent {
         });
       }
     });
-    // Add your logic here
   }
 }
-

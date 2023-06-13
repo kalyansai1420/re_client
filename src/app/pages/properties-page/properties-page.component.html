@@ -11,7 +11,11 @@
         <mat-icon mat-list-icon class="menu-icon">account_circle</mat-icon>
         <span class="menu-text">Profile</span>
       </button>
-      <button routerLink="/user-dashboard/interested" mat-list-item *ngIf="isLoggedIn">
+      <button
+        routerLink="/user-dashboard/interested"
+        mat-list-item
+        *ngIf="isLoggedIn"
+      >
         <mat-icon mat-list-icon class="menu-icon">add_shopping_cart</mat-icon>
         <span class="menu-text">Saved</span>
       </button>
@@ -50,10 +54,14 @@
       </div>
     </div>
     <div class="property-card">
-
-      <app-feature [propertyType]="propertyType"></app-feature>
+      <ng-container *ngIf="propertyType">
+        <app-feature [propertyType]="propertyType"></app-feature>
+      </ng-container>
+      <ng-container *ngIf="propertyCity">
+        <app-feature [propertyCity]="propertyCity"></app-feature>
+      </ng-container>
     </div>
-   
+
     <app-footer></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

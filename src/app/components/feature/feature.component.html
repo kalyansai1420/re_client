@@ -1,8 +1,20 @@
 <div class="feature">
   <div class="feature-title">
-    <h2>{{ propertyType ? propertyType + ' Properties' : 'Featured Properties' }}</h2>
+    <h2>
+      {{ propertyType ? propertyType + ' Properties' : '' }}
+      {{ propertyCity ? propertyCity + ' Properties' : '' }}
+      {{ !propertyType && !propertyCity ? 'Featured Properties' : '' }}
+    </h2>
   </div>
   <div class="feature-cards">
-    <app-property-card [propertyType]="propertyType"></app-property-card>
+    <ng-container *ngIf="propertyType">
+      <app-property-card [propertyType]="propertyType"></app-property-card>
+    </ng-container>
+    <ng-container *ngIf="propertyCity">
+      <app-property-card [propertyCity]="propertyCity"></app-property-card>
+    </ng-container>
+    <ng-container *ngIf="!propertyType && !propertyCity">
+      <app-property-card></app-property-card>
+    </ng-container>
   </div>
 </div>

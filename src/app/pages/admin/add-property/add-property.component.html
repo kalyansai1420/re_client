@@ -50,7 +50,7 @@
                   matInput
                   formControlName="aLandmark"
                   name="aLandmark"
-                   [value]="form.get('aLandmark')?.value"
+                  [value]="form.get('aLandmark')?.value"
                   placeholder="Enter Landmark Name"
                 />
               </mat-form-field>
@@ -74,7 +74,7 @@
                   matInput
                   formControlName="aState"
                   name="aState"
-                   [value]="form.get('aState')?.value"
+                  [value]="form.get('aState')?.value"
                   placeholder="Enter State Name"
                 />
               </mat-form-field>
@@ -86,7 +86,7 @@
                   matInput
                   formControlName="aPincode"
                   name="aPincode"
-                   [value]="form.get('aPincode')?.value"
+                  [value]="form.get('aPincode')?.value"
                   placeholder="Enter Pincode"
                 />
               </mat-form-field>
@@ -99,7 +99,7 @@
                   type="number"
                   formControlName="pPrice"
                   name="pPrice"
-                   [value]="form.get('pPrice')?.value"
+                  [value]="form.get('pPrice')?.value"
                   placeholder="Enter Property Price"
                 />
               </mat-form-field>
@@ -107,9 +107,11 @@
               <!-- Offer Type -->
               <mat-form-field appearance="outline">
                 <mat-label>Offer Type</mat-label>
-                <mat-select formControlName="pOfferType"
-                 [value]="form.get('pOfferType')?.value"
-                name="pOfferType">
+                <mat-select
+                  formControlName="pOfferType"
+                  [value]="form.get('pOfferType')?.value"
+                  name="pOfferType"
+                >
                   <mat-option></mat-option>
                   <mat-option value="sale">Sale</mat-option>
                   <mat-option value="resale">Resale</mat-option>
@@ -123,7 +125,7 @@
                 <mat-select
                   formControlName="pPropertyType"
                   name="pPropertyType"
-                   [value]="form.get('pPropertyType')?.value"
+                  [value]="form.get('pPropertyType')?.value"
                 >
                   <mat-option></mat-option>
                   <mat-option value="flat">Flat</mat-option>
@@ -138,7 +140,7 @@
                 <mat-select
                   name="pPossesionStatus"
                   formControlName="pPossesionStatus"
-                   [value]="form.get('pPossesionStatus')?.value"
+                  [value]="form.get('pPossesionStatus')?.value"
                 >
                   <mat-option></mat-option>
                   <mat-option value="readytomove">Ready To Move</mat-option>
@@ -157,7 +159,7 @@
                 <mat-select
                   name="pFurnishedStatus"
                   formControlName="pFurnishedStatus"
-                   [value]="form.get('pFurnishedStatus')?.value"
+                  [value]="form.get('pFurnishedStatus')?.value"
                 >
                   <mat-option></mat-option>
                   <mat-option value="fullyfurnished"
@@ -171,8 +173,11 @@
               <mat-form-field appearance="outline">
                 <mat-label>Facing </mat-label>
 
-                <mat-select formControlName="pFacing" name="pFacing"
-                 [value]="form.get('pFacing')?.value">
+                <mat-select
+                  formControlName="pFacing"
+                  name="pFacing"
+                  [value]="form.get('pFacing')?.value"
+                >
                   <mat-option></mat-option>
                   <mat-option value="east">East</mat-option>
                   <mat-option value="west">West</mat-option>
@@ -203,7 +208,7 @@
                   name="pAgeOfConstruction"
                   placeholder="Enter Property Age"
                   formControlName="pAgeOfConstruction"
-                   [value]="form.get('pAgeOfConstruction')?.value"
+                  [value]="form.get('pAgeOfConstruction')?.value"
                 />
               </mat-form-field>
 
@@ -214,7 +219,7 @@
                   name="pBHK"
                   placeholder="Enter Property BHK"
                   formControlName="pBHK"
-                   [value]="form.get('pBHK')?.value"
+                  [value]="form.get('pBHK')?.value"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline">
@@ -227,7 +232,7 @@
                   name="pBedroom"
                   placeholder="Enter Property Bedrooms"
                   formControlName="pBedroom"
-                   [value]="form.get('pBedroom')?.value"
+                  [value]="form.get('pBedroom')?.value"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline">
@@ -240,7 +245,7 @@
                   name="pBathroom"
                   placeholder="Enter Property Bathrooms"
                   formControlName="pBathroom"
-                   [value]="form.get('pBathroom')?.value"
+                  [value]="form.get('pBathroom')?.value"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline">
@@ -253,7 +258,7 @@
                   name="pBalcony"
                   placeholder="Enter Property Balconies"
                   formControlName="pBalcony"
-                   [value]="form.get('pBalcony')?.value"
+                  [value]="form.get('pBalcony')?.value"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline">
@@ -266,7 +271,7 @@
                   name="pTotalFloor"
                   placeholder="Enter Total Floor"
                   formControlName="pTotalFloor"
-                   [value]="form.get('pTotalFloor')?.value"
+                  [value]="form.get('pTotalFloor')?.value"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline">
@@ -279,7 +284,7 @@
                   name="pRoomFloor"
                   placeholder="Enter Room Floor"
                   formControlName="pRoomFloor"
-                   [value]="form.get('pRoomFloor')?.value"
+                  [value]="form.get('pRoomFloor')?.value"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline">
@@ -292,7 +297,7 @@
                   name="pArea"
                   placeholder="Enter Area in squarefeets"
                   formControlName="pArea"
-                   [value]="form.get('pArea')?.value"
+                  [value]="form.get('pArea')?.value"
                 />
               </mat-form-field>
 
@@ -304,7 +309,7 @@
                   formControlName="pDescription"
                   name="pDescription"
                   placeholder="Enter Property Description"
-                   [value]="form.get('pDescription')?.value"
+                  [value]="form.get('pDescription')?.value"
                 ></textarea>
               </mat-form-field>
 
@@ -395,6 +400,7 @@
                     class="form-control"
                     [formControlName]="i"
                     accept="image/*"
+                    (change)="onFileSelected($event, i)"
                   />
                   <button
                     type="button"
@@ -414,6 +420,15 @@
                   (click)="addGalleryImage()"
                 >
                   Add Image
+                </button>
+                <button
+                  type="button"
+                  mat-raised-button
+                  color="accent"
+                  class="btn btn-primary"
+                  (click)="uploadImages()"
+                >
+                  Upload Images
                 </button>
               </div>
             </div>

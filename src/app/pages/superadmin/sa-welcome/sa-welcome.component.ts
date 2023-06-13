@@ -27,9 +27,11 @@ export class SaWelcomeComponent {
   agentInterestedCount: number = 0;
 
   isLoggedIn = false;
-  @Input() user: any;
   @Input() id: any;
+  @Input() user: any;
   @Input() username: any;
+  @Input() userRole: any;
+  @Input() userIdentity: any;
 
   constructor(
     private _user: UserService,
@@ -40,23 +42,22 @@ export class SaWelcomeComponent {
   ) {}
 
   ngOnInit(): void {
-    this.getUserId();
-    this.getUsers();
-    this.getProperties();
-    this.getInterested();
-    this.getAgentInterested();
-  }
-
-  getUserId() {
     this.isLoggedIn = this.login.isLoggedIn();
-    this.user = this.login.getUser();
-    this.login.loginStatusSubject.asObservable().subscribe((data: any) => {
-      this.isLoggedIn = this.login.isLoggedIn();
+    if (this.isLoggedIn) {
+      this.userIdentity = this.login.getUserId();
       this.user = this.login.getUser();
-    });
-    this.id = this.user.uId;
-    this.username = this.user.username;
-    console.log(this.id);
+      this.userRole = this.login.getUserRole();
+      
+    }
+
+    if (this.userRole == 'Admin') {
+      this.getAgentProperties();
+      this.getAgentInterested();
+    } else if (this.userRole == 'SuperAdmin') {
+      this.getUsers();
+      this.getProperties();
+      this.getInterested();
+    }
   }
 
   getUsers() {
@@ -77,11 +78,22 @@ export class SaWelcomeComponent {
     this._property.properties().subscribe(
       (data: any) => {
         this.properties = data;
-        this.agentProperties = data.filter(
-          (property: any) => property.user.username == this.username
-        );
-        // console.log(this.agentProperties);
         this.countProperties();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  getAgentProperties() {
+    this._property.properties().subscribe(
+      (data: any) => {
+        this.properties = data;
+        this.agentProperties = data.filter(
+          (property: any) => property.user.username == this.user.username
+        );
+        console.log('all properties' ,this.properties)
+        console.log('agent properties' ,this.agentProperties)
         this.countAgentProperties();
       },
       (error) => {
@@ -103,17 +115,14 @@ export class SaWelcomeComponent {
     );
   }
   getAgentInterested() {
-    this._saved.getSavedProperties().subscribe(
-      (data: any) => {
-        this.agentInterestedProperties = data.filter(
-          (property:any)=>property.property.user.username == this.username
-        
-        );
-        console.log(this.agentInterestedProperties);
-        this.countAgentInterestedProperties();
-        
-      }
-    );
+    this._saved.getSavedProperties().subscribe((data: any) => {
+      this.agentInterestedProperties = data.filter(
+        (property: any) =>
+          property.property.user.username == this.user.username
+      );
+      console.log(this.agentInterestedProperties);
+      this.countAgentInterestedProperties();
+    });
   }
 
   countSuperAdmins() {
@@ -176,7 +185,7 @@ export class SaWelcomeComponent {
   countAgentInterestedProperties() {
     const agentinterestedCount = this.agentInterestedProperties.length;
     console.log('Number of Agent Interested Properties:', agentinterestedCount);
-    this.agentInterestedCount=agentinterestedCount;
+    this.agentInterestedCount = agentinterestedCount;
   }
 
   onPropertiesClick() {

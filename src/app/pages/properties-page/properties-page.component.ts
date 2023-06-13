@@ -2,7 +2,7 @@ import { Component, HostListener, Input } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
   selector: 'app-properties-page',
@@ -31,7 +31,7 @@ export class PropertiesPageComponent {
   ngOnInit() {
     this._route.params.subscribe((params) => {
       this.propertyType = params['propertyType'];
-      this.propertyCity = params['propertyCity'];
+      this.propertyCity = params['city'];
       console.log('City ', this.propertyCity);
       console.log('Type ', this.propertyType);
     });

@@ -35,7 +35,14 @@ height: 60vh;
   margin: 0 8px;
 
 }
+.menu-icon {
+  margin-right: 12px;
+  vertical-align: middle;
+}
 
+.menu-text {
+  vertical-align: middle;
+}
 /* cell number */
 
 .scrolled {

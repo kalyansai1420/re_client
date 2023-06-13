@@ -4,6 +4,7 @@ import { PropertyService } from 'src/app/services/property.service';
 import Swal from 'sweetalert2';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from 'src/app/services/login.service';
+import * as AWS from 'aws-sdk';
 @Component({
   selector: 'app-add-property',
   templateUrl: './add-property.component.html',
@@ -75,10 +76,8 @@ export class AddPropertyComponent {
     console.log(this.id);
   }
 
-
   addProperty() {
     const propertyData = {
-      
       pName: this.form.get('pName')?.value,
       pPhoto: this.form.get('pPhoto')?.value,
       aArea: this.form.get('aArea')?.value,
@@ -119,19 +118,20 @@ export class AddPropertyComponent {
       },
     };
 
-      if (this.form.valid) {
+    if (this.form.valid) {
       console.log(this.form.value);
       this.property.addProperty(propertyData).subscribe(
         (data: any) => {
           Swal.fire('Success', 'Property is added', 'success');
           console.log(data);
           this.form.reset();
-        }, (error) => {
+        },
+        (error) => {
           Swal.fire('Error!! ', error.error.message, 'error');
           console.log(error);
-          console.log(error.message)
-        })
-
+          console.log(error.message);
+        }
+      );
     } else {
       Swal.fire('Error', 'Please fill all the required fields', 'error');
     }
@@ -150,5 +150,38 @@ export class AddPropertyComponent {
   // Remove a gallery image input field
   removeGalleryImage(index: number) {
     this.images.removeAt(index);
+  }
+
+  // Handle file selection and set the selected file to the respective gallery image control
+  onFileSelected(event: any, index: number) {
+    const file = event.target.files[0];
+    this.images.at(index).setValue(file);
+  }
+
+  // Upload images to AWS S3
+  uploadImages() {
+    const s3 = new AWS.S3({
+      accessKeyId: 'AKIAZNYBPFQRPFAZWF65',
+      secretAccessKey: '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',
+    });
+
+    const bucketName = 're-gallery';
+
+    for (const imageControl of this.images.controls) {
+      const file: File = imageControl.value;
+      const params = {
+        Bucket: bucketName,
+        Key: file.name,
+        Body: file,
+      };
+
+      s3.upload(params, (err: any, data: any) => {
+        if (err) {
+          console.log('Error uploading image:', err);
+        } else {
+          console.log('Image uploaded successfully:', data.Location);
+        }
+      });
+    }
   }
 }

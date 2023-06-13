@@ -8,7 +8,7 @@
   "
 >
   <ng-container *ngFor="let p of properties">
-    <mat-card class="property-card" *ngIf="p.active == '1'">
+    <mat-card class="property-card" *ngIf="p.active ===true">
       <img
         mat-card-image
         src="{{ p.pPhoto }}"
@@ -28,7 +28,9 @@
             class="favorite-icon"
             aria-label="Example icon-button with heart icon"
           >
-            <mat-icon color="white">favorite</mat-icon>
+            <mat-icon color="{{ isPropertySaved(p.pId) ? 'warn' : 'white' }}">
+              {{ isPropertySaved(p.pId) ? "favorite" : "favorite_border" }}
+            </mat-icon>
           </button>
         </span>
       </ng-template>

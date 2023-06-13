@@ -13,10 +13,11 @@ export class InterestedListComponent {
   interestedProperties: any[] = [];
   agentInterestedProperties: any[] = [];
   customerInterestedProperties: any[] = [];
+
   isLoggedIn = false;
   @Input() user: any;
-  @Input() id: any;
-  @Input() username: any;
+  @Input() userRole: any;
+  @Input() userIdentity: any;
   constructor(
     private _saved: SavedService,
     private login: LoginService,
@@ -24,26 +25,21 @@ export class InterestedListComponent {
   ) {}
 
   ngOnInit() {
-    this.getUserId();
-
-    if (this.user.authorities[0].authority === 'Normal') {
+    this.isLoggedIn = this.login.isLoggedIn();
+    if (this.isLoggedIn) {
+      this.userIdentity = this.login.getUserId();
+      this.user = this.login.getUser();
+      this.userRole = this.login.getUserRole();
+    }
+    if (this.userRole === 'Normal') {
       this.getCustomerInterested();
-    } else if (this.user.authorities[0].authority === 'Admin') {
+    } else if (this.userRole === 'Admin') {
       this.getAgentInterested();
     } else {
       this.getInterested();
     }
   }
-  getUserId() {
-    this.isLoggedIn = this.login.isLoggedIn();
-    this.user = this.login.getUser();
-    this.login.loginStatusSubject.asObservable().subscribe((data: any) => {
-      this.isLoggedIn = this.login.isLoggedIn();
-      this.user = this.login.getUser();
-    });
-    this.id = this.user.uId;
-    this.username = this.user.username;
-  }
+
   getInterested() {
     this._saved.getSavedProperties().subscribe(
       (data: any) => {
@@ -58,7 +54,7 @@ export class InterestedListComponent {
   getAgentInterested() {
     this._saved.getSavedProperties().subscribe((data: any) => {
       this.agentInterestedProperties = data.filter(
-        (property: any) => property.property.user.username == this.username
+        (property: any) => property.property.user.username == this.user.username
       );
       console.log(this.agentInterestedProperties);
     });
@@ -67,7 +63,7 @@ export class InterestedListComponent {
   getCustomerInterested() {
     this._saved.getSavedProperties().subscribe((data: any) => {
       this.customerInterestedProperties = data.filter(
-        (property: any) => property.user.username == this.username
+        (property: any) => property.user.username == this.user.username
       );
       console.log(this.customerInterestedProperties);
     });
@@ -88,7 +84,6 @@ export class InterestedListComponent {
             console.log('Property deleted:', data);
 
             Swal.fire('success', 'Property deleted successfully', 'success');
-            
           },
           (error) => {
             Swal.fire('error', 'Error deleting property', 'error');
