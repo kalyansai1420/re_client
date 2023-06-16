@@ -57,6 +57,9 @@ import { PropertiesPageComponent } from './pages/properties-page/properties-page
 import { AdminPropertyCardComponent } from './components/admin-property-card/admin-property-card.component';
 import { NgModule } from '@angular/core';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from './environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -121,6 +124,7 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
     NgxUiLoaderHttpModule.forRoot({
       showForeground: true,
     }),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

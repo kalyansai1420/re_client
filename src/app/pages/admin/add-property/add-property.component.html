@@ -5,7 +5,7 @@
     <div class="bootstrap-wrapper">
       <div class="row">
         <div class="col-md-8 offset-md-2">
-          <form (ngSubmit)="addProperty()" [formGroup]="form">
+          <form (ngSubmit)="addProperty(form.value)" [formGroup]="form">
             <div class="property-main">
               <!-- Property Name -->
               <mat-form-field class="w100" appearance="outline">
@@ -398,10 +398,11 @@
                   <input
                     type="file"
                     class="form-control"
-                    [formControlName]="i"
+                    formControlName="url"
                     accept="image/*"
                     (change)="onFileSelected($event, i)"
                   />
+
                   <button
                     type="button"
                     mat-raised-button
@@ -432,10 +433,9 @@
                 </button>
               </div>
             </div>
-
             <!-- Submit button -->
             <div class="container text-center mt15">
-              <button mat-raised-button color="accent">Add</button>
+              <button mat-raised-button color="accent">Add Property</button>
             </div>
           </form>
         </div>

@@ -17,7 +17,7 @@
 </button>
 
 <mat-sidenav-container class="example-container">
-   <mat-sidenav #sidenav>
+  <mat-sidenav #sidenav>
     <mat-action-list>
       <div mat-subheader>Menu</div>
 
@@ -29,7 +29,11 @@
         <mat-icon mat-list-icon class="menu-icon">account_circle</mat-icon>
         <span class="menu-text">Profile</span>
       </button>
-      <button routerLink="/user-dashboard/interested" mat-list-item *ngIf="isLoggedIn">
+      <button
+        routerLink="/user-dashboard/interested"
+        mat-list-item
+        *ngIf="isLoggedIn"
+      >
         <mat-icon mat-list-icon class="menu-icon">add_shopping_cart</mat-icon>
         <span class="menu-text">Saved</span>
       </button>
@@ -81,32 +85,17 @@
         #carousel
         data-flickity='{ "autoPlay": true,"wrapAround": true,"prevNextButtons": false  }'
       >
-        <div class="carousel-cell">
+        <!-- <div class="carousel-cell">
           <img
             src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
             alt=""
           />
-        </div>
+        </div> -->
         <div class="carousel-cell">
           <img src="{{ property.pPhoto }}" alt="" />
         </div>
-        <div class="carousel-cell">
-          <img
-            src="https://images.unsplash.com/photo-1529408632839-a54952c491e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-            alt=""
-          />
-        </div>
-        <div class="carousel-cell">
-          <img
-            src="https://images.unsplash.com/photo-1531383339897-f369f6422e40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-            alt=""
-          />
-        </div>
-        <div class="carousel-cell">
-          <img
-            src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-            alt=""
-          />
+        <div class="carousel-cell" *ngFor="let image of property.images">
+          <img src="{{ image.imageUrl }}" alt="" />
         </div>
       </div>
       <div class="second-div">
@@ -140,7 +129,9 @@
         <div class="property-details">
           <div class="property-address">
             <p>
-              {{ property?.aArea }},{{ property?.aLandmark }},{{ property?.aCity }}
+              {{ property?.aArea }},{{ property?.aLandmark }},{{
+                property?.aCity
+              }}
             </p>
           </div>
           <div class="property-icons">

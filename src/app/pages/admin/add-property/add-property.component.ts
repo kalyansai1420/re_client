@@ -1,10 +1,19 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  FormArray,
+  AbstractControl,
+} from '@angular/forms';
 import { PropertyService } from 'src/app/services/property.service';
 import Swal from 'sweetalert2';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from 'src/app/services/login.service';
-import * as AWS from 'aws-sdk';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { switchMap, last } from 'rxjs/operators';
+
 @Component({
   selector: 'app-add-property',
   templateUrl: './add-property.component.html',
@@ -15,12 +24,14 @@ export class AddPropertyComponent {
   @Input() user: any;
   @Input() id: any;
   form: FormGroup;
+  images: FormArray;
 
   constructor(
     private formBuilder: FormBuilder,
     private property: PropertyService,
     private _snack: MatSnackBar,
-    private login: LoginService
+    private login: LoginService,
+    private storage: AngularFireStorage
   ) {
     this.form = formBuilder.group({
       pName: new FormControl(''),
@@ -59,6 +70,8 @@ export class AddPropertyComponent {
       marketArea: new FormControl(false),
       images: formBuilder.array([]), // Array for gallery images
     });
+    this.images = this.form.get('images') as FormArray;
+    this.addGalleryImage();
   }
 
   ngOnInit(): void {
@@ -76,50 +89,18 @@ export class AddPropertyComponent {
     console.log(this.id);
   }
 
-  addProperty() {
-    const propertyData = {
-      pName: this.form.get('pName')?.value,
-      pPhoto: this.form.get('pPhoto')?.value,
-      aArea: this.form.get('aArea')?.value,
-      aLandmark: this.form.get('aLandmark')?.value,
-      aCity: this.form.get('aCity')?.value,
-      aState: this.form.get('aState')?.value,
-      aPincode: this.form.get('aPincode')?.value,
-      pPrice: this.form.get('pPrice')?.value,
-      pOfferType: this.form.get('pOfferType')?.value,
-      pPropertyType: this.form.get('pPropertyType')?.value,
-      pPossesionStatus: this.form.get('pPossesionStatus')?.value,
-      pFurnishedStatus: this.form.get('pFurnishedStatus')?.value,
-      pFacing: this.form.get('pFacing')?.value,
-      pAgeOfConstruction: this.form.get('pAgeOfConstruction')?.value,
-      pBHK: this.form.get('pBHK')?.value,
-      pBedroom: this.form.get('pBedroom')?.value,
-      pBathroom: this.form.get('pBathroom')?.value,
-      pBalcony: this.form.get('pBalcony')?.value,
-      pTotalFloor: this.form.get('pTotalFloor')?.value,
-      pRoomFloor: this.form.get('pRoomFloor')?.value,
-      pArea: this.form.get('pArea')?.value,
-      pDescription: this.form.get('pDescription')?.value,
-      lift: this.form.get('lift')?.value,
-      security: this.form.get('security')?.value,
-      playground: this.form.get('playground')?.value,
-      gardens: this.form.get('gardens')?.value,
-      waterSupply: this.form.get('waterSupply')?.value,
-      powerBackup: this.form.get('powerBackup')?.value,
-      parkingArea: this.form.get('parkingArea')?.value,
-      gym: this.form.get('gym')?.value,
-      shoppingMall: this.form.get('shoppingMall')?.value,
-      hospitals: this.form.get('hospitals')?.value,
-      schools: this.form.get('schools')?.value,
-      marketArea: this.form.get('marketArea')?.value,
-      images: this.form.get('images')?.value,
-      user: {
-        uId: this.user.uId,
-      },
-    };
-
+  addProperty(propertyData: any) {
     if (this.form.valid) {
       console.log(this.form.value);
+      const downloadURLs = this.images.controls.map(
+        (
+          value: AbstractControl<any>,
+          index: number,
+          array: AbstractControl<any>[]
+        ) => (value as FormGroup).get('url')?.value
+      );
+      propertyData.images = downloadURLs;
+
       this.property.addProperty(propertyData).subscribe(
         (data: any) => {
           Swal.fire('Success', 'Property is added', 'success');
@@ -137,51 +118,107 @@ export class AddPropertyComponent {
     }
   }
 
-  // Getter for the gallery form array
-  get images(): FormArray {
-    return this.form.get('images') as FormArray;
-  }
-
-  // Add a new gallery image input field
   addGalleryImage() {
-    this.images.push(new FormControl(''));
+    const imageGroup = this.formBuilder.group({
+      url: new FormControl(''),
+    });
+
+    this.images.push(imageGroup);
   }
 
-  // Remove a gallery image input field
   removeGalleryImage(index: number) {
     this.images.removeAt(index);
   }
 
-  // Handle file selection and set the selected file to the respective gallery image control
   onFileSelected(event: any, index: number) {
     const file = event.target.files[0];
-    this.images.at(index).setValue(file);
+    this.images.at(index).get('url')?.setValue(file);
   }
 
-  // Upload images to AWS S3
   uploadImages() {
-    const s3 = new AWS.S3({
-      accessKeyId: 'AKIAZNYBPFQRPFAZWF65',
-      secretAccessKey: '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',
+    const fileInputs = this.images.value;
+    const promises: Promise<any>[] = [];
+    const imageUrls: string[] = []; // Array to store the image URLs
+
+    fileInputs.forEach((fileInput: any, index: number) => {
+      const file = fileInput.url as File;
+      const filePath = `property-images/${file.name}`;
+      const fileRef = this.storage.ref(filePath);
+      const uploadTask = this.storage.upload(filePath, file);
+
+      promises.push(
+        uploadTask
+          .snapshotChanges()
+          .toPromise()
+          .then((snapshot: any) => {
+            return snapshot.ref.getDownloadURL().then((url: string) => {
+              imageUrls[index] = url; // Store the image URL at the corresponding index
+            });
+          })
+          .catch((error) => {
+            // Error handling
+            console.error('Error uploading image:', error);
+            throw error;
+          })
+      );
     });
 
-    const bucketName = 're-gallery';
+    Promise.all(promises)
+      .then((downloadUrls: string[]) => {
+        // All images uploaded successfully, URLs are available in the 'downloadUrls' array
+        console.log('All images uploaded successfully');
+        console.log('Download URLs:', downloadUrls);
 
-    for (const imageControl of this.images.controls) {
-      const file: File = imageControl.value;
-      const params = {
-        Bucket: bucketName,
-        Key: file.name,
-        Body: file,
-      };
+        // Update the property data with the download URLs
+        const propertyData = {
+          pName: this.form.get('pName')?.value,
+          pPhoto: this.form.get('pPhoto')?.value,
+          aArea: this.form.get('aArea')?.value,
+          aLandmark: this.form.get('aLandmark')?.value,
+          aCity: this.form.get('aCity')?.value,
+          aState: this.form.get('aState')?.value,
+          aPincode: this.form.get('aPincode')?.value,
+          pPrice: this.form.get('pPrice')?.value,
+          pOfferType: this.form.get('pOfferType')?.value,
+          pPropertyType: this.form.get('pPropertyType')?.value,
+          pPossesionStatus: this.form.get('pPossesionStatus')?.value,
+          pFurnishedStatus: this.form.get('pFurnishedStatus')?.value,
+          pFacing: this.form.get('pFacing')?.value,
+          pAgeOfConstruction: this.form.get('pAgeOfConstruction')?.value,
+          pBHK: this.form.get('pBHK')?.value,
+          pBedroom: this.form.get('pBedroom')?.value,
+          pBathroom: this.form.get('pBathroom')?.value,
+          pBalcony: this.form.get('pBalcony')?.value,
+          pTotalFloor: this.form.get('pTotalFloor')?.value,
+          pRoomFloor: this.form.get('pRoomFloor')?.value,
+          pArea: this.form.get('pArea')?.value,
+          pDescription: this.form.get('pDescription')?.value,
+          lift: this.form.get('lift')?.value,
+          security: this.form.get('security')?.value,
+          playground: this.form.get('playground')?.value,
+          gardens: this.form.get('gardens')?.value,
+          waterSupply: this.form.get('waterSupply')?.value,
+          powerBackup: this.form.get('powerBackup')?.value,
+          parkingArea: this.form.get('parkingArea')?.value,
+          gym: this.form.get('gym')?.value,
+          shoppingMall: this.form.get('shoppingMall')?.value,
+          hospitals: this.form.get('hospitals')?.value,
+          schools: this.form.get('schools')?.value,
+          marketArea: this.form.get('marketArea')?.value,
+          images: this.images.controls.forEach((control, index) => {
+            control.get('url')?.setValue(imageUrls[index]);
+          }), // Update with the download URLs
+          user: {
+            uId: this.user.uId,
+          },
+        };
 
-      s3.upload(params, (err: any, data: any) => {
-        if (err) {
-          console.log('Error uploading image:', err);
-        } else {
-          console.log('Image uploaded successfully:', data.Location);
-        }
+        this.addProperty(propertyData); // Call the addProperty function with updated data
+      })
+      .catch((error) => {
+        // Error occurred while uploading images
+        console.error('Error uploading images:', error);
+        Swal.fire('Error', 'An error occurred while uploading images', 'error');
       });
-    }
   }
 }
