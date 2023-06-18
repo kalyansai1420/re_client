@@ -1,3 +1,6 @@
+<!-- {{properties|json}} -->
+
+
 <div
   class="property-card-container"
   *ngIf="user?.authorities[0].authority === 'SuperAdmin'"
@@ -6,8 +9,8 @@
     <mat-card class="property-card">
       <img
         mat-card-image
-        src="{{ p.pPhoto }}"
-        alt="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
+        src="https://firebasestorage.googleapis.com/v0/b/estate-tribe.appspot.com/o/property-images%2F2.jpg?alt=media&token=ba5e0740-162f-4dcd-b936-778d3d348d83"
+        alt="https://firebasestorage.googleapis.com/v0/b/estate-tribe.appspot.com/o/property-images%2F2.jpg?alt=media&token=ba5e0740-162f-4dcd-b936-778d3d348d83"
       />
       <ng-container *ngIf="p.soldOut">
         <span class="soldOut">

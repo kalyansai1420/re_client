@@ -14,27 +14,7 @@
         src="{{ p.pPhoto }}"
         alt="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
       />
-      <ng-container *ngIf="p.soldOut; else addToCart">
-        <span class="soldOut">
-          <img src="../../../../assets/icons/sold-out-326x326.png" alt="" />
-        </span>
-      </ng-container>
-
-      <ng-template #addToCart>
-        <span class="icon">
-          <button
-            mat-icon-button
-            (click)="addToSaved(p)"
-            class="favorite-icon"
-            aria-label="Example icon-button with heart icon"
-          >
-            <mat-icon color="{{ isPropertySaved(p.pId) ? 'warn' : 'white' }}">
-              {{ isPropertySaved(p.pId) ? "favorite" : "favorite_border" }}
-            </mat-icon>
-          </button>
-        </span>
-      </ng-template>
-
+     
       <mat-card-content class="card-content">
         <h3>{{ p.pName }}</h3>
         <p class="card-content-area">{{ p.aArea }}</p>
@@ -50,10 +30,9 @@
             View Property
           </button>
 
-          <button mat-button disabled class="like-section" color="accent">
-            <span class="likes-count">{{ p.likes || "0" }}</span>
 
-            <mat-icon color="accent">thumb_up</mat-icon>
+          <button mat-button disabled class="like-section" color="accent">
+             <p>{{ formatUpdatedAt(p.updatedAt) }}</p>
           </button>
         </div>
       </mat-card-content>

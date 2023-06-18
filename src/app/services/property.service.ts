@@ -47,4 +47,8 @@ export class PropertyService {
   public getPropertyUser(id: any) {
     return this._http.get(`${baseUrl}/property/user/${id}`)
   }
+  //Get property by time
+  public getRecentProperty() {
+    return this._http.get(`${baseUrl}/property/recently`)
+  }
 }

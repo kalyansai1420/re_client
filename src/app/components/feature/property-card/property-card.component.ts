@@ -4,52 +4,9 @@ import { LoginService } from 'src/app/services/login.service';
 import { PropertyService } from 'src/app/services/property.service';
 import { SavedService } from 'src/app/services/saved.service';
 import Swal from 'sweetalert2';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 
-interface Property {
-  pId: number;
-  aArea: '';
-  aCity: '';
-  aLandmark: '';
-  aPincode: '';
-  aState: '';
-  gardens: '';
-  gym: '';
-  hospitals: '';
-  lift: '';
-  market_area: '';
-  pAgeOfConstruction: '';
-  pArea: '';
-  pBHK: '';
-  pBalcony: '';
-  pBathroom: '';
-  pBedroom: '';
-  pDescription: '';
-  pFacing: '';
-  pFurnishedStatus: '';
-  pName: '';
-  pOfferType: '';
-  pPhoto: '';
-  pPossesionStatus: '';
-  pPrice: '';
-  pPropertyType: '';
-  pRoomFloor: '';
-  pTotalFloor: '';
-  parkingArea: '';
-  playground: '';
-  powerBackup: '';
-  schools: '';
-  security: '';
-  shoppingMall: '';
-  waterSupply: '';
-  soldOut: '';
-  active: boolean;
-  user: {
-    uid: '';
-    username: '';
-    phonenumber: '';
-  };
-  likes: number;
-}
+
 @Component({
   selector: 'app-property-card',
   templateUrl: './property-card.component.html',
@@ -62,10 +19,13 @@ export class PropertyCardComponent {
   @Input() username: any;
   @Input() propertyType!: string;
   @Input() propertyCity!: string;
+  @Input() propertyLikes!: string;
   p: any;
   userIdentity: string | undefined;
   userSavedProperty: any[] = [];
-  properties: Property[] = [];
+  // properties: Property[] = [];
+  @Input() properties: any[] = [];
+  Likedproperty: any[] = [];
   propertySaved = {
     property: {
       pId: '',
@@ -76,6 +36,7 @@ export class PropertyCardComponent {
   };
   typeProperties: any[] = [];
   cityProperties: any[] = [];
+  likespropertiesdetails: any[] = [];
 
   constructor(
     private _property: PropertyService,
@@ -91,11 +52,15 @@ export class PropertyCardComponent {
       this.user = this.login.getUser();
       this.getSavedProperty();
     }
+    console.log('hello world', this.propertyLikes);
     this.getProperties();
     if (this.propertyType != null) {
       this.getPropertyType();
     } else if (this.propertyCity != null) {
       this.getPropertyCity();
+    }
+    if (this.propertyLikes != null) {
+      this.getLikesPropertyDetails();
     }
   }
 
@@ -172,19 +137,31 @@ export class PropertyCardComponent {
         data.forEach((item: any) => {
           const propertyId = item.p_id;
           const likesCount = item.likes;
-          const property = this.properties.find(
-            (p: Property) => p.pId === propertyId
+          const Likedproperty = this.properties.find(
+            (p: any) => p.pId === propertyId
           );
           console.log('Property ID:', propertyId);
           console.log('Likes Count:', likesCount);
-          console.log('Found Property:', property);
-          if (property) {
-            property.likes = likesCount;
+          console.log('Found Property:', Likedproperty);
+          if (Likedproperty) {
+            Likedproperty.likes = likesCount;
           }
         });
       },
       (error) => {
         console.log(error);
+      }
+    );
+  }
+  getLikesPropertyDetails() {
+    console.log('likes property details');
+    this._save.likesPropertyDetails().subscribe(
+      (data: any) => {
+        this.properties = data;
+        console.log('likes property details', this.properties);
+      },
+      (error) => {
+        console.error(error);
       }
     );
   }
@@ -216,14 +193,61 @@ export class PropertyCardComponent {
       }
     });
   }
+  sendEmailtoAgent(customerName: string, propertyName: string,customerNumber:string,customerEmail:string,agentEmail:string) {
+    const templateParams = {
+      customerName: customerName,
+      propertyName: propertyName,
+      customerNumber: customerNumber,
+      customerEmail: customerEmail,
+      agentEmail: agentEmail,
+    };
 
-  addToSaved(pId: any) {
+    emailjs
+      .send(
+        'agent_side',
+        'agent_template',
+        templateParams,
+        'user_0ggBS8Oxule52AEBUsjUV'
+      )
+      .then(
+        (response: EmailJSResponseStatus) => {
+          console.log('Email sent', response);
+        },
+        (error) => {
+          console.error('Email error', error);
+        }
+      );
+  }
+  sendEmailtoCustomer(email: string, propertyName: string) {
+    const templateParams = {
+      email: email,
+      propertyName: propertyName,
+    };
+
+    emailjs
+      .send(
+        'customer_side',
+        'customer_template',
+        templateParams,
+        'user_0ggBS8Oxule52AEBUsjUV'
+      )
+      .then(
+        (response: EmailJSResponseStatus) => {
+          console.log('Email sent', response);
+        },
+        (error) => {
+          console.error('Email error', error);
+        }
+      );
+  }
+
+  addToSaved(p:any) {
     if (!this.isLoggedIn) {
       Swal.fire('Error', 'Please log in to add the property', 'error');
       return;
     }
     const savedProperty = this.userSavedProperty.find(
-      (saved: any) => saved.property.pId === pId
+      (saved: any) => saved.property.pId === p.pId
     );
 
     if (savedProperty) {
@@ -233,7 +257,7 @@ export class PropertyCardComponent {
       this._save.removePropertyfromSaved(savedProperty.saveId).subscribe(
         (data: any) => {
           this.userSavedProperty = this.userSavedProperty.filter(
-            (saved: any) => saved.property.pId !== pId
+            (saved: any) => saved.property.pId !== p.pId
           );
           console.log(data);
           console.log('Property removed from saved list');
@@ -244,7 +268,7 @@ export class PropertyCardComponent {
       );
     } else {
       if (this.userIdentity) {
-        this.propertySaved.property.pId = pId;
+        this.propertySaved.property.pId = p.pId;
         this.propertySaved.user = {
           uId: this.userIdentity.toString(),
         };
@@ -253,6 +277,8 @@ export class PropertyCardComponent {
           (data: any) => {
             Swal.fire('Success', 'Property got added', 'success');
             this.getProperties();
+            this.sendEmailtoCustomer(this.user.email, p.pName);
+            this.sendEmailtoAgent(this.user.username,p.pName,this.user.phonenumber,this.user.email,p.user.email)
           },
           (error) => {
             console.error(error);

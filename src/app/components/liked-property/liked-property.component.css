@@ -1,0 +1,14 @@
+.feature{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+}
+
+.feature-cards{
+   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  gap: 20px;
+}

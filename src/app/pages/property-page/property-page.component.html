@@ -80,24 +80,27 @@
     </div>
 
     <div class="property">
-      <div
+      <div *ngFor="let image of property.images">
+          <img src="{{ image.imageUrl }}" alt="" />
+        </div>
+      <!-- <div
         class="carousel"
         #carousel
         data-flickity='{ "autoPlay": true,"wrapAround": true,"prevNextButtons": false  }'
       >
-        <!-- <div class="carousel-cell">
+        <div class="carousel-cell">
           <img
             src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
             alt=""
           />
         </div> -->
-        <div class="carousel-cell">
+        <!-- <div class="carousel-cell">
           <img src="{{ property.pPhoto }}" alt="" />
-        </div>
-        <div class="carousel-cell" *ngFor="let image of property.images">
+        </div> -->
+        <!-- <div class="carousel-cell" *ngFor="let image of property.images">
           <img src="{{ image.imageUrl }}" alt="" />
-        </div>
-      </div>
+        </div> 
+      </div> -->
       <div class="second-div">
         <div class="price-card">
           <div class="card-top">
@@ -106,7 +109,7 @@
               <h4>{{ property?.pPrice | currency : "INR" }}</h4>
             </div>
             <div class="card-right">
-              <button mat-button>Send Request</button>
+              <a href={{property.pPhoto}} target="_blank" rel="noopener noreferrer"></a>
             </div>
           </div>
           <mat-divider></mat-divider>
@@ -273,6 +276,9 @@
         </div>
       </div>
     </div>
+    <ng-container *ngIf="property.aCity">
+        <app-feature [propertyCity]="property.aCity"></app-feature>
+      </ng-container>
 
     <app-footer
       *ngIf="

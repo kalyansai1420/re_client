@@ -35,5 +35,9 @@ export class SavedService {
     return this._http.get(`${baseUrl}/saved/likeByProperty`)
   }
 
+  public likesPropertyDetails() {
+    return this._http.get(`${baseUrl}/saved/likeByPropertydetails`);
+  }
+
 
 }

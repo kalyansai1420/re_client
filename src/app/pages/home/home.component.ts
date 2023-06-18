@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -8,6 +8,7 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
+  @Input() propertyLikes!: string;
   isLoggedIn = false;
   user = null;
   mode = new FormControl('over');

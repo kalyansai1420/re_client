@@ -59,6 +59,10 @@ import { NgModule } from '@angular/core';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from './environments/environment';
+import { LikedPropertyComponent } from './components/liked-property/liked-property.component';
+import { LikedPropertyCardComponent } from './components/liked-property/liked-property-card/liked-property-card.component';
+import { RecentlyAddedComponent } from './components/recently-added/recently-added.component';
+import { RecentCardComponent } from './components/recently-added/recent-card/recent-card.component';
 
 
 @NgModule({
@@ -98,6 +102,10 @@ import { environment } from './environments/environment';
     USidebarComponent,
     PropertiesPageComponent,
     AdminPropertyCardComponent,
+    LikedPropertyComponent,
+    LikedPropertyCardComponent,
+    RecentlyAddedComponent,
+    RecentCardComponent,
   ],
   imports: [
     BrowserModule,

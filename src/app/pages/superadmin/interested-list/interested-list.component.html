@@ -1,16 +1,5 @@
-<ng-container *ngIf="user.authorities[0].authority === 'SuperAdmin'">
-  <button mat-raised-button color="accent" (click)="goBack()">Back</button>
 
-  <table class="interested-table">
-    <thead>
-      <tr>
-        <th>Property Name</th>
-        <th>Customer Name</th>
-        <th>Customer Number</th>
-        <th>Agent Name</th>
-      </tr>
-    </thead>
-    <tbody><ng-container *ngIf="userRole == 'SuperAdmin'">
+      <ng-container *ngIf="userRole == 'SuperAdmin'">
   <button mat-raised-button color="accent" (click)="goBack()">Back</button>
 
   <table class="interested-table">
@@ -33,66 +22,10 @@
   </table>
 </ng-container>
 
-<ng-container *ngIf="userRole == 'Admin'">
-  <button mat-raised-button color="accent" [routerLink]="'/admin/'">
-    Back
-  </button>
 
-  <table class="interested-table">
-    <thead>
-      <tr>
-        <th>Property Name</th>
-        <th>Customer Name</th>
-        <th>Customer Number</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let i of agentInterestedProperties">
-        <td>{{ i.property.pName }}</td>
-        <td>{{ i.user.username }}</td>
-        <td>{{ i.user.phonenumber }}</td>
-      </tr>
-    </tbody>
-  </table>
-</ng-container>
-<ng-container *ngIf="userRole == 'Normal'">
-  <button mat-raised-button color="accent" [routerLink]="'/user-dashboard/'">
-    Back
-  </button>
 
-  <table class="interested-table">
-    <thead>
-      <tr>
-        <th>Property Name</th>
-        <th>Remove</th>
-        
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let i of customerInterestedProperties">
-        <td>{{ i.property.pName }}</td>
-     
-        <td> <button
-            mat-raised-button
-            color="warn"
-            (click)="removeProperty(i.saveId)"
-          >
-            Delete
-          </button></td>
-      </tr>
-    </tbody>
-  </table>
-</ng-container>
 
-      <tr *ngFor="let i of interestedProperties">
-        <td>{{ i.property.pName }}</td>
-        <td>{{ i.user.username }}</td>
-        <td>{{ i.user.phonenumber }}</td>
-        <td>{{ i.property.user.username }}</td>
-      </tr>
-    </tbody>
-  </table>
-</ng-container>
+    
 
 <ng-container *ngIf="user.authorities[0].authority === 'Admin'">
   <button mat-raised-button color="accent" [routerLink]="'/admin/'">
