@@ -1,5 +1,5 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav>
+  <mat-sidenav #sidenav class="side-nav-bar">
     <mat-action-list>
       <div mat-subheader>Menu</div>
 
@@ -28,10 +28,11 @@
 
   <mat-sidenav-content>
     <div class="nav" [class.scrolled]="isScrolled">
-      <div class="nav-left">
-        <h2>My App</h2>
+      <div class="nav-left m-h-35">
+       <!--  <h2>My App</h2> -->
+       <img src="../../../assets/logofinal.png" alt="">
       </div>
-      <div class="nav-right">
+      <div class="nav-right m-h-35">
         <button
           mat-icon-button
           class="example-icon favorite-icon"
@@ -50,10 +51,13 @@
       </div>
     </div>
     <app-hero></app-hero>
+
+    <app-neighbour></app-neighbour>
     <app-feature></app-feature>
     <app-property-type></app-property-type>
-    <app-discover></app-discover>
-    <!-- <app-best-deal></app-best-deal> -->
+  <!--   <app-discover></app-discover> -->
+   <app-best-deal></app-best-deal>
+   <app-more-properties></app-more-properties>
     <app-footer></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

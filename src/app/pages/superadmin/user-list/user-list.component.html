@@ -1,5 +1,6 @@
-<button mat-raised-button color="accent" (click)="goBack()">Back</button>
 
+<div class="tableholder">
+  <button mat-raised-button class="back-button" (click)="goBack()">Back</button> 
 <table class="user-table">
   <thead>
     <tr>
@@ -24,7 +25,7 @@
       <td>
         <button
           mat-raised-button
-          color="primary"
+          class="edit"
           [routerLink]="'/superadmin/users/' + user.uId"
         >
           Edit
@@ -32,8 +33,9 @@
       </td>
       <td>
         <button mat-raised-button
-          color="warn" (click)="deleteUser(user.uId)">Delete</button>
+          class="delete" (click)="deleteUser(user.uId)">Delete</button>
       </td>
     </tr>
   </tbody>
 </table>
+</div>

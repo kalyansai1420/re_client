@@ -47,7 +47,6 @@ import { SaProfileComponent } from './pages/superadmin/sa-profile/sa-profile.com
 import { SaWelcomeComponent } from './pages/superadmin/sa-welcome/sa-welcome.component';
 import { UserListComponent } from './pages/superadmin/user-list/user-list.component';
 import { PropertyListComponent } from './pages/superadmin/property-list/property-list.component';
-
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SaUpdatePropertyComponent } from './pages/superadmin/sa-update-property/sa-update-property.component';
 import { SaUpdateUserComponent } from './pages/superadmin/sa-update-user/sa-update-user.component';
@@ -57,6 +56,16 @@ import { PropertiesPageComponent } from './pages/properties-page/properties-page
 import { AdminPropertyCardComponent } from './components/admin-property-card/admin-property-card.component';
 import { NgModule } from '@angular/core';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+<<<<<<< Updated upstream
+=======
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from './environments/environment';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NeighbourComponent } from './components/neighbour/neighbour.component';
+import { MorePropertiesComponent } from './more-properties/more-properties.component';
+import { MorePropertiesCardComponent } from './more-properties/more-properties-card/more-properties-card.component';
+import { FloatbuttonComponent } from './floatbutton/floatbutton.component';
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -95,6 +104,10 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
     USidebarComponent,
     PropertiesPageComponent,
     AdminPropertyCardComponent,
+    NeighbourComponent,
+    MorePropertiesComponent,
+    MorePropertiesCardComponent,
+    FloatbuttonComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,7 +134,14 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
     NgxUiLoaderHttpModule.forRoot({
       showForeground: true,
     }),
+<<<<<<< Updated upstream
+=======
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    CarouselModule,
+
+>>>>>>> Stashed changes
   ],
+
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })

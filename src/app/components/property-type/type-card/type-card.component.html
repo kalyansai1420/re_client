@@ -1,15 +1,7 @@
-<div class="type-card-container">
-
-<mat-card class="type-card" *ngFor="let item of countByTypeArray" [routerLink]="'/propertyType/'+item[1]">
-  <mat-card-content class="type-card-content">
-    <img src="../../../assets/buildings.png" alt="">
-    
-    <p>
-        {{ item[1] }} <!-- Display the property type -->
-    </p>
-    <p>
-        {{ item[0] }} Properties <!-- Display the property count -->
-    </p>
-  </mat-card-content>
-</mat-card>
+<div class="property-card" *ngFor="let item of countByTypeArray" [routerLink]="'/propertyType/'+item[1]">
+  <div class="property-imagecontainer">
+    <img [src]="'../../../../assets/images/property/' + getPropertyImage(item[1]) + '.png'" alt="">
+  </div>
+  <h1>{{ item[1] }}</h1>
+  <h4>{{ item[0] }} Properties</h4>
 </div>

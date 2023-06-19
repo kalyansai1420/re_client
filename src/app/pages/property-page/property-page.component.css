@@ -11,30 +11,6 @@
   z-index: 999;
   transition: background-color 0.3s ease-in-out;
 }
-.carousel {
-  background: #EEE;
-}
-
-.carousel-cell {
-  width: 77%;
-height: 60vh;
- 
-
-  border-radius: 5px;
-}
-.carousel-cell img{
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 3/2;
-}
-.flickity-page-dots .dot {
- 
-  width: 25px !important;
-  height: 5px !important;
-  margin: 0 8px;
-
-}
 .menu-icon {
   margin-right: 12px;
   vertical-align: middle;
@@ -59,26 +35,73 @@ height: 60vh;
 
 /* Property */
 .property {
-  margin-top: 65px;
+
   display: flex;
   flex-direction: column;
 }
 
-.property .image-hero {
-  display: flex;
-  justify-content: center;
-  position: relative;
+.carousel-cell{
+  height: 70vh;
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.slider {
   width: 100%;
+  text-align: center;
+  overflow: hidden;
 }
 
-.property .image-hero img {
-  height: 60vh;
-  object-fit: cover;
-  aspect-ratio: 1/1;
-  width: 100%;
+.slides {
+  display: flex;
+  
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  
+  
+  
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  
+  /*
+  scroll-snap-points-x: repeat(300px);
+  scroll-snap-type: mandatory;
+  */
+}
+.slides::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
   
 }
-
+.slides::-webkit-scrollbar-thumb {
+  background: #d79a16;
+  border-radius: 10px;
+}
+.slides::-webkit-scrollbar-track {
+  background: transparent;
+}
+.slides > div {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 80%;
+  height:70vh;
+  border-radius: 10px;
+  background: #eee;
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform 0.5s;
+  position: relative;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+.slides > div:target {
+/*   transform: scale(0.8); */
+}
 .second-div {
   display: flex;
   flex-direction: row-reverse;
@@ -219,119 +242,142 @@ width: 33.33%;
   margin-top: 50px;
 }
 
-/* Other Styles */
 .mat-divider {
   margin: 10px 0;
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .nav {
-    padding: 10px;
-  }
-
-  .nav h2 {
-    font-size: 18px;
-  }
-
-  .property .image-hero img {
-    height: 40vh;
-    width: 100vw;
-    object-fit: cover;
-  }
-
+@media screen and (max-width:1441px){
   .price-card {
-    top: 60%;
-    position: relative;
-    top: unset;
-    left: unset;
-    transform: none;
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    width: 360px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    position: absolute;
+    top:410px;
+    right: 50px;
   }
-
-  .property-details {
-    padding: 10px;
-    font-size: 14px;
+}
+@media screen and (max-width:1025px){
+  .price-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    width: 340px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    position: absolute;
+    top:400px;
+    right: 40px;
   }
-
+}
+@media screen and (max-width:770px){
+  .price-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+    width: 280px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    position: absolute;
+    top:380px;
+    right: 20px;
+    & p{
+      margin: 0px 8px;
+    }
+  }
+}
+@media screen and (max-width:426px){
+  .price-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+    width: 280px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 15px 0px;
+    position: unset;
+ 
+    & p{
+      margin: 0px 8px;
+    }
+  }
+  .second-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   width:100%;
+  }
+  .property-address{
+    padding: 50px 80px 20px 30px;
+  }
+  .property-description{
+    padding: 30px 80px 20px 30px;
+  }
+  .property-details .property-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: fit-content;
+    padding: 0px 30px;
+  }
+  
   .property-details .property-icons p {
-    margin-right: 10px;
-    font-size: 12px;
+    margin-right: 20px;
   }
-
-  .property-features {
-    margin: 10px;
+  .property_features{
+    width: 75%;
+    margin-left: 30px;
+    border: 2px solid #d5d5d5;
+    border-radius: 4px;
+    
   }
-
-  .property-amenities {
-    padding: 10px;
+  .property_features_inner_container{
+    display: flex;
+  padding: 22px;
+  flex-direction: column;
   }
-
-  .property-amenities table tr td:first-child mat-icon {
-    font-size: 14px;
+  .line_features{
+    width: 22%;
+    height: 3px;
+    background-color: #d5d5d5;
   }
-}
-
-
-
-.prop-features-title {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.prop-features-title h2 {
-  color: #333;
-  font-size: 24px;
-}
-
-.prop-features-feature table {
-  width: 100%;
-}
-
-.prop-features-feature table tr {
-  border-bottom: 1px solid #ccc;
-}
-
-.prop-features-feature table td {
-  padding: 10px 0;
-  color: #555;
-  font-size: 14px;
-}
-
-.prop-features-feature table td:first-child {
-  width: 40%;
-  font-weight: bold;
-}
-
-.prop-features-feature table td:last-child {
-  text-align: right;
-}
-
-@media (max-width: 767px) {
-  .property-details {
-    padding: 10px;
-  }
-
-  .property-address p {
-    font-size: 14px;
-  }
-
-  .property-icons p {
-    font-size: 12px;
-  }
-
-  .property-description p {
-    font-size: 12px;
-  }
-}
-
-
-
-@media (max-width: 767px) {
-  .property-details,
-  .property-features {
+  .left_property_features{
     width: 100%;
-    max-width: none;
-    margin: 0;
+  }
+  .middle_property_features{
+    width: 100%;
+  }
+  .right_property_features{
+    width: 100%;
+  }
+  .space_props{
+    justify-content: space-between;
+  }
+  .slides > div {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 100%;
+    height:70vh;
+    border-radius: 10px;
+    background: #eee;
+    transform-origin: center center;
+    transform: scale(1);
+    transition: transform 0.5s;
+    position: relative;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
   }
 }

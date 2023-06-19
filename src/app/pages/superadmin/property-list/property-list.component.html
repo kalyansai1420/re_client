@@ -1,6 +1,8 @@
 <ng-container *ngIf="user.authorities[0].authority === 'SuperAdmin'">
+  <div class="tableholder">
   <div class="button-container">
-    <button mat-raised-button color="accent" [routerLink]="'/superadmin/'">
+
+    <button mat-raised-button class="back-button" [routerLink]="'/superadmin/'">
       Back
     </button>
     <div id="view" class="e-btn-group">
@@ -22,6 +24,7 @@
       <label class="e-btn" for="right">List View</label>
     </div>
   </div>
+
   <table class="property-table" *ngIf="display === 2">
     <thead>
       <tr>
@@ -48,6 +51,7 @@
           <mat-slide-toggle
             [checked]="property.soldOut"
             (change)="toggleSoldOut(property)"
+            class="toggle"
           >
           </mat-slide-toggle>
         </td>
@@ -60,7 +64,7 @@
         <td>
           <button
             mat-raised-button
-            color="primary"
+            class="edit"
             [routerLink]="'/superadmin/properties/' + property.pId"
             (click)="updateProperty(property)"
           >
@@ -70,7 +74,7 @@
         <td>
           <button
             mat-raised-button
-            color="warn"
+            class="delete"
             (click)="deleteProperty(property.pId)"
           >
             Delete
@@ -79,84 +83,89 @@
       </tr>
     </tbody>
   </table>
+</div>
 </ng-container>
 
 <ng-container *ngIf="user.authorities[0].authority === 'Admin'">
-  <div class="button-container">
-    <button
-      mat-raised-button
-      color="accent"
-      
-      [routerLink]="'/admin/'"
-    >
-      Back
-    </button>
-    <div id="view" class="e-btn-group">
-      <input
-        type="radio"
-        id="left"
-        name="align"
-        value="1"
-        (click)="changeDisplay(1)"
-      />
-      <label class="e-btn" for="left">Grid View</label>
-      <input
-        type="radio"
-        id="right"
-        name="align"
-        value="2"
-        (click)="changeDisplay(2)"
-      />
-      <label class="e-btn" for="right">List View</label>
+  <div class="tableholder">
+    <div class="button-container">
+      <button
+        mat-raised-button
+        class="back-button"
+        
+        [routerLink]="'/admin/'"
+      >
+        Back
+      </button>
+      <div id="view" class="e-btn-group">
+        <input
+          type="radio"
+          id="left"
+          name="align"
+          value="1"
+          (click)="changeDisplay(1)"
+        />
+        <label class="e-btn" for="left">Grid View</label>
+        <input
+          type="radio"
+          id="right"
+          name="align"
+          value="2"
+          (click)="changeDisplay(2)"
+        />
+        <label class="e-btn" for="right">List View</label>
+      </div>
     </div>
+    <table class="property-table" *ngIf="display === 2">
+      <thead>
+        <tr>
+          <th>Property Name</th>
+          <th>Sold Out</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let property of agentProperties">
+          <td>{{ property.pName }}</td>
+  
+          <td>
+            <mat-slide-toggle
+              [checked]="property.soldOut"
+              (change)="toggleSoldOut(property)"
+            >
+            </mat-slide-toggle>
+          </td>
+  
+          <td>
+            <button
+              mat-raised-button
+              class="edit"
+              [routerLink]="'/admin/properties/' + property.pId"
+              (click)="updateProperty(property)"
+            >
+              Edit
+            </button>
+          </td>
+          <td>
+            <button
+              mat-raised-button
+              class="delete"
+              (click)="deleteProperty(property.pId)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <table class="property-table" *ngIf="display === 2">
-    <thead>
-      <tr>
-        <th>Property Name</th>
-        <th>Sold Out</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let property of agentProperties">
-        <td>{{ property.pName }}</td>
-
-        <td>
-          <mat-slide-toggle
-            [checked]="property.soldOut"
-            (change)="toggleSoldOut(property)"
-          >
-          </mat-slide-toggle>
-        </td>
-
-        <td>
-          <button
-            mat-raised-button
-            color="primary"
-            [routerLink]="'/admin/properties/' + property.pId"
-            (click)="updateProperty(property)"
-          >
-            Edit
-          </button>
-        </td>
-        <td>
-          <button
-            mat-raised-button
-            color="warn"
-            (click)="deleteProperty(property.pId)"
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 </ng-container>
 
 
 
-<app-admin-property-card *ngIf="display === 1">
+<div class="tableholder">
+  <app-admin-property-card *ngIf="display === 1">
 
-</app-admin-property-card>
+  </app-admin-property-card>
+</div>

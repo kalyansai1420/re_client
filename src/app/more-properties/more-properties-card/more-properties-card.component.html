@@ -1,0 +1,74 @@
+<!-- {{property|json}} -->
+<!-- YourComponent.html -->
+<div class="property-card-container" *ngIf="user?.authorities[0].authority !== 'Admin' && user?.authorities[0].authority !== 'SuperAdmin'">
+    <ng-container *ngFor="let p of properties | slice:0:displayCount">
+      <mat-card class="property-card" *ngIf="p.active === true">
+        <img
+        mat-card-image
+        [src]="
+          p.images.length > 0
+            ? p.images[0].imageUrl
+            : 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60'
+        "
+        alt="Property Image"
+      />
+      <ng-container *ngIf="p.soldOut; else addToCart">
+        <span class="soldOut">
+          <img src="../../../../assets/icons/sold-out-326x326.png" alt="" />
+        </span>
+      </ng-container>
+  
+      <ng-template #addToCart>
+        <span class="icon">
+          <button
+            mat-icon-button
+            (click)="addToSaved(p.pId)"
+            class="favorite-icon"
+            aria-label="Example icon-button with heart icon"
+          >
+            <mat-icon color="{{ isPropertySaved(p.pId) ? 'warn' : 'white' }}">
+              {{ isPropertySaved(p.pId) ? "favorite" : "favorite_border" }}
+            </mat-icon>
+          </button>
+        </span>
+      </ng-template>
+  
+      <mat-card-content class="card-content">
+        <h3>{{ p.pName }}</h3>
+        <p class="card-content-area">{{ p.aArea }}</p>
+        <p class="card-content-price">{{ p.pPrice | currency : "INR" }}</p>
+  
+        <div class="card-content-keypoints">
+          <p>{{ p.pArea }} sqft</p>
+          <p>{{ p.aCity }}</p>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="card-content-buttons">
+          <button mat-button [routerLink]="'/property/' + p.pId">
+            View Property
+          </button>
+  
+          <button mat-button disabled class="like-section" color="accent">
+            <span class="likes-count">{{ p.likes || "0" }}</span>
+  
+            <mat-icon color="accent">thumb_up</mat-icon>
+          </button>
+        </div>
+      </mat-card-content>
+      </mat-card>
+    </ng-container>
+    
+  
+  </div>
+  
+  <div style="text-align: center;">
+    <button mat-button *ngIf="displayCount < properties.length" (click)="showMoreCards()" class="but-hol-see" >
+      See More
+    </button>
+  </div>
+  
+  
+  
+  
+  
+  

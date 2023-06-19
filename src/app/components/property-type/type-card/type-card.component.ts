@@ -14,7 +14,20 @@ export class TypeCardComponent {
     private _route: ActivatedRoute,
     private router: Router
   ) {}
-
+  getPropertyImage(propertyType: string): string {
+    switch (propertyType) {
+      case 'flat':
+        return '4';
+      case 'villa':
+        return '2';
+      case 'Open Plots':
+        return '3';
+      case 'Apartments':
+        return '1';
+      default:
+        return '1'; // If the property type doesn't match any case, you can provide a default image or an empty string.
+    }
+  }
   ngOnInit(): void {
     this._property.countPropertiesByType().subscribe(
       (data: any) => {

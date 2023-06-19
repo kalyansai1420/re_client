@@ -1,5 +1,6 @@
 <ng-container *ngIf="user.authorities[0].authority === 'SuperAdmin'">
-  <button mat-raised-button color="accent" (click)="goBack()">Back</button>
+ <div class="tableholder">
+  <button mat-raised-button class="back-button" (click)="goBack()">Back</button>
 
   <table class="interested-table">
     <thead>
@@ -11,7 +12,8 @@
       </tr>
     </thead>
     <tbody><ng-container *ngIf="userRole == 'SuperAdmin'">
-  <button mat-raised-button color="accent" (click)="goBack()">Back</button>
+ <div class="tableholder">
+  <button mat-raised-button class="back-button" (click)="goBack()">Back</button>
 
   <table class="interested-table">
     <thead>
@@ -31,10 +33,12 @@
       </tr>
     </tbody>
   </table>
+ </div>
 </ng-container>
 
 <ng-container *ngIf="userRole == 'Admin'">
-  <button mat-raised-button color="accent" [routerLink]="'/admin/'">
+ <div class="tableholder">
+  <button mat-raised-button class="back-button" [routerLink]="'/admin/'">
     Back
   </button>
 
@@ -54,9 +58,11 @@
       </tr>
     </tbody>
   </table>
+ </div>
 </ng-container>
 <ng-container *ngIf="userRole == 'Normal'">
-  <button mat-raised-button color="accent" [routerLink]="'/user-dashboard/'">
+ <div class="table-holder">
+  <button mat-raised-button class="back-button" [routerLink]="'/user-dashboard/'">
     Back
   </button>
 
@@ -74,7 +80,7 @@
      
         <td> <button
             mat-raised-button
-            color="warn"
+            class="delete"
             (click)="removeProperty(i.saveId)"
           >
             Delete
@@ -82,6 +88,7 @@
       </tr>
     </tbody>
   </table>
+ </div>
 </ng-container>
 
       <tr *ngFor="let i of interestedProperties">
@@ -92,10 +99,12 @@
       </tr>
     </tbody>
   </table>
+ </div>
 </ng-container>
 
 <ng-container *ngIf="user.authorities[0].authority === 'Admin'">
-  <button mat-raised-button color="accent" [routerLink]="'/admin/'">
+<div class="table-holder">
+  <button mat-raised-button class="back-button" [routerLink]="'/admin/'">
     Back
   </button>
 
@@ -115,9 +124,11 @@
       </tr>
     </tbody>
   </table>
+</div>
 </ng-container>
 <ng-container *ngIf="user.authorities[0].authority === 'Normal'">
-  <button mat-raised-button color="accent" [routerLink]="'/user-dashboard/'">
+<div class="tableholder">
+  <button mat-raised-button class="back-button" [routerLink]="'/user-dashboard/'">
     Back
   </button>
 
@@ -135,7 +146,7 @@
      
         <td> <button
             mat-raised-button
-            color="warn"
+            class="delete"
             (click)="removeProperty(i.saveId)"
           >
             Delete
@@ -143,4 +154,5 @@
       </tr>
     </tbody>
   </table>
+</div>
 </ng-container>

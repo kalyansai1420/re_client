@@ -6,8 +6,12 @@
     <mat-card class="property-card">
       <img
         mat-card-image
-        src="{{ p.pPhoto }}"
-        alt="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
+        [src]="
+          p.images.length > 0
+            ? p.images[0].imageUrl
+            : 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60'
+        "
+        alt="Property Image"
       />
       <ng-container *ngIf="p.soldOut">
         <span class="soldOut">
@@ -47,7 +51,7 @@
           </button>
           <button
             mat-raised-button
-            color="primary"
+            class="edit"
             [routerLink]="'/superadmin/properties/' + p.pId"
           >
             Edit
@@ -55,7 +59,7 @@
 
           <button
             mat-raised-button
-            color="warn"
+            class="delete"
             (click)="deleteProperty(p.pId)"
           >
             Delete
@@ -72,10 +76,14 @@
   <ng-container *ngFor="let p of agentProperties">
     <mat-card class="property-card" *ngIf="p.active == '1'">
       <img
-        mat-card-image
-        src="{{ p.pPhoto }}"
-        alt="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
-      />
+      mat-card-image
+      [src]="
+        p.images.length > 0
+          ? p.images[0].imageUrl
+          : 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60'
+      "
+      alt="Property Image"
+    />
       <ng-container *ngIf="p.soldOut">
         <span class="soldOut">
           <img src="../../../../assets/icons/sold-out-326x326.png" alt="" />
@@ -107,14 +115,14 @@
           </button>
           <button
             mat-raised-button
-            color="primary"
+            class="edit"
             [routerLink]="'/admin/properties/' + p.pId"
           >
             Edit
           </button>
           <button
             mat-raised-button
-            color="warn"
+            class="delete"
             (click)="deleteProperty(p.pId)"
           >
             Delete

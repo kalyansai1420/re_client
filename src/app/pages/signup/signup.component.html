@@ -1,15 +1,16 @@
 <app-navbar></app-navbar>
-
+<div class="card-wrap">
+  
 <div class="bootstrap-wrapper">
   <div class="container">
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <mat-card>
           <div class="container text-center">
-            <img src="../../../assets/icons/profile.png" alt="" />
+         
           </div>
 
-          <h1 class="text-center">Register Here !!</h1>
+          <h1 class="text-center">Register</h1>
 
           <!-- {{ user | json }} -->
 
@@ -63,13 +64,13 @@
             </mat-form-field>
 
             <div class="container text-center">
-              <button type="submit" mat-raised-button color="primary">
+              <button type="submit" mat-raised-button style="background-color: #00b4a1; color: white;">
                 Register
               </button>
               <button
-                style="margin-left: 20px"
+                style="margin-left: 20px;background-color: black;color: white;"
                 mat-raised-button
-                color="accent"
+                
                 (click)="clearInput()"
                 type="button" 
               >
@@ -81,4 +82,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

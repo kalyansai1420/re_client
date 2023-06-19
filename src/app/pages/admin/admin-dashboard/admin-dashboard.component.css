@@ -1,10 +1,14 @@
+.bootstrap-wrapper{
+  background-color: white;
+  height: 100%;
+}
 .container-fluid{
     width: 100%;
     padding: 0;
 }
 .nav{
-    background-color: blue;
-    width: 100%;
+  padding: 0 !important;
+  width: 100%;
 }
 
 .sidebar {

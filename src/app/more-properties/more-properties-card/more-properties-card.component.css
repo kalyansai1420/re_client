@@ -1,0 +1,184 @@
+.property-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .property-card {
+    max-width: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: fit-content;
+    max-width: 300px;
+    min-height: 450px;
+  }
+  .property-card .soldOut{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 10;
+  }
+  .property-card .soldOut img{
+    height: 105px;
+    width: 110px;
+  }
+  
+  .property-card .icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    height: 50px;
+    color: white;
+  }
+  
+  .property-card img {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .card-content >h3{
+      font-size: 1.2rem;
+      font-weight: 500;
+      padding-top: 5px;
+  }
+  .card-content-area {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: grey;
+    
+  }
+  
+  .card-content-price{
+    font-size: 1.2rem;
+      font-weight: 500;
+      color: #00b4a1;
+  }
+  .card-content-keypoints{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: gray;
+   
+  
+  }
+  
+  .card-content-buttons{
+   
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top:10px ;
+    color: gray;
+  }
+  .like-section {
+    display: flex;
+    align-items: center; /* Align items vertically center */
+  }
+  
+  .likes-count {
+    margin-right: 5px; /* Add some spacing between the count and icon */
+  }
+  @media only screen and (max-width: 400px) {
+    .property-card img {
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+  }
+  }
+  
+  
+  /* external css: flickity.css */
+  
+  * { box-sizing: border-box; }
+  
+  body { font-family: sans-serif; }
+  
+  .carousel {
+    background: #EEE;
+  }
+  
+  .carousel-cell {
+    width: 28%;
+    height: 200px;
+    margin-right: 10px;
+    background: #8C8;
+    border-radius: 5px;
+    counter-increment: carousel-cell;
+  }
+  
+  .carousel-cell.is-selected {
+    background: #ED2;
+  }
+  
+  /* cell number */
+  .carousel-cell:before {
+    display: block;
+    text-align: center;
+    content: counter(carousel-cell);
+    line-height: 200px;
+    font-size: 80px;
+    color: white;
+  }
+  .slider {
+    width: 300px;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .slides {
+    display: flex;
+    
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    
+    
+    
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    
+    /*
+    scroll-snap-points-x: repeat(300px);
+    scroll-snap-type: mandatory;
+    */
+  }
+  .slides::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .slides::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 10px;
+  }
+  .slides::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .slides > div {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 300px;
+    height: 300px;
+    margin-right: 50px;
+    border-radius: 10px;
+    background: #eee;
+    transform-origin: center center;
+    transform: scale(1);
+    transition: transform 0.5s;
+    position: relative;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+  }
+  .slides > div:target {
+  /*   transform: scale(0.8); */
+  }
+  .but-hol-see{
+    background-color: #00b4a1;
+    color: white !important;
+    margin: 20px 0px;
+    font-size: 20px;
+  }

@@ -36,3 +36,58 @@ body {
 .mb10 {
   margin-bottom: 10px !important;
 }
+.m-h-35{
+  margin: 0px 35px;
+}
+.nav{
+  align-items: center;
+  padding: 10px 0px !important;
+}
+.nav-left{
+  & img{
+    width: 100px;
+  }
+}
+.nav-right{
+  height: 55px !important;
+  display: flex;
+    align-items: center;
+}
+.m-h-45{
+  margin: 0px 35px;
+}
+.side-nav-bar{
+  min-width: 200px;
+  width: 100%;
+  max-width: 230px;
+}
+.menu-icon{
+  color: #00B4A1 !important;
+}
+
+.tableholder{
+  width: 80% !important;
+padding: 20px 0px 0px 50px !important;
+}
+.edit{
+  color: white !important;
+  background-color: #00b4a1 !important;
+
+}
+.delete{
+  background-color: rgb(245, 49, 49) !important;
+  color: white !important;
+}
+.aaaa{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0px;
+}
+@media screen  and (max-width:426px){
+  .nav-right{
+    height: 45px !important;
+    display: flex;
+      align-items: center;
+  }
+}

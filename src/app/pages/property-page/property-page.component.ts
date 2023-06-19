@@ -9,9 +9,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PropertyService } from 'src/app/services/property.service';
-import Flickity from 'flickity';
 import { LoginService } from 'src/app/services/login.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-property-page',
@@ -26,7 +24,6 @@ export class PropertyPageComponent implements AfterViewInit {
   @Input() id: any;
   username: null | undefined;
 
-  @ViewChild('carousel') carouselRef!: ElementRef;
   isScrolled: boolean = false;
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -63,7 +60,18 @@ export class PropertyPageComponent implements AfterViewInit {
       }
     );
   }
-
+  getUpdatedText(updatedAt: string): string {
+    const currentDate = new Date();
+    const updatedDate = new Date(updatedAt);
+    const timeDiff = Math.abs(currentDate.getTime() - updatedDate.getTime());
+    const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  
+    if (daysDiff === 0) {
+      return 'Updated just now';
+    } else {
+      return `Updated ${daysDiff} day${daysDiff !== 1 ? 's' : ''} ago`;
+    }
+  }
   getUserId() {
     this.isLoggedIn = this.login.isLoggedIn();
     if (!this.isLoggedIn) {
@@ -80,18 +88,8 @@ export class PropertyPageComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (!localStorage.getItem('foo')) {
-      localStorage.setItem('foo', 'no reload');
-      location.reload();
-    } else {
-      localStorage.removeItem('foo');
-    }
-    const carouselElement = this.carouselRef.nativeElement;
-    const flkty = new Flickity(carouselElement, {
-      autoPlay: true,
-      wrapAround: true,
-      prevNextButtons: false,
-    });
+ 
+  
   }
   public logout() {
     this.login.logout();

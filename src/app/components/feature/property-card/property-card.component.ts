@@ -15,6 +15,7 @@ interface Property {
   gardens: '';
   gym: '';
   hospitals: '';
+  images: { id: number; imageUrl: string }[];
   lift: '';
   market_area: '';
   pAgeOfConstruction: '';
@@ -49,6 +50,7 @@ interface Property {
     phonenumber: '';
   };
   likes: number;
+  updatedAt:string;
 }
 @Component({
   selector: 'app-property-card',
@@ -56,6 +58,13 @@ interface Property {
   styleUrls: ['./property-card.component.css'],
 })
 export class PropertyCardComponent {
+  displayCount: number = 4; // Initial value of cards to display
+
+  // Your other component code
+
+  showMoreCards() {
+    this.displayCount = Math.min(this.displayCount + 4, this.properties.length);
+  }
   isLoggedIn = false;
   @Input() id: any;
   @Input() user: any;
@@ -105,13 +114,19 @@ export class PropertyCardComponent {
         this.properties = data;
         this.getLikesProperty();
         console.log('All Properties : ', this.properties);
+        // Sort properties by updatedAt in descending order
+        this.properties.sort((a: Property, b: Property) => {
+          return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+        });
       },
       (error) => {
         console.log(error);
       }
     );
   }
+  
   getPropertyType() {
+    console.log("PropertyType",this.propertyType);
     this._property.properties().subscribe(
       (data: any) => {
         this.properties = data;
@@ -125,7 +140,6 @@ export class PropertyCardComponent {
       }
     );
 
-    console.log(this.properties);
   }
   getPropertyCity() {
     console.log(this.propertyCity);
@@ -141,8 +155,6 @@ export class PropertyCardComponent {
         console.log(error);
       }
     );
-
-    console.log(this.properties);
   }
   getSavedProperty() {
     if (this.userIdentity) {
@@ -167,7 +179,6 @@ export class PropertyCardComponent {
   getLikesProperty() {
     this._save.likesProperty().subscribe(
       (data: any) => {
-        console.log(data);
         console.log(this.properties);
         data.forEach((item: any) => {
           const propertyId = item.p_id;
