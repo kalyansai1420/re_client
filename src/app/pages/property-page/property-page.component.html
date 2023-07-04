@@ -17,7 +17,7 @@
 </button>
 
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav>
+  <mat-sidenav #sidenav class="side-nav-bar">
     <mat-action-list>
       <div mat-subheader>Menu</div>
 
@@ -29,11 +29,7 @@
         <mat-icon mat-list-icon class="menu-icon">account_circle</mat-icon>
         <span class="menu-text">Profile</span>
       </button>
-      <button
-        routerLink="/user-dashboard/interested"
-        mat-list-item
-        *ngIf="isLoggedIn"
-      >
+      <button routerLink="/user-dashboard/interested" mat-list-item *ngIf="isLoggedIn">
         <mat-icon mat-list-icon class="menu-icon">add_shopping_cart</mat-icon>
         <span class="menu-text">Saved</span>
       </button>
@@ -58,9 +54,12 @@
       "
     >
       <div class="nav-left">
-        <h2>My App</h2>
+        <div class="nav-left m-h-35">
+          <!--  <h2>My App</h2> -->
+          <img src="../../../assets/logofinal.png" alt="">
+         </div>
       </div>
-      <div class="nav-right">
+      <div class="nav-right m-h-35">
         <button
           mat-icon-button
           class="example-icon favorite-icon"
@@ -80,26 +79,29 @@
     </div>
 
     <div class="property">
-      <div *ngFor="let image of property.images">
-          <img src="{{ image.imageUrl }}" alt="" />
+      <div class="slider">
+  
+  <!--       <a href="#slide-1">1</a>
+        <a href="#slide-2">2</a>
+        <a href="#slide-3">3</a>
+        <a href="#slide-4">4</a>
+        <a href="#slide-5">5</a> -->
+      
+        <div class="slides">
+          <div class="carousel-cell" *ngFor="let image of property.images">
+            <img src="{{ image.imageUrl }}" alt="" />
+          </div>
         </div>
-      <!-- <div
+      </div>
+      
+    <!--   <div
         class="carousel"
         #carousel
         data-flickity='{ "autoPlay": true,"wrapAround": true,"prevNextButtons": false  }'
       >
-        <div class="carousel-cell">
-          <img
-            src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-            alt=""
-          />
-        </div> -->
-        <!-- <div class="carousel-cell">
-          <img src="{{ property.pPhoto }}" alt="" />
-        </div> -->
-        <!-- <div class="carousel-cell" *ngFor="let image of property.images">
+        <div class="carousel-cell" *ngFor="let image of property.images">
           <img src="{{ image.imageUrl }}" alt="" />
-        </div> 
+        </div>
       </div> -->
       <div class="second-div">
         <div class="price-card">
@@ -109,14 +111,14 @@
               <h4>{{ property?.pPrice | currency : "INR" }}</h4>
             </div>
             <div class="card-right">
-              <a href={{property.pPhoto}} target="_blank" rel="noopener noreferrer"></a>
+              <button mat-button>Send Request</button>
             </div>
           </div>
           <mat-divider></mat-divider>
 
           <div class="card-bottom">
             <div class="card-left">
-              <p>updated 1 day ago</p>
+              <p> {{ getUpdatedText(property.updatedAt) }}</p>
             </div>
             <div class="card-right">
               <button
@@ -132,9 +134,7 @@
         <div class="property-details">
           <div class="property-address">
             <p>
-              {{ property?.aArea }},{{ property?.aLandmark }},{{
-                property?.aCity
-              }}
+              {{ property?.aArea }},{{ property?.aLandmark }},{{ property?.aCity }}
             </p>
           </div>
           <div class="property-icons">
@@ -276,9 +276,6 @@
         </div>
       </div>
     </div>
-    <ng-container *ngIf="property.aCity">
-        <app-feature [propertyCity]="property.aCity"></app-feature>
-      </ng-container>
 
     <app-footer
       *ngIf="

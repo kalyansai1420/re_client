@@ -7,12 +7,66 @@ import Swal from 'sweetalert2';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 
 
+interface Property {
+  pId: number;
+  aArea: '';
+  aCity: '';
+  aLandmark: '';
+  aPincode: '';
+  aState: '';
+  gardens: '';
+  gym: '';
+  hospitals: '';
+  images: { id: number; imageUrl: string }[];
+  lift: '';
+  market_area: '';
+  pAgeOfConstruction: '';
+  pArea: '';
+  pBHK: '';
+  pBalcony: '';
+  pBathroom: '';
+  pBedroom: '';
+  pDescription: '';
+  pFacing: '';
+  pFurnishedStatus: '';
+  pName: '';
+  pOfferType: '';
+  pPhoto: '';
+  pPossesionStatus: '';
+  pPrice: '';
+  pPropertyType: '';
+  pRoomFloor: '';
+  pTotalFloor: '';
+  parkingArea: '';
+  playground: '';
+  powerBackup: '';
+  schools: '';
+  security: '';
+  shoppingMall: '';
+  waterSupply: '';
+  soldOut: '';
+  active: boolean;
+  user: {
+    uid: '';
+    username: '';
+    phonenumber: '';
+  };
+  likes: number;
+  updatedAt:string;
+}
 @Component({
   selector: 'app-property-card',
   templateUrl: './property-card.component.html',
   styleUrls: ['./property-card.component.css'],
 })
 export class PropertyCardComponent {
+  displayCount: number = 4; // Initial value of cards to display
+
+  // Your other component code
+
+  showMoreCards() {
+    this.displayCount = Math.min(this.displayCount + 4, this.properties.length);
+  }
   isLoggedIn = false;
   @Input() id: any;
   @Input() user: any;
@@ -70,6 +124,9 @@ export class PropertyCardComponent {
         this.properties = data;
         this.getLikesProperty();
         console.log('All Properties : ', this.properties);
+        this.properties.sort((a: Property, b: Property) => {
+          return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+        });
       },
       (error) => {
         console.log(error);

@@ -1,7 +1,7 @@
 .button-container {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 20px 0px;
 }
 
 .left-button {
@@ -13,6 +13,8 @@
 }
 .e-btn-group {
   display: flex;
+  width: 200px;
+  justify-content: space-evenly;
 }
 
 .e-btn-group input[type="radio"] {
@@ -24,14 +26,16 @@
   padding: 8px 16px;
   background-color: #e0e0e0;
   border-radius: 4px;
+
 }
 
 .e-btn-group label:hover {
   background-color: #bdbdbd;
+
 }
 
 .e-btn-group input[type="radio"]:checked + label {
-  background-color: #2196f3;
+  background-color: #00b4a1;
   color: white;
 }
 
@@ -79,4 +83,25 @@
 
 .property-table button:hover {
   background-color: lightgray;
+}
+.black-button{
+  color: black;
+  background-color: white;
+ border: none;
+ outline: none;
+
+}
+
+.tableholder{
+  width: 100%;
+padding: 20px 50px;
+}
+.edit{
+  color: white;
+  background-color: #00b4a1;
+
+}
+.delete{
+  background-color: rgb(245, 49, 49);
+  color: white;
 }

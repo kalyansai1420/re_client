@@ -1,0 +1,21 @@
+.button-float{
+    position: fixed;
+    z-index: 999999;
+    bottom: 10px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  border-radius: 100%;
+  width: 60px;
+  height: 60px;
+    background: #00b1a4;
+    & h1{
+        font-size: 50px;
+    }
+    & i{
+        color: white;
+        font-size: 35px;
+    }
+    cursor: pointer;
+}

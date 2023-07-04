@@ -63,6 +63,10 @@ import { LikedPropertyComponent } from './components/liked-property/liked-proper
 import { LikedPropertyCardComponent } from './components/liked-property/liked-property-card/liked-property-card.component';
 import { RecentlyAddedComponent } from './components/recently-added/recently-added.component';
 import { RecentCardComponent } from './components/recently-added/recent-card/recent-card.component';
+import { MorePropertiesComponent } from './more-properties/more-properties.component';
+import { FloatbuttonComponent } from './floatbutton/floatbutton.component';
+import { NeighbourComponent } from './components/neighbour/neighbour.component';
+import { MorePropertiesCardComponent } from './more-properties/more-properties-card/more-properties-card.component';
 
 
 @NgModule({
@@ -106,6 +110,10 @@ import { RecentCardComponent } from './components/recently-added/recent-card/rec
     LikedPropertyCardComponent,
     RecentlyAddedComponent,
     RecentCardComponent,
+    MorePropertiesComponent,
+    FloatbuttonComponent,
+    NeighbourComponent,
+    MorePropertiesCardComponent,
   ],
   imports: [
     BrowserModule,
